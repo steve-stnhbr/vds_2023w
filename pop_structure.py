@@ -1,10 +1,13 @@
 import plotly.graph_objects as go
+import plotly.colors as pc
 import pandas as pd
 from lib.transformations import *
 from lib.geo import *
 
 HEADING_REGION = "Age Distribution by NUTS3 Region"
 HEADING_URBAN_TYPE = "Age Distribution by Urban Type"
+
+HOVER_TEMPLATE = "<b>%{y}%</b>"
 
 MAX_GEOS_AT_ONCE = 20
 POP_AGE_GROUPS_FINE = {
@@ -48,6 +51,11 @@ POP_AGE_GROUPS = {
     "vcoarse": POP_AGE_GROUPS_VCOARSE,
 }
 
+# add colors to the age groups
+for age_group in POP_AGE_GROUPS.values():
+    for i, (ag_id, name) in enumerate(age_group.items()):
+        age_group[ag_id] = {"name": name, "color": pc.sample_colorscale(pc.sequential.Plotly3, i/len(age_group))}
+
 
 df_pop_structure = pd.read_csv("data/population_structure_indicators.tsv", dtype={'geo': str})
 df_pop_structure = to_numeric_bfill(df_pop_structure)
@@ -88,17 +96,20 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
         df_pop = assign_urbanization_type(df_pop)
         df_pop = df_pop.groupby(['urban_type', 'indic_de'])[year].mean().reset_index()
         age_group = POP_AGE_GROUPS[groups]
-        for ag_id, name in age_group.items():
+        for i, (ag_id, values) in enumerate(age_group.items()):
             row = df_pop[df_pop['indic_de'] == ag_id]
             fig.add_trace(
                 go.Bar(
                     x=row['urban_type'],
                     y=row[year],
-                    name=name
+                    name=values['name'],
+                    customdata=[values['name']],
+                    marker_color=values['color']*3,
+                    hovertemplate=HOVER_TEMPLATE
                 )
             )
     else: # otherwise display all NUTS3 regions
-        for ag_id, name in POP_AGE_GROUPS[groups].items():
+        for i, (ag_id, values) in enumerate(POP_AGE_GROUPS[groups].items()):
             heading = HEADING_REGION
             row = df_pop[df_pop['indic_de'] == ag_id]
             fig.add_trace(
@@ -106,7 +117,10 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
                     ids=row['geo'],
                     x=row['geo'].apply(get_geo_name),
                     y=row[year],
-                    name=name,
+                    name=values['name'],
+                    customdata=[values['name']],
+                    marker_color=values['color']*len(row['geo'].unique()),
+                    hovertemplate=HOVER_TEMPLATE
                 )
             )
 

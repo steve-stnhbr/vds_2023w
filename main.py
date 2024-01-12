@@ -25,12 +25,12 @@ app.layout = html.Div([
               figure=create_map_graph(None, level=3), clear_on_unhover=True),
     ]),
     html.Div([
-        html.H2("Age Distribution by NUTS3 Region", id="pop_distr_heading"),
+        html.H2("Age Distribution by Region", id="pop_distr_heading"),
         dcc.Dropdown(id="age_group_select", options=[{"label": group, "value": group} for group in POP_AGE_GROUPS.keys()], value="fine"),
         dcc.Graph(id="pop_distr_graph", figure=create_population_structure_bar_chart(None), clear_on_unhover=True)
     ]),
     html.Div([
-        html.H2("Population by country", id="pop_heading"),
+        html.H2("Population by region", id="pop_heading"),
         dcc.Graph(id="pop_graph", figure=create_population_line_plot(None), clear_on_unhover=True)
     ]),
 ])
