@@ -15,12 +15,12 @@ app = Dash(__name__)
 app.layout = html.Div([
     html.H1(HEADING),
     html.Div([
-        html.H2("Population density by NUTS3 region"),
+        html.H2("Population Density by NUTS3 Region"),
         dcc.Graph(id="center_map", 
               figure=create_map_graph(None, df_population_density.geo, df_population_density["2022"], level=3)),
     ]),
     html.Div([
-        html.H2("Median age by NUTS3 region"),
+        html.H2("Age Distribution by NUTS3 Region"),
         dcc.Dropdown(id="age_group_select", options=[{"label": group, "value": group} for group in POP_AGE_GROUPS.keys()], value="fine"),
         dcc.Graph(id="population_graph", figure=create_population_structure_bar_chart(None))
     ])
