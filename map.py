@@ -6,7 +6,15 @@ from lib.graphics import *
 GEO_IDENTIFIER = 'properties.NUTS_ID'
 NUTS_LEVEL = 3
 
-def create_map_graph(fig, locations, values, highlight_locations=[], level=3, year=2022):
+df_population_density = sort_to_numeric_bfill(pd.read_csv("data/density.tsv", dtype={'geo': str}))
+years_population_density = get_years(df_population_density)
+
+def create_map_graph(fig, highlight_locations=[], level=3, year=2022):
+    global df_population_density
+    locations = df_population_density['geo']
+    values = df_population_density[str(year)]
+    if len(intersection(URBAN_TYPES.values(), highlight_locations)) > 0:
+        highlight_locations = get_geos_with_urban_types(highlight_locations)
     if fig is None:
         fig = go.Figure(
             layout=go.Layout(
@@ -27,6 +35,7 @@ def create_map_graph(fig, locations, values, highlight_locations=[], level=3, ye
                 z=values,
                 marker={'opacity': .5, "line":  {"width": .1}},
                 colorscale=logarithmic_color_scale(pc.sequential.Reds, base=3.1, num_samples=100),
+                text=pd.DataFrame(df_population_density['geo']).merge(df_geo_names, left_on='geo', right_on='nuts3', how='left')['name'],
             )
         )
     else:

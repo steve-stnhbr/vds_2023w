@@ -3,41 +3,44 @@ import pandas as pd
 from lib.transformations import *
 from lib.geo import *
 
+HEADING_REGION = "Age Distribution by NUTS3 Region"
+HEADING_URBAN_TYPE = "Age Distribution by Urban Type"
+
 MAX_GEOS_AT_ONCE = 20
-POP_AGE_GROUPS_FINE = [
-    "PC_Y0_14",
-    "PC_Y15_19",
-    "PC_Y20_24",
-    "PC_Y25_29",
-    "PC_Y30_34",
-    "PC_Y35_39",
-    "PC_Y40_44",
-    "PC_Y45_49",
-    "PC_Y50_54",
-    "PC_Y55_59",
-    "PC_Y60_64",
-    "PC_Y65_69",
-    "PC_Y70_74",
-    "PC_Y75_79",
-    "PC_Y80_MAX",
-]
+POP_AGE_GROUPS_FINE = {
+    "PC_Y0_14": "0-14",
+    "PC_Y15_19": "15-19",
+    "PC_Y20_24": "20-24",
+    "PC_Y25_29": "25-29",
+    "PC_Y30_34": "30-34",
+    "PC_Y35_39": "35-39",
+    "PC_Y40_44": "40-44",
+    "PC_Y45_49": "45-49",
+    "PC_Y50_54": "50-54",
+    "PC_Y55_59": "55-59",
+    "PC_Y60_64": "60-64",
+    "PC_Y65_69": "65-69",
+    "PC_Y70_74": "70-74",
+    "PC_Y75_79": "75-79",
+    "PC_Y80_MAX": "80+",
+}
 
-POP_AGE_GROUPS_COARSE = [
-    "PC_Y0_14",
-    "PC_Y15_24",
-    "PC_Y25_49",
-    "PC_Y50_64",
-    "PC_Y65_79",
-    "PC_Y80_MAX",
-]
+POP_AGE_GROUPS_COARSE = {
+    "PC_Y0_14": "0-14",
+    "PC_Y15_24": "15-24",
+    "PC_Y25_49": "25-49",
+    "PC_Y50_64": "50-64",
+    "PC_Y65_79": "65-79",
+    "PC_Y80_MAX": "80+",
+}
 
-POP_AGE_GROUPS_VCOARSE = [
-    "PC_Y0_19",
-    "PC_Y20_39",
-    "PC_Y40_59",
-    "PC_Y60_79",
-    "PC_Y80_MAX",
-]
+POP_AGE_GROUPS_VCOARSE = {
+    "PC_Y0_19": "0-19",
+    "PC_Y20_39": "20-39",
+    "PC_Y40_59": "40-59",
+    "PC_Y60_79": "50-79",
+    "PC_Y80_MAX": "80+",
+}
 
 POP_AGE_GROUPS = {
     "fine": POP_AGE_GROUPS_FINE,
@@ -77,30 +80,33 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
     df_pop = df_pop_structure.loc[:, ['indic_de', 'geo', year]]
     if geos is not None and len(geos) > 0:
         df_pop = df_pop[df_pop['geo'].str.startswith(tuple(geos))]
+    # only select NUTS3 regions TODO: maybe not do this
     df_pop = df_pop[df_pop['geo'].str.len() == 5]
-    #df_pop = df_pop[["indic_de", 'geo'] + years]
     # only display MAX_GEOS_AT_ONCE NUTS3 regions at once, otherwise aggregate them by urban_types
     if len(df_pop['geo'].unique()) > MAX_GEOS_AT_ONCE:
+        heading = HEADING_URBAN_TYPE
         df_pop = assign_urbanization_type(df_pop)
         df_pop = df_pop.groupby(['urban_type', 'indic_de'])[year].mean().reset_index()
-        age_groups = POP_AGE_GROUPS[groups]
-        for age_group in age_groups:
-            row = df_pop[df_pop['indic_de'] == age_group]
+        age_group = POP_AGE_GROUPS[groups]
+        for ag_id, name in age_group.items():
+            row = df_pop[df_pop['indic_de'] == ag_id]
             fig.add_trace(
                 go.Bar(
                     x=row['urban_type'],
                     y=row[year],
-                    name=age_group
+                    name=name
                 )
             )
     else: # otherwise display all NUTS3 regions
-        for age_group in POP_AGE_GROUPS[groups]:
-            row = df_pop[df_pop['indic_de'] == age_group]
+        for ag_id, name in POP_AGE_GROUPS[groups].items():
+            heading = HEADING_REGION
+            row = df_pop[df_pop['indic_de'] == ag_id]
             fig.add_trace(
                 go.Bar(
-                    x=row['geo'],
+                    ids=row['geo'],
+                    x=row['geo'].apply(get_geo_name),
                     y=row[year],
-                    name=age_group
+                    name=name,
                 )
             )
 
