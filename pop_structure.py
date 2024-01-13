@@ -100,6 +100,7 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
             row = df_pop[df_pop['indic_de'] == ag_id]
             fig.add_trace(
                 go.Bar(
+                    ids=row['urban_type'],
                     x=row['urban_type'],
                     y=row[year],
                     name=values['name'],

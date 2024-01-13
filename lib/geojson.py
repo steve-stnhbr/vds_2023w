@@ -94,5 +94,5 @@ def get_zoom_center(locations):
     center_lng = (max_lng + min_lng) / 2
     # calculate the zoom level
     max_bound = max(abs(max_lat-min_lat), abs(max_lng-min_lng)) * 111
-    zoom = 15 - np.log(max_bound)
+    zoom = 11.5 - np.log(max_bound)
     return zoom, {"lat": center_lat, "lon": center_lng}
