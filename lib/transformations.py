@@ -28,6 +28,14 @@ def sort_to_numeric(df, columns=None, reverse=False):
     df[columns] = df[columns].apply(pd.to_numeric, errors='coerce')
     return df
 
+def sort_to_numeric_ffill(df, columns=None, reverse=False):
+    if columns is None:
+        columns = get_years(df)
+    sorted_columns = sorted(columns, reverse=reverse)
+    df = df[[col for col in df.columns if col not in sorted_columns] + sorted_columns]
+    df[columns] = df[columns].apply(pd.to_numeric, errors='coerce').ffill(axis=0)
+    return df
+
 def get_years(df):
     return [col for col in df.columns if col.isdigit()]
 

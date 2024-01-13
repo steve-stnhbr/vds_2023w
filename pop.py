@@ -9,7 +9,7 @@ HEADING_URBAN_TYPE = "Population Development by Urban Type"
 MAX_GEOS_AT_ONCE = 50
 
 df_population = pd.read_csv("data/population.tsv", dtype={'geo': str})
-df_population = to_numeric_bfill(df_population)
+df_population = sort_to_numeric_ffill(df_population)
 
 def create_population_line_plot(fig, geos=[], year=None):
     global df_population

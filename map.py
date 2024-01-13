@@ -8,7 +8,7 @@ NUTS_LEVEL = 3
 
 HOVERTEMPLATE = "<b>%{text}</b><br>Population density: %{z:.2f} people per km²"
 
-df_population_density = sort_to_numeric_bfill(pd.read_csv("data/density.tsv", dtype={'geo': str}))
+df_population_density = sort_to_numeric_ffill(pd.read_csv("data/density.tsv", dtype={'geo': str}))
 years_population_density = get_years(df_population_density)
 
 def create_map_graph(fig, highlight_locations=[], level=3, year=2022):
@@ -21,9 +21,10 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022):
         fig = go.Figure(
             layout=go.Layout(
                     mapbox_style="carto-positron",
-                    mapbox_zoom=3,
-                    mapbox_center = {"lat": 50.0, "lon": 10.0},
+                    mapbox_zoom=3.04751102102008,
+                    mapbox_center = {"lat": 56.56730983530582, "lon": 8.87268008141507},
                     margin={"r":0,"t":0,"l":0,"b":0},
+                    min_zoom=3.2,
                     height=800,
                     width=1200,
                     title=f"Population density in NUTS{level} regions"
