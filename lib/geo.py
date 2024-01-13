@@ -69,3 +69,8 @@ def get_geo_name(geo):
 
 def get_geo_names(geos):
     return [get_geo_name(geo) for geo in geos]
+
+def get_urban_types_of_geos(geos, as_string=True):
+    if as_string:
+        return df_geo[df_geo['id'].isin(geos)].urban_type.apply(lambda x: URBAN_TYPES[x]).unique()
+    return df_geo[df_geo['id'].isin(geos)].urban_type.unique()

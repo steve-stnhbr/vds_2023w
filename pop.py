@@ -2,20 +2,22 @@ import plotly.graph_objects as go
 import pandas as pd
 from lib.transformations import *
 from lib.geo import *
+from lib.style import *
 
 HEADING_REGION = "Population Development by NUTS3 Region"
 HEADING_URBAN_TYPE = "Population Development by Urban Type"
+UNSELECTED_OPACITY = .24
 
 MAX_GEOS_AT_ONCE = 50
 
 df_population = pd.read_csv("data/population.tsv", dtype={'geo': str})
 df_population = sort_to_numeric_ffill(df_population)
 
-def create_population_line_plot(fig, geos=[], year=None):
+def create_population_line_plot(fig, geos=[], year=None, selected=[]):
     global df_population
     years = get_years(df_population)
     df_pop = df_population
-    fig = go.Figure()
+    fig = create_figure()
     if geos is None or len(geos) == 0:
         geos = df_pop['geo'].unique()
 
@@ -24,6 +26,8 @@ def create_population_line_plot(fig, geos=[], year=None):
 
     if len(geos) > MAX_GEOS_AT_ONCE:
         heading = HEADING_URBAN_TYPE
+        if selected is not None and len(selected) > 0:
+            selected = get_urban_types_of_geos(selected)
         df_pop = assign_urbanization_type(df_pop)
         df_pop = df_pop.groupby(['urban_type'])[years].sum().reset_index()
         for urban_type in df_pop['urban_type'].unique():
@@ -33,7 +37,8 @@ def create_population_line_plot(fig, geos=[], year=None):
                     x=years,
                     y=row[years].values[0],
                     mode='lines',
-                    name=urban_type
+                    name=urban_type,
+                    opacity=1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
                 )
             )
     else:
@@ -45,7 +50,8 @@ def create_population_line_plot(fig, geos=[], year=None):
                     x=years,
                     y=row[years].values[0],
                     mode='lines',
-                    name=get_geo_name(geo)
+                    name=get_geo_name(geo),
+                    opacity=1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
                 )
             )
     if year is not None:

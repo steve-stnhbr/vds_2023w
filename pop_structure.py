@@ -3,11 +3,14 @@ import plotly.colors as pc
 import pandas as pd
 from lib.transformations import *
 from lib.geo import *
+from lib.style import *
 
 HEADING_REGION = "Age Distribution by NUTS3 Region"
 HEADING_URBAN_TYPE = "Age Distribution by Urban Type"
 
 HOVER_TEMPLATE = "<b>%{y}%</b>"
+
+UNSELECTED_OPACITY = .24
 
 MAX_GEOS_AT_ONCE = 20
 POP_AGE_GROUPS_FINE = {
@@ -60,31 +63,9 @@ for age_group in POP_AGE_GROUPS.values():
 df_pop_structure = pd.read_csv("data/population_structure_indicators.tsv", dtype={'geo': str})
 df_pop_structure = to_numeric_bfill(df_pop_structure)
 
-def create_population_graph(fig, geos=[]):
+def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fine", selected=[]):
     global df_pop_structure
-    years = get_years(df_pop_structure)
-    if geos is not None and len(geos) > 0:
-        df_pop_structure = df_pop_structure[df_pop_structure['geo'].str.startswith(tuple(geos))]
-    df_pop_structure = df_pop_structure[["indic_de", 'geo'] + years]
-    print(df_pop_structure['indic_de'].unique())
-    if fig is None:
-        fig = go.Figure()
-        for geo in df_pop_structure['geo'].unique():
-            row = df_pop_structure[df_pop_structure['geo'] == geo]
-            fig.add_trace(
-                go.Scatter(
-                    x=years,
-                    y=row[row['indic_de'] == "MEDAGEPOP"],
-                    mode='lines'
-                )
-            )
-    else:
-        fig['data'][0]['y'] = df_pop_structure["MEDAGEPOP"]
-    return fig
-
-def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fine"):
-    global df_pop_structure
-    fig = go.Figure()
+    fig = create_figure()
     df_pop = df_pop_structure.loc[:, ['indic_de', 'geo', year]]
     if geos is not None and len(geos) > 0:
         df_pop = df_pop[df_pop['geo'].str.startswith(tuple(geos))]
@@ -96,17 +77,19 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
         df_pop = assign_urbanization_type(df_pop)
         df_pop = df_pop.groupby(['urban_type', 'indic_de'])[year].mean().reset_index()
         age_group = POP_AGE_GROUPS[groups]
+
         for i, (ag_id, values) in enumerate(age_group.items()):
-            row = df_pop[df_pop['indic_de'] == ag_id]
+            chunk = df_pop[df_pop['indic_de'] == ag_id]
             fig.add_trace(
                 go.Bar(
-                    ids=row['urban_type'],
-                    x=row['urban_type'],
-                    y=row[year],
+                    ids=chunk['urban_type'],
+                    x=chunk['urban_type'],
+                    y=chunk[year],
                     name=values['name'],
                     customdata=[values['name']],
                     marker_color=values['color']*3,
-                    hovertemplate=HOVER_TEMPLATE
+                    hovertemplate=HOVER_TEMPLATE,
+                    #opacity=row['urban_type'].apply(lambda x: 1 if x in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1).values
                 )
             )
     else: # otherwise display all NUTS3 regions
@@ -121,7 +104,8 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
                     name=values['name'],
                     customdata=[values['name']],
                     marker_color=values['color']*len(row['geo'].unique()),
-                    hovertemplate=HOVER_TEMPLATE
+                    hovertemplate=HOVER_TEMPLATE,
+                    #opacity=row['urban_type'].apply(lambda x: 1 if x in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1).values
                 )
             )
 

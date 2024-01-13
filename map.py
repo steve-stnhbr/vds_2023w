@@ -3,6 +3,7 @@ import pandas as pd
 from lib.geo import *
 from lib.graphics import *
 from lib.geojson import get_zoom_center
+from lib.style import *
 
 GEO_IDENTIFIER = 'properties.NUTS_ID'
 NUTS_LEVEL = 3
@@ -10,6 +11,8 @@ NUTS_LEVEL = 3
 BASE_OPACITY = .58
 HIGHLIGHT_OPACITY = .85
 UNHIGLIGHT_OPACITY = .4
+
+LOG_COLORSCALE = logarithmic_color_scale(pc.sequential.Purples, base=3.1, num_samples=100)
 
 HOVERTEMPLATE = "<b>%{text}</b><br>Population density: %{z:.2f} people per km²"
 
@@ -20,19 +23,19 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
     global df_population_density
     locations = df_population_density['geo']
     values = df_population_density[str(year)]
+    # if necessary convert urban_types to NUTS3-ID
     if len(intersection(URBAN_TYPES.values(), highlight_locations)) > 0:
         highlight_locations = get_geos_with_urban_types(highlight_locations)
+    # only highlight regions that are also selected
     if selected_data is not None and len(selected_data) > 0:
         highlight_locations = intersection(highlight_locations, selected_data)
     if fig is None:
-        fig = go.Figure(
-            layout=go.Layout(
+        fig = create_figure()
+        fig.update_layout(go.Layout(
                     mapbox_style="carto-positron",
                     mapbox_zoom=3.04751102102008,
                     mapbox_center = {"lat": 56.56730983530582, "lon": 8.87268008141507},
                     margin={"r":0,"t":0,"l":0,"b":0},
-                    height=800,
-                    width=1200,
                     title=f"Population density in NUTS{level} regions"
             )
         )
@@ -43,7 +46,7 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
                 featureidkey=GEO_IDENTIFIER,
                 z=values,
                 marker={'opacity': BASE_OPACITY, "line":  {"width": .1}},
-                colorscale=logarithmic_color_scale(pc.sequential.Reds, base=3.1, num_samples=100),
+                colorscale=LOG_COLORSCALE,
                 text=pd.DataFrame(df_population_density['geo']).apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1),
                 hovertemplate=HOVERTEMPLATE,
                 hoverinfo=None
@@ -51,7 +54,7 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
         )
     else:
         fig['data'][0]['z'] = values
-        fig['data'][0]['colorscale'] = logarithmic_color_scale(pc.sequential.Purples, base=3.1, num_samples=100)
+        fig['data'][0]['colorscale'] = LOG_COLORSCALE
         fig['data'] = [fig['data'][0]]
         fig['data'][0]['marker']['opacity'] = UNHIGLIGHT_OPACITY if len(highlight_locations) > 0 else BASE_OPACITY
         fig['data'].append(go.Choroplethmapbox(
