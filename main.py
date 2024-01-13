@@ -23,8 +23,6 @@ app.layout = html.Div([
         html.H2("Population Density by NUTS3 Region", id="map_heading"),
         dcc.Graph(id="center_map", 
               figure=create_map_graph(None, level=3), clear_on_unhover=True),
-        # debug button
-        html.Button('Debug', id='debug_button', n_clicks=0),
     ]),
     html.Div([
         html.H2("Age Distribution by Region", id="pop_distr_heading"),
@@ -44,16 +42,16 @@ app.layout = html.Div([
         Input('year_slider', 'value'), 
         Input('pop_distr_graph', 'hoverData'), 
         Input('pop_graph', 'hoverData'), 
-        Input("pop_graph", "figure"), 
-        Input("debug_button", "n_clicks")
+        Input("pop_graph", "figure"),
+        Input("center_map", "selectedData")
     ],
     [State("center_map", "figure")],
 )
-def update_map(year, pop_distr_hover, pop_hover, pop_figure, _, figure):
-    print(figure['layout'])
+def update_map(year, pop_distr_hover, pop_hover, pop_figure, map_selection, figure):
     highlighted = [pop_figure['data'][point['curveNumber']]['name'] for point in pop_hover['points']] if pop_hover is not None else []
-    highlighted = highlighted + ([datum['x'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
-    return create_map_graph(figure, highlight_locations=highlighted, level=3, year=year)
+    highlighted = highlighted + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
+    map_selected_locations = [datum['location'] for datum in (map_selection['points'])] if map_selection is not None else []
+    return create_map_graph(figure, highlight_locations=highlighted, level=3, year=year, selected_data=map_selected_locations)
     
 @app.callback(
     Output("pop_distr_graph", "figure"),

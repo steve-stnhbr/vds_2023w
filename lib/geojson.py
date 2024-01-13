@@ -4,6 +4,7 @@ from shapely.geometry import shape
 from urllib.request import urlopen
 import pandas as pd
 import functools
+import numpy as np
 
 AVAILABLE_YEARS = [2021, 2016, 2013, 2010, 2006]
 AVAILABLE_RESOLUTIONS = ["60M", "20M", "10M", "03M"]
@@ -23,6 +24,8 @@ MOUNTAIN_AREAS = {
     4: "non-mountain region"
 }
 
+current_geojson = None
+
 def get_most_recent_year(year):
     # return the most recent year that is available
     for available_year in AVAILABLE_YEARS:
@@ -36,7 +39,6 @@ def get_nuts_geojson0(level, year):
     #url = f"https://raw.githubusercontent.com/martinjc/UK-GeoJSON/master/json/eurostat/ew/nuts{level}.json"
     #url = "https://datahub.io/core/geo-nuts-administrative-boundaries/r/nuts_rg_60m_2013_lvl_2.geojson"
     #url = "https://data-osi.opendata.arcgis.com/datasets/5abac930b4b64faca220d6a2dcd6d7fc_0.geojson?outSR=%7B%22latestWkid%22%3A2157%2C%22wkid%22%3A2157%7D"
-    print(url)
     with urlopen(url) as response:
         nuts = load_geo(response)
     return nuts
@@ -50,6 +52,8 @@ def get_nuts_geojson(level, year):
         except FileNotFoundError:
             print(f"Failed to find geojson for {resolution} {get_most_recent_year(year)}")
             #filename = f"geo/nuts_{resolution}_{get_most_recent_year(year)}.json"
+        global current_geojson
+        current_geojson = nuts
         return nuts
 def load_geojson(filename):
     with open(filename) as geo_file:
@@ -63,6 +67,32 @@ def load_geo(json_content):
     for feature in geo['features']:
         s = shape(feature["geometry"])
         feature['properties']['area'] = s.area
-        #feature['properties']['bounds'] = s.bounds
+        feature['properties']['bounds'] = s.bounds
         feature['properties']['center'] = {"x": s.centroid.x, "y": s.centroid.y}
     return geo
+
+def get_zoom_center(locations):
+    global current_geojson
+    max_lat = -180
+    max_lng = -180
+    min_lat = 180
+    min_lng = 180
+    found = 0
+    # select the feature that contains the location
+    for feature in current_geojson['features']:
+        if feature['id'] in locations:
+            found = found + 1
+            bounds = feature['properties']['bounds']
+            max_lat = max(max_lat, bounds[3])
+            max_lng = max(max_lng, bounds[2])
+            min_lat = min(min_lat, bounds[1])
+            min_lng = min(min_lng, bounds[0])
+        if found >= len(locations):
+            break
+    # calculate the center of the selected features
+    center_lat = (max_lat + min_lat) / 2
+    center_lng = (max_lng + min_lng) / 2
+    # calculate the zoom level
+    max_bound = max(abs(max_lat-min_lat), abs(max_lng-min_lng)) * 111
+    zoom = 15 - np.log(max_bound)
+    return zoom, {"lat": center_lat, "lon": center_lng}
