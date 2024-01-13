@@ -1,9 +1,11 @@
 import plotly.graph_objects as go
 import pandas as pd
+
 from lib.geo import *
 from lib.graphics import *
 from lib.geojson import get_zoom_center
 from lib.style import *
+from lib.util import *
 
 GEO_IDENTIFIER = 'properties.NUTS_ID'
 NUTS_LEVEL = 3
@@ -17,10 +19,13 @@ LOG_COLORSCALE = logarithmic_color_scale(pc.sequential.Purples, base=3.1, num_sa
 HOVERTEMPLATE = "<b>%{text}</b><br>Population density: %{z:.2f} people per km²"
 
 df_population_density = sort_to_numeric_ffill(pd.read_csv("data/density.tsv", dtype={'geo': str}))
+df_population_density = df_population_density[df_population_density.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
 years_population_density = get_years(df_population_density)
 
 def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_data=[]):
     global df_population_density
+    if str(year) not in years_population_density:
+        raise NoDataAvailableError(year=year)
     locations = df_population_density['geo']
     values = df_population_density[str(year)]
     # if necessary convert urban_types to NUTS3-ID

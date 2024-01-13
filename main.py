@@ -9,6 +9,9 @@ import dash_bootstrap_components as dbc
 from map import *
 from pop_structure import *
 from pop import *
+from births_deaths import *
+
+from lib.util import *
 
 HEADING = "Differences between urban and rural areas in the EU"
 DEFAULT_GRAPH_STYLE = {"height": "80vh"}
@@ -87,6 +90,19 @@ app.layout = html.Div([
                 ], id="pop_alert", style={"display": "none"}, className="alert")
             ], className="alert-container")
         ], className="col", id="pop_div"),
+        html.Div([
+            html.H2("Births and Deaths by Region", id="births_deaths_heading"),
+            html.Div([
+                dcc.Graph(
+                    id="births_deaths_graph",
+                    figure=create_births_deaths_line_plot(None), 
+                    clear_on_unhover=True,
+                ),
+                html.Div([
+                    html.H3("No data available")
+                ], id="births_deaths_alert", style={"display": "none"}, className="alert")
+            ], className="alert-container")
+        ], className="col", id="births_deaths_div"),
     ], className="row", id="graphs2_div"),
 ], id="main_div", className="")
 
@@ -137,7 +153,7 @@ def update_pop_distr_grap(selected_data, age_group, year, map_hover, figure):
                                                     year=year,
                                                     selected=selected)
         return (fig, {"display": "none"})
-    except (KeyError, ValueError):
+    except NoDataAvailableError:
         return (figure, {"display": "block"})
 
 @app.callback(
@@ -164,7 +180,34 @@ def update_pop_graph(selected_data, year, map_hover, figure):
                                             year=year,
                                             selected=selected)
         return (fig, {"display": "none"})
-    except (KeyError, ValueError):
+    except NoDataAvailableError:
+        return (figure, {"display": "block"})
+    
+@app.callback(
+    [Output("births_deaths_graph", "figure"),
+     Output("births_deaths_alert", "style")],
+    [
+        Input("center_map", "selectedData"), 
+        Input('year_slider', 'value'),
+        Input("center_map", "hoverData")
+    ],
+    [State("births_deaths_graph", "figure")]
+)
+def update_births_deaths_graph(selected_data, year, map_hover, figure):
+    try:
+        selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
+        year = str(year)
+        if selected_data is None:
+            fig = create_births_deaths_line_plot(figure, 
+                                            year=str(year), 
+                                            selected=selected)
+        else:
+            fig = create_births_deaths_line_plot(figure, 
+                                            geos=[datum['location'] for datum in selected_data['points']], 
+                                            year=year,
+                                            selected=selected)
+        return (fig, {"display": "none"})
+    except NoDataAvailableError:
         return (figure, {"display": "block"})
 
 if __name__ == '__main__':

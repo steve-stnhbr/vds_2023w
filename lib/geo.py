@@ -74,3 +74,8 @@ def get_urban_types_of_geos(geos, as_string=True):
     if as_string:
         return df_geo[df_geo['id'].isin(geos)].urban_type.apply(lambda x: URBAN_TYPES[x]).unique()
     return df_geo[df_geo['id'].isin(geos)].urban_type.unique()
+
+def geo_is_level(geo, level=3):
+    # return if the geo strings length is 5
+    return len(geo) == 5
+    

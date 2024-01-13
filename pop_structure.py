@@ -1,9 +1,11 @@
 import plotly.graph_objects as go
 import plotly.colors as pc
 import pandas as pd
+
 from lib.transformations import *
 from lib.geo import *
 from lib.style import *
+from lib.util import *
 
 HEADING_REGION = "Age Distribution by NUTS3 Region"
 HEADING_URBAN_TYPE = "Age Distribution by Urban Type"
@@ -62,9 +64,13 @@ for age_group in POP_AGE_GROUPS.values():
 
 df_pop_structure = pd.read_csv("data/population_structure_indicators.tsv", dtype={'geo': str})
 df_pop_structure = to_numeric_bfill(df_pop_structure)
+df_pop_structure = df_pop_structure[df_pop_structure.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
+years_pop_structure = get_years(df_pop_structure)
 
 def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fine", selected=[]):
     global df_pop_structure
+    if year is not None and year not in years_pop_structure:
+        raise NoDataAvailableError(year=year)
     fig = create_figure()
     df_pop = df_pop_structure.loc[:, ['indic_de', 'geo', year]]
     if geos is not None and len(geos) > 0:
