@@ -66,5 +66,5 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
             )
     if year is not None:
         x = years.index(year)
-        fig.add_shape(xref='x', yref='paper', x0=x, x1=x, y0=0, y1=1, line=dict(color="RoyalBlue", width=3, dash="dashdot"))
+        fig.add_shape(xref='x', yref='paper', x0=x, x1=x, y0=0, y1=1, line=dict(color="#A4A6F0", width=3, dash="dashdot"))
     return fig

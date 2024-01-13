@@ -88,7 +88,7 @@ app.layout = html.Div([
             ], className="alert-container")
         ], className="col", id="pop_div"),
     ], className="row", id="graphs2_div"),
-], id="main_div", className="container")
+], id="main_div", className="")
 
 
 @app.callback(
