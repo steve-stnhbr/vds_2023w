@@ -5,7 +5,7 @@ colors = {
     'text': '#7FDBFF',
     'paper_background': '#ffffff',
     'graph_background': '#EAEAF2',
-    'marker': 'rgba(6, 8, 184, 123)'
+    'marker': 'rgba(99, 100, 190, 123)'
 }
 
 DEFAULT_FIGURE_LAYOUT = go.Layout(

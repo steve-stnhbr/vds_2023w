@@ -29,6 +29,7 @@ external_stylesheets = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/b
 external_scripts = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"]
 
 app = Dash(__name__, external_stylesheets=external_stylesheets, external_scripts=external_scripts)
+server = app.server
 
 @app.server.route('{}<stylesheet>'.format(static_css_route))
 def serve_stylesheet(stylesheet):
@@ -121,7 +122,6 @@ app.layout = html.Div([
     [State("center_map", "figure")],
 )
 def update_map(year, pop_distr_hover, pop_hover, pop_figure, map_selection,_, figure):
-    print(figure['layout']['mapbox'])
     highlighted = [pop_figure['data'][point['curveNumber']]['name'] for point in pop_hover['points']] if pop_hover is not None else []
     highlighted = highlighted + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
     map_selected_locations = [datum['location'] for datum in (map_selection['points'])] if map_selection is not None else []
