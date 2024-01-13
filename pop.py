@@ -11,6 +11,16 @@ UNSELECTED_OPACITY = .24
 MAX_GEOS_AT_ONCE = 50
 
 df_population = pd.read_csv("data/population.tsv", dtype={'geo': str})
+df_density = pd.read_csv("data/density.tsv", dtype={'geo': str})
+df_density = sort_to_numeric_ffill(df_density)
+df_area = pd.read_csv("data/area.tsv", dtype={'geo': str})
+df_area = sort_to_numeric_ffill(df_area)
+
+# create population data by multiplying density and area for each year
+df_density = df_density.set_index('geo')
+df_area = df_area.set_index('geo')
+for year in get_years(df_area):
+    df_population.loc[:, year] = (df_density.loc[:, year] * df_area.loc[:, year] / 100).reset_index()[year]
 df_population = sort_to_numeric_ffill(df_population)
 
 def create_population_line_plot(fig, geos=[], year=None, selected=[]):
@@ -30,7 +40,7 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
             selected = get_urban_types_of_geos(selected)
         df_pop = assign_urbanization_type(df_pop)
         df_pop = df_pop.groupby(['urban_type'])[years].sum().reset_index()
-        for urban_type in df_pop['urban_type'].unique():
+        for urban_type in set(df_pop['urban_type'].unique().tolist()) - {'unavailable'}:
             row = df_pop[df_pop['urban_type'] == urban_type]
             fig.add_trace(
                 go.Scatter(
