@@ -38,8 +38,8 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
         fig = create_figure()
         fig.update_layout(go.Layout(
                     mapbox_style="carto-positron",
-                    mapbox_zoom=3.04751102102008,
-                    mapbox_center = {"lat": 56.56730983530582, "lon": 8.87268008141507},
+                    mapbox_zoom=2.1619232547722014,
+                    mapbox_center = {'lon': 9.134555477446042, 'lat': 56.96554633630714},
                     margin={"r":0,"t":0,"l":0,"b":0},
                     title=f"Population density in NUTS{level} regions"
             )

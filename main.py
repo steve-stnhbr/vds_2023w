@@ -55,7 +55,8 @@ app.layout = html.Div([
                 figure=create_map_graph(None, level=3), 
                 clear_on_unhover=True,
             ),
-        ], className="col-9", id="map_div"),
+            html.Button("debug", id="debug_button")
+        ], className="col-7", id="map_div"),
         html.Div([
             html.H2("Age Distribution by Region", id="pop_distr_heading"),
             dcc.Dropdown(
@@ -114,11 +115,13 @@ app.layout = html.Div([
         Input('pop_distr_graph', 'hoverData'), 
         Input('pop_graph', 'hoverData'), 
         Input("pop_graph", "figure"),
-        Input("center_map", "selectedData")
+        Input("center_map", "selectedData"),
+        Input("debug_button", "n_clicks")
     ],
     [State("center_map", "figure")],
 )
-def update_map(year, pop_distr_hover, pop_hover, pop_figure, map_selection, figure):
+def update_map(year, pop_distr_hover, pop_hover, pop_figure, map_selection,_, figure):
+    print(figure['layout']['mapbox'])
     highlighted = [pop_figure['data'][point['curveNumber']]['name'] for point in pop_hover['points']] if pop_hover is not None else []
     highlighted = highlighted + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
     map_selected_locations = [datum['location'] for datum in (map_selection['points'])] if map_selection is not None else []
