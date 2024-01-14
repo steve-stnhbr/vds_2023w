@@ -13,10 +13,10 @@ UNSELECTED_OPACITY = .24
 
 MAX_GEOS_AT_ONCE = 50
 
-df_population = pd.read_csv("data/population.tsv", dtype={'geo': str})
-df_density = pd.read_csv("data/density.tsv", dtype={'geo': str})
+df_population = pd.read_csv(ROOT_DIR + "data/population.tsv", dtype={'geo': str})
+df_density = pd.read_csv(ROOT_DIR + "data/density.tsv", dtype={'geo': str})
 df_density = sort_to_numeric_ffill(df_density)
-df_area = pd.read_csv("data/area.tsv", dtype={'geo': str})
+df_area = pd.read_csv(ROOT_DIR + "data/area.tsv", dtype={'geo': str})
 df_area = sort_to_numeric_ffill(df_area)
 
 # create population data by multiplying density and area for each year

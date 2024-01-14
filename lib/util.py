@@ -1,4 +1,6 @@
+import os
 
+ROOT_DIR = os.getcwd()
 
 class NoDataAvailableError(Exception):
     

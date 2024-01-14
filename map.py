@@ -18,7 +18,7 @@ LOG_COLORSCALE = logarithmic_color_scale(pc.sequential.Purples, base=3.1, num_sa
 
 HOVERTEMPLATE = "<b>%{text}</b><br>Population density: %{z:.2f} people per km²"
 
-df_population_density = sort_to_numeric_ffill(pd.read_csv("data/density.tsv", dtype={'geo': str}))
+df_population_density = sort_to_numeric_ffill(pd.read_csv(ROOT_DIR + "data/density.tsv", dtype={'geo': str}))
 df_population_density = df_population_density[df_population_density.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
 years_population_density = get_years(df_population_density)
 

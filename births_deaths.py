@@ -23,12 +23,12 @@ BIRTHS_COLORSCALE = pc.sequential.Purples
 
 LINE_WIDTH = 3
 
-df_births = pd.read_csv("data/births.tsv", dtype={'geo': str})
+df_births = pd.read_csv(ROOT_DIR + "data/births.tsv", dtype={'geo': str})
 df_births = df_births[df_births.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
 df_births = assign_urbanization_type(df_births)
 df_births = sort_to_numeric_ffill(df_births)
 
-df_deaths = pd.read_csv("data/deaths_total.tsv", dtype={'geo': str})
+df_deaths = pd.read_csv(ROOT_DIR + "data/deaths_total.tsv", dtype={'geo': str})
 df_deaths = df_deaths[df_deaths.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
 df_deaths = assign_urbanization_type(df_deaths)
 df_deaths = sort_to_numeric_ffill(df_deaths)

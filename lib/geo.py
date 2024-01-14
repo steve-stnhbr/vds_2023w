@@ -1,6 +1,7 @@
 import pandas as pd
 from .transformations import *
 from .geojson import *
+from .util import *
 
 NUTS_PROPS_KEYS = ["NUTS_ID", "LEVL_CODE", "CNTR_CODE", "NUTS_NAME", "NAME_LATN", "MOUNT_TYPE", "URBN_TYPE", "FID", "area"]
 NUTS_PROPS_COLUMS = ['id', 'level', 'country', 'name', 'name_latin', 'mountainous_type', 'urban_type', 'fid', 'area']
@@ -10,7 +11,7 @@ df_geo = pd.DataFrame([[(feature['properties'][key] if key in feature['propertie
                         columns=NUTS_PROPS_COLUMS, 
                         #dtype=NUTS_PROPS_DTYPES
                       )
-df_geo_names = pd.read_csv('../geo/nuts3-names.csv', 
+df_geo_names = pd.read_csv(ROOT_DIR + '/geo/nuts3-names.csv', 
                            sep=';', 
                            header=0, 
                            names=['nuts0', 'nuts3', 'name', 'bla1', 'bla2', 'bla3', 'bla4', 'bla5', 'bla6'], 
