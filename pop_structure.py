@@ -12,7 +12,7 @@ HEADING_URBAN_TYPE = "Age Distribution by Urban Type"
 
 HOVER_TEMPLATE = "<b>%{y}%</b>"
 
-UNSELECTED_OPACITY = .24
+UNSELECTED_OPACITY = .43
 
 MAX_GEOS_AT_ONCE = 20
 POP_AGE_GROUPS_FINE = {
@@ -51,9 +51,9 @@ POP_AGE_GROUPS_VCOARSE = {
 }
 
 POP_AGE_GROUPS = {
-    "fine": POP_AGE_GROUPS_FINE,
+    "very_coarse": POP_AGE_GROUPS_VCOARSE,
     "coarse": POP_AGE_GROUPS_COARSE,
-    "vcoarse": POP_AGE_GROUPS_VCOARSE,
+    "fine": POP_AGE_GROUPS_FINE,
 }
 
 # add colors to the age groups
@@ -83,6 +83,7 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
         df_pop = assign_urbanization_type(df_pop)
         df_pop = df_pop.groupby(['urban_type', 'indic_de'])[year].mean().reset_index()
         age_group = POP_AGE_GROUPS[groups]
+        selected = get_urban_types_of_geos(selected)
 
         for i, (ag_id, values) in enumerate(age_group.items()):
             chunk = df_pop[df_pop['indic_de'] == ag_id]
@@ -93,9 +94,8 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
                     y=chunk[year],
                     name=values['name'],
                     customdata=[values['name']],
-                    marker_color=values['color']*3,
+                    marker_color=chunk.urban_type.apply(lambda x: values['color'][0] if x in selected else add_opacity_to_color(values['color'][0], UNSELECTED_OPACITY) if selected is not None and len(selected) > 0 else values['color'][0]),
                     hovertemplate=HOVER_TEMPLATE,
-                    #opacity=row['urban_type'].apply(lambda x: 1 if x in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1).values
                 )
             )
     else: # otherwise display all NUTS3 regions

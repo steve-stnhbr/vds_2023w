@@ -9,7 +9,9 @@ from lib.util import *
 
 HEADING_REGION = "Population Development by NUTS3 Region"
 HEADING_URBAN_TYPE = "Population Development by Urban Type"
+
 UNSELECTED_OPACITY = .24
+FILL_OPACITY = .4
 
 MAX_GEOS_AT_ONCE = 50
 
@@ -50,34 +52,44 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
         length = len(set(df_pop['urban_type'].unique().tolist()) - {'unavailable'})
         for urban_type in set(df_pop['urban_type'].unique().tolist()) - {'unavailable'}:
             row = df_pop[df_pop['urban_type'] == urban_type]
+            opacity = 1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
+            color = sample_color(pc.sequential.Plotly3, list(set(df_pop['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type), length)
+            color_transparent = add_opacity_to_color(color, opacity)
             fig.add_trace(
                 go.Scatter(
                     x=years_population,
                     y=row[years_population].values[0],
                     mode='lines',
                     name=urban_type,
-                    opacity=1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
+                    opacity=opacity,
                     stackgroup='stack',
                     line={
-                        'color': sample_color(pc.sequential.Plotly3, list(set(df_pop['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type), length),
-                    }
+                        'color': color_transparent,
+                    },
+                    fill='tonexty',
+                    fillcolor=add_opacity_to_color(color, FILL_OPACITY)
                 )
             )
     else:
         heading = HEADING_REGION
         for geo in geos:
             row = df_pop[df_pop['geo'] == geo]
+            opacity = 1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
+            color = sample_color(pc.sequential.Plotly3, geos.index(geo), len(geos))
+            color_transparent = add_opacity_to_color(color, opacity)
             fig.add_trace(
                 go.Scatter(
                     x=years_population,
                     y=row[years_population].values[0],
                     mode='lines',
                     name=get_geo_name(geo),
-                    opacity=1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
+                    opacity=opacity,
                     stackgroup='stack',
                     line={
-                        'color': sample_color(pc.sequential.Plotly3, geos.index(geo), len(geos)),
-                    }
+                        'color': color_transparent,
+                    },
+                    fill='tonexty',
+                    fillcolor=add_opacity_to_color(color, FILL_OPACITY)
                 )
             )
     if year is not None:

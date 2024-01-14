@@ -71,12 +71,18 @@ def get_geo_name(geo):
 def get_geo_names(geos):
     return [get_geo_name(geo) for geo in geos]
 
-def get_urban_types_of_geos(geos, as_string=True):
+def get_urban_types_of_geos(geos, as_string=True, unique=True):
     if as_string:
-        return df_geo[df_geo['id'].isin(geos)].urban_type.apply(lambda x: URBAN_TYPES[x]).unique()
-    return df_geo[df_geo['id'].isin(geos)].urban_type.unique()
+        urban_types = df_geo[df_geo['id'].isin(geos)].urban_type.apply(lambda x: URBAN_TYPES[x])
+        if unique:
+            return urban_types.unique()
+        return urban_types
+    urban_types = df_geo[df_geo['id'].isin(geos)].urban_type
+    if unique:
+        return urban_types.unique()
+    return urban_types
 
 def geo_is_level(geo, level=3):
     # return if the geo strings length is 5
-    return len(geo) == 5
+    return len(geo) == 2 + level
     

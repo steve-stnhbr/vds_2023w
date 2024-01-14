@@ -7,7 +7,7 @@ from lib.geo import *
 from lib.style import *
 from lib.util import *
 
-UNSELECTED_OPACITY = .24
+UNSELECTED_OPACITY = .12
 
 MAX_GEOS_AT_ONCE = 20
 HEADING_URBAN_TYPE = "Births and Deaths by Urban Type"
@@ -16,9 +16,9 @@ HEADING_REGION = "Births and Deaths by NUTS3 Region"
 HOVER_TEMPLATE_DEATHS = "<b>%{y:.2f}</b> deaths in %{x}"
 HOVER_TEMPLATE_BIRTHS = "<b>%{y:.2f}</b> births in %{x}"
 
-COLOR_OFFSET = 5
+COLOR_OFFSET = 2
 
-DEATHS_COLORSCALE = pc.sequential.Oranges
+DEATHS_COLORSCALE = pc.sequential.solar
 BIRTHS_COLORSCALE = pc.sequential.Purples
 
 LINE_WIDTH = 3

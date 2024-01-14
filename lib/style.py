@@ -1,4 +1,5 @@
 import plotly.graph_objs as go
+import plotly.colors as pc
 
 colors = {
     'background': '#111111',
@@ -54,3 +55,17 @@ def create_figure(temlpate="plotly_dark"):
 
 def sample_color(colorscale, index, total):
     return colorscale[index * len(colorscale) // total]
+
+def add_opacity_to_color(color, opacity):
+    if type(color) is str and color.startswith('#'):
+        color, _ = pc.convert_colors_to_same_type(color, colortype='tuple')
+        color = color[0]
+        color = f'rgba{color + (opacity,)}'
+        return color
+    if type(color) is str and color.startswith("rgb"):
+        color = color.replace("rgb", "rgba")
+        color = color.replace(")", f", {opacity})")
+        return color
+    if type(color) is tuple:
+        return color + (opacity,)
+    return color
