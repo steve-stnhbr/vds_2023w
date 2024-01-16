@@ -48,49 +48,97 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
         geos = df_births['geo'].unique()
 
     fig = create_figure()
+    fig.update_yaxes(rangemode="tozero")
     fig.update_layout(hovermode="x unified")
     if len(geos) > MAX_GEOS_AT_ONCE:
         heading = HEADING_URBAN_TYPE
         if selected is not None and len(selected) > 0:
             selected = get_urban_types_of_geos(selected)
         df_births_use = df_births.groupby(['urban_type'])[years].sum().reset_index()
-        length = len(set(df_births_use['urban_type'].unique().tolist()) - {'unavailable'})
+        length_births = len(set(df_births_use['urban_type'].unique().tolist()) - {'unavailable'})
+        df_deaths_use = df_deaths.groupby(['urban_type'])[years].sum().reset_index()
+        length_deaths = len(set(df_deaths_use['urban_type'].unique().tolist()) - {'unavailable'})
+        total_births = df_births[years].sum().reset_index(drop=True)
+        total_deaths = df_deaths[years].sum().reset_index(drop=True)
+
+        fig.add_trace(
+            go.Scatter(
+                x=years,
+                y=total_births,
+                name="total",
+                opacity=0,
+                showlegend=False,
+                hovertemplate=HOVER_TEMPLATE_BIRTHS,
+            )
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=years,
+                y=total_deaths,
+                name="total",
+                opacity=0,
+                showlegend=False,
+                hovertemplate=HOVER_TEMPLATE_DEATHS,
+            )
+        )
+
         for urban_type in set(df_births_use['urban_type'].unique().tolist()) - {'unavailable'}:
-            row = df_births_use[df_births_use['urban_type'] == urban_type]
+            row_births = df_births_use[df_births_use['urban_type'] == urban_type]
+            row_deaths = df_deaths_use[df_deaths_use['urban_type'] == urban_type]
             fig.add_trace(
                 go.Scatter(
                     x=years,
-                    y=row[years].values[0],
+                    y=row_births[years].values[0],
                     mode='lines',
                     name=f"{urban_type} (births)",
                     hovertemplate=HOVER_TEMPLATE_BIRTHS,
                     opacity=1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        'color': sample_color(BIRTHS_COLORSCALE, list(set(df_births['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length + COLOR_OFFSET),
+                        'color': sample_color(BIRTHS_COLORSCALE, list(set(df_births['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length_births + COLOR_OFFSET),
                         'width': LINE_WIDTH
                     }
                 )
             )
-        df_deaths_use = df_deaths.groupby(['urban_type'])[years].sum().reset_index()
-        length = len(set(df_deaths_use['urban_type'].unique().tolist()) - {'unavailable'})
-        for urban_type in set(df_deaths_use['urban_type'].unique().tolist()) - {'unavailable'}:
-            row = df_deaths_use[df_deaths_use['urban_type'] == urban_type]
+
             fig.add_trace(
                 go.Scatter(
                     x=years,
-                    y=row[years].values[0],
+                    y=row_deaths[years].values[0],
                     mode='lines',
                     name=f"{urban_type} (deaths)",
                     hovertemplate=HOVER_TEMPLATE_DEATHS,
                     opacity=1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        'color': sample_color(DEATHS_COLORSCALE, list(set(df_deaths['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length + COLOR_OFFSET),
+                        'color': sample_color(DEATHS_COLORSCALE, list(set(df_deaths['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length_deaths + COLOR_OFFSET),
                         'width': LINE_WIDTH
                     }
                 )
             )
     else:
         heading = HEADING_REGION
+        total_births = df_births[df_births['geo'].isin(geos)][years].sum().reset_index()
+        total_deaths = df_deaths[df_deaths['geo'].isin(geos)][years].sum().reset_index()
+        fig.add_trace(
+            go.Scatter(
+                x=years,
+                y=total_births,
+                name="total",
+                opacity=0,
+                showlegend=False,
+                hovertemplate=HOVER_TEMPLATE_BIRTHS
+            )
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=years,
+                y=total_deaths,
+                name="total",
+                opacity=0,
+                showlegend=False,
+                hovertemplate=HOVER_TEMPLATE_DEATHS
+            )
+        )
         for geo in geos:
             row = df_births[df_births['geo'] == geo]
             fig.add_trace(

@@ -78,10 +78,10 @@ app.layout = html.Div([
             ], className="alert-container")
         ], className="col", id="pop_distr_div"),
         
-    ], className="row", id="graphs1_div"),
+    ], className="row flex-nowrap", id="graphs1_div"),
     html.Div([
         html.Div([
-            html.H2("Population by Region", id="pop_heading"),
+            html.H2("Population", id="pop_heading"),
             html.Div([
                 dcc.Graph(
                     id="pop_graph",
@@ -94,7 +94,7 @@ app.layout = html.Div([
             ], className="alert-container")
         ], className="col", id="pop_div"),
         html.Div([
-            html.H2("Births and Deaths by Region", id="births_deaths_heading"),
+            html.H2("Births and Deaths", id="births_deaths_heading"),
             html.Div([
                 dcc.Graph(
                     id="births_deaths_graph",
@@ -105,9 +105,9 @@ app.layout = html.Div([
                     html.H3("No data available")
                 ], id="births_deaths_alert", style={"display": "none"}, className="alert")
             ], className="alert-container")
-        ], className="col-3", id="births_deaths_div"),
+        ], className="col", id="births_deaths_div"),
         html.Div([
-            html.H2("Distribution of Sex by Age Group in Region", id="sex_distr_heading"),
+            html.H2("Sex by Age Group", id="sex_distr_heading"),
             html.Div([
                 dcc.Graph(
                     id="sex_distr_graph",
@@ -119,7 +119,7 @@ app.layout = html.Div([
                 ], id="sex_distr_alert", style={"display": "none"}, className="alert")
             ], className="alert-container")
         ], className="col-3", id="sex_distr_div"),
-    ], className="row", id="graphs2_div"),
+    ], className="row flex-nowrap", id="graphs2_div"),
 ], id="main_div", className="")
 
 

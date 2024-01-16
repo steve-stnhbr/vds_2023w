@@ -86,7 +86,7 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
         )
     else:
         heading = HEADING_REGION
-        total_values = df_pop[df_pop['geo'].isin(geos)].groupby(['geo'])[years_population].sum().reset_index()
+        total_values = df_pop[df_pop['geo'].isin(geos)][years_population].sum().reset_index(drop=True)
         for geo in geos:
             row = df_pop[df_pop['geo'] == geo]
             opacity = 1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
@@ -111,16 +111,18 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
         fig.add_trace(
             go.Scatter(
                 x=years_population,
-                y=total_values[years_population].values[0],
-                mode='lines',
-                name="Total",
+                y=total_values,
+                name="total",
                 opacity=0,
-                stackgroup='stack',
+                stackgroup='other',
                 line={
-                    'color': 'black',
-                    'width': 1
+                    'color': 'rgba(0,0,0,0)',
+                    'width': 0
                 },
-                hovertemplate=HOVER_TEMPLATE
+                fill='none',
+                fillcolor='rgba(0,0,0,0)',
+                hovertemplate=HOVER_TEMPLATE,
+                showlegend=False
             )
         )
     fig.update_traces(hovertemplate=HOVER_TEMPLATE)
