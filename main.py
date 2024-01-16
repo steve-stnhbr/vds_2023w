@@ -10,6 +10,7 @@ from map import *
 from pop_structure import *
 from pop import *
 from births_deaths import *
+from sex import *
 
 from lib.util import *
 
@@ -105,6 +106,19 @@ app.layout = html.Div([
                 ], id="births_deaths_alert", style={"display": "none"}, className="alert")
             ], className="alert-container")
         ], className="col", id="births_deaths_div"),
+        html.Div([
+            html.H2("Distribution of Sex by Age Group in Region", id="sex_distr_heading"),
+            html.Div([
+                dcc.Graph(
+                    id="sex_distr_graph",
+                    figure=create_sex_violin_plot(None), 
+                    clear_on_unhover=True,
+                ),
+                html.Div([
+                    html.H3("No data available")
+                ], id="sex_distr_alert", style={"display": "none"}, className="alert")
+            ], className="alert-container")
+        ], className="col-3", id="sex_distr_div"),
     ], className="row", id="graphs2_div"),
 ], id="main_div", className="")
 
@@ -206,6 +220,33 @@ def update_births_deaths_graph(selected_data, year, map_hover, figure):
                                             selected=selected)
         else:
             fig = create_births_deaths_line_plot(figure, 
+                                            geos=[datum['location'] for datum in selected_data['points']], 
+                                            year=year,
+                                            selected=selected)
+        return (fig, {"display": "none"})
+    except NoDataAvailableError:
+        return (figure, {"display": "block"})
+    
+@app.callback(
+    [Output("sex_distr_graph", "figure"),
+     Output("sex_distr_alert", "style")],
+    [
+        Input("center_map", "selectedData"), 
+        Input('year_slider', 'value'),
+        Input("center_map", "hoverData")
+    ],
+    [State("sex_distr_graph", "figure")]
+)
+def update_sex_distr_graph(selected_data, year, map_hover, figure):
+    try:
+        selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
+        year = str(year)
+        if selected_data is None:
+            fig = create_sex_violin_plot(figure, 
+                                            year=str(year), 
+                                            selected=selected)
+        else:
+            fig = create_sex_violin_plot(figure, 
                                             geos=[datum['location'] for datum in selected_data['points']], 
                                             year=year,
                                             selected=selected)

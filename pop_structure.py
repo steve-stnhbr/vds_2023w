@@ -63,8 +63,9 @@ for age_group in POP_AGE_GROUPS.values():
 
 
 df_pop_structure = pd.read_csv(ROOT_DIR + "data/population_structure_indicators.tsv", dtype={'geo': str})
-df_pop_structure = to_numeric_bfill(df_pop_structure)
+df_pop_structure = df_pop_structure[(df_pop_structure['freq'] == "A") & (df_pop_structure['unit'] == "PC")]
 df_pop_structure = df_pop_structure[df_pop_structure.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
+df_pop_structure = to_numeric(df_pop_structure)
 years_pop_structure = get_years(df_pop_structure)
 
 def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fine", selected=[]):

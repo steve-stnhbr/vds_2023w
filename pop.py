@@ -15,19 +15,10 @@ FILL_OPACITY = .4
 
 MAX_GEOS_AT_ONCE = 50
 
-df_population = pd.read_csv(ROOT_DIR + "data/population.tsv", dtype={'geo': str})
-df_density = pd.read_csv(ROOT_DIR + "data/density.tsv", dtype={'geo': str})
-df_density = sort_to_numeric_ffill(df_density)
-df_area = pd.read_csv(ROOT_DIR + "data/area.tsv", dtype={'geo': str})
-df_area = sort_to_numeric_ffill(df_area)
-
-# create population data by multiplying density and area for each year
-df_density = df_density.set_index('geo')
-df_area = df_area.set_index('geo')
-for year in get_years(df_area):
-    df_population.loc[:, year] = (df_density.loc[:, year] * df_area.loc[:, year] / 100).reset_index()[year]
-df_population = sort_to_numeric_ffill(df_population)
+df_population = pd.read_csv(ROOT_DIR + "data/population_january1st.tsv", dtype={'geo': str})
+df_population = df_population[(df_population['age'] == "TOTAL") & (df_population['sex'] == "T")].reset_index()
 df_population = df_population[df_population.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
+df_population = sort_to_numeric(df_population)
 years_population = get_years(df_population)
 
 def create_population_line_plot(fig, geos=[], year=None, selected=[]):
