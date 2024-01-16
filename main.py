@@ -105,7 +105,7 @@ app.layout = html.Div([
                     html.H3("No data available")
                 ], id="births_deaths_alert", style={"display": "none"}, className="alert")
             ], className="alert-container")
-        ], className="col", id="births_deaths_div"),
+        ], className="col-3", id="births_deaths_div"),
         html.Div([
             html.H2("Distribution of Sex by Age Group in Region", id="sex_distr_heading"),
             html.Div([
@@ -130,14 +130,16 @@ app.layout = html.Div([
         Input('pop_distr_graph', 'hoverData'), 
         Input('pop_graph', 'hoverData'), 
         Input("pop_graph", "figure"),
+        Input('sex_distr_graph', 'hoverData'),
         Input("center_map", "selectedData"),
         Input("debug_button", "n_clicks")
     ],
     [State("center_map", "figure")],
 )
-def update_map(year, pop_distr_hover, pop_hover, pop_figure, map_selection,_, figure):
+def update_map(year, pop_distr_hover, pop_hover, pop_figure, sex_distr_hover, map_selection, _, figure):
     highlighted = [pop_figure['data'][point['curveNumber']]['name'] for point in pop_hover['points']] if pop_hover is not None else []
     highlighted = highlighted + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
+    highlighted = highlighted + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
     map_selected_locations = [datum['location'] for datum in (map_selection['points'])] if map_selection is not None else []
     return create_map_graph(figure, highlight_locations=highlighted, level=3, year=year, selected_data=map_selected_locations)
     

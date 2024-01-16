@@ -65,7 +65,7 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
         fig['data'][0]['colorscale'] = LOG_COLORSCALE
         fig['data'][0]['marker']['opacity'] = UNHIGLIGHT_OPACITY if len(highlight_locations) > 0 else BASE_OPACITY
         fig['data'][0]['customdata'] = df_population_density.urban_type.values
-        fig['data'].append(go.Choroplethmapbox(
+        trace = go.Choroplethmapbox(
             geojson=get_nuts_geojson(NUTS_LEVEL, year),
             locations=highlight_locations,
             featureidkey=GEO_IDENTIFIER,
@@ -73,7 +73,10 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
             marker={'opacity': HIGHLIGHT_OPACITY, "line":  {"width": .1}},
             showlegend=False,
             showscale=False
-        ))
+        )
+        if len(fig['data']) == 1:
+            fig['data'].append(trace)
+        fig['data'][1] = trace
     if selected_data is not None and len(selected_data) > 0:
         zoom, center = get_zoom_center(selected_data)
         fig['layout']['mapbox']['zoom'] = zoom

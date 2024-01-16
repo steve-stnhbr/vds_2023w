@@ -7,12 +7,12 @@ NUTS_PROPS_KEYS = ["NUTS_ID", "LEVL_CODE", "CNTR_CODE", "NUTS_NAME", "NAME_LATN"
 NUTS_PROPS_COLUMS = ['id', 'level', 'country', 'name', 'name_latin', 'mountainous_type', 'urban_type', 'fid', 'area']
 #NUTS_PROPS_DTYPES = {'id': str, 'level': int, 'country': str, 'name': str, 'name_latin': str, 'mountainous_type': int, 'urban_type': int, 'fid': str, 'area': float}
 
-df_geo = pd.DataFrame([[(feature['properties'][key] if key in feature['properties'] else '-') for key in NUTS_PROPS_KEYS] for feature in load_geojson('geo/nuts_60M_2021.json')['features']], 
+df_geo = pd.DataFrame([[(feature['properties'][key] if key in feature['properties'] else '-') for key in NUTS_PROPS_KEYS] for feature in current_geojson['features']], 
                         columns=NUTS_PROPS_COLUMS, 
                         #dtype=NUTS_PROPS_DTYPES
                       )
 df_geo_names = pd.read_csv(ROOT_DIR + '/geo/nuts3-names.csv', 
-                           sep=';', 
+                           sep=';',
                            header=0, 
                            names=['nuts0', 'nuts3', 'name', 'bla1', 'bla2', 'bla3', 'bla4', 'bla5', 'bla6'], 
                            usecols=['nuts3', 'name'])
