@@ -137,7 +137,8 @@ app.layout = html.Div([
     [State("center_map", "figure")],
 )
 def update_map(year, pop_distr_hover, pop_hover, pop_figure, sex_distr_hover, map_selection, _, figure):
-    highlighted = [pop_figure['data'][point['curveNumber']]['name'] for point in pop_hover['points']] if pop_hover is not None else []
+    #highlighted = [pop_figure['data'][point['curveNumber']]['name'] for point in pop_hover['points']] if pop_hover is not None else []
+    highlighted = []
     highlighted = highlighted + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
     highlighted = highlighted + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
     map_selected_locations = [datum['location'] for datum in (map_selection['points'])] if map_selection is not None else []

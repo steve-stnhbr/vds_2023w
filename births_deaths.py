@@ -13,8 +13,8 @@ MAX_GEOS_AT_ONCE = 20
 HEADING_URBAN_TYPE = "Births and Deaths by Urban Type"
 HEADING_REGION = "Births and Deaths by NUTS3 Region"
 
-HOVER_TEMPLATE_DEATHS = "<b>%{y:.2f}</b> deaths in %{x}"
-HOVER_TEMPLATE_BIRTHS = "<b>%{y:.2f}</b> births in %{x}"
+HOVER_TEMPLATE_DEATHS = "<b>%{y:.2s}</b> deaths in %{x}"
+HOVER_TEMPLATE_BIRTHS = "<b>%{y:.2s}</b> births in %{x}"
 
 COLOR_OFFSET = 2
 
