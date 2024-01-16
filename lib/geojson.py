@@ -96,3 +96,5 @@ def get_zoom_center(locations):
     max_bound = max(abs(max_lat-min_lat), abs(max_lng-min_lng)) * 111
     zoom = 11.5 - np.log(max_bound)
     return zoom, {"lat": center_lat, "lon": center_lng}
+
+get_nuts_geojson(3, 2022)
