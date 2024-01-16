@@ -65,9 +65,12 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
             go.Scatter(
                 x=years,
                 y=total_births,
-                name="total",
-                opacity=0,
-                showlegend=False,
+                name="total (births)",
+                opacity=1,
+                line={
+                    'color': 'grey',
+                    'width': LINE_WIDTH
+                },
                 hovertemplate=HOVER_TEMPLATE_BIRTHS,
             )
         )
@@ -76,9 +79,12 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
             go.Scatter(
                 x=years,
                 y=total_deaths,
-                name="total",
-                opacity=0,
-                showlegend=False,
+                name="total (deaths)",
+                opacity=1,
+                line={
+                    'color': 'black',
+                    'width': LINE_WIDTH
+                },
                 hovertemplate=HOVER_TEMPLATE_DEATHS,
             )
         )

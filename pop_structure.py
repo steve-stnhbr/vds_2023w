@@ -56,16 +56,19 @@ POP_AGE_GROUPS = {
     "fine": POP_AGE_GROUPS_FINE,
 }
 
+COLOR_OFFSET = 5
+
 # add colors to the age groups
 for age_group in POP_AGE_GROUPS.values():
     for i, (ag_id, name) in enumerate(age_group.items()):
-        age_group[ag_id] = {"name": name, "color": pc.sample_colorscale(pc.sequential.Plotly3, i/len(age_group))}
-
+        #age_group[ag_id] = {"name": name, "color": pc.sample_colorscale(pc.sequential.Plotly3, i/len(age_group))}
+        age_group[ag_id] = {"name": name, "color": {urban_type: pc.sample_colorscale(URBAN_TYPE_COLORSCALES[urban_type], i/(len(age_group) + COLOR_OFFSET)) for urban_type in URBAN_TYPES.values()}}
 
 df_pop_structure = pd.read_csv(ROOT_DIR + "data/population_structure_indicators.tsv", dtype={'geo': str})
 df_pop_structure = df_pop_structure[(df_pop_structure['freq'] == "A") & (df_pop_structure['unit'] == "PC")]
 df_pop_structure = df_pop_structure[df_pop_structure.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
 df_pop_structure = sort_to_numeric_ffill(df_pop_structure)
+df_pop_structure = assign_urbanization_type(df_pop_structure)
 years_pop_structure = get_years(df_pop_structure)
 
 def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fine", selected=[]):
@@ -73,7 +76,8 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
     if year is not None and year not in years_pop_structure:
         raise NoDataAvailableError(year=year)
     fig = create_figure()
-    df_pop = df_pop_structure.loc[:, ['indic_de', 'geo', year]]
+
+    df_pop = df_pop_structure.loc[:, ['indic_de', 'geo', 'urban_type', year]]
     if geos is not None and len(geos) > 0:
         df_pop = df_pop[df_pop['geo'].str.startswith(tuple(geos))]
     # only select NUTS3 regions TODO: maybe not do this
@@ -81,43 +85,62 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
     # only display MAX_GEOS_AT_ONCE NUTS3 regions at once, otherwise aggregate them by urban_types
     if len(df_pop['geo'].unique()) > MAX_GEOS_AT_ONCE:
         heading = HEADING_URBAN_TYPE
-        df_pop = assign_urbanization_type(df_pop)
         df_pop = df_pop.groupby(['urban_type', 'indic_de'])[year].mean().reset_index()
         age_group = POP_AGE_GROUPS[groups]
         selected = get_urban_types_of_geos(selected)
 
         for i, (ag_id, values) in enumerate(age_group.items()):
             chunk = df_pop[df_pop['indic_de'] == ag_id]
-            fig.add_trace(
-                go.Bar(
-                    ids=chunk['urban_type'],
-                    x=chunk['urban_type'],
-                    y=chunk[year],
-                    name=values['name'],
-                    customdata=[values['name']],
-                    marker_color=chunk.urban_type.apply(lambda x: values['color'][0] if x in selected else add_opacity_to_color(values['color'][0], UNSELECTED_OPACITY) if selected is not None and len(selected) > 0 else values['color'][0]),
-                    hovertemplate=HOVER_TEMPLATE,
+            for urban_type in URBAN_TYPES.values():
+                opacity = 1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
+                color = values['color'][urban_type]
+                color = add_opacity_to_color(color, opacity)
+                fig.add_trace(
+                    go.Bar(
+                        ids=chunk['urban_type'],
+                        x=[urban_type],
+                        y=chunk[chunk['urban_type'] == urban_type][year],
+                        name=values['name'],
+                        customdata=[values['name']],
+                        hovertemplate=HOVER_TEMPLATE,
+                        showlegend=False,
+                        marker_color=color
+                    )
                 )
-            )
+            
     else: # otherwise display all NUTS3 regions
         for i, (ag_id, values) in enumerate(POP_AGE_GROUPS[groups].items()):
             heading = HEADING_REGION
-            row = df_pop[df_pop['indic_de'] == ag_id]
-            fig.add_trace(
-                go.Bar(
-                    ids=row['geo'],
-                    x=row['geo'].apply(get_geo_name),
-                    y=row[year],
-                    name=values['name'],
-                    customdata=[values['name']],
-                    marker_color=values['color']*len(row['geo'].unique()),
-                    hovertemplate=HOVER_TEMPLATE,
-                    #opacity=row['urban_type'].apply(lambda x: 1 if x in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1).values
+            chunk = df_pop[df_pop['indic_de'] == ag_id]
+            for geo in chunk['geo'].unique():
+                row = chunk[chunk['geo'] == geo]
+                opacity = 1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
+                fig.add_trace(
+                    go.Bar(
+                        ids=row['geo'],
+                        x=[geo],
+                        y=row[year],
+                        name=values['name'],
+                        customdata=[values['name']],
+                        hovertemplate=HOVER_TEMPLATE,
+                        showlegend=False,
+                        marker_color=add_opacity_to_color(values['color'][row['urban_type'].values[0]], opacity=opacity)
+                    )
                 )
-            )
 
     fig.update_layout(barmode='stack')
 
+    
+    for urban_type in set(URBAN_TYPE_COLORSCALES.keys()) - {'unavailable'}:
+        fig.add_trace(
+            go.Bar(
+                x=[None],
+                y=[None],
+                name=urban_type,
+                marker_color=URBAN_TYPE_COLORS[urban_type],
+            )
+        )
+    
     return fig
 
 

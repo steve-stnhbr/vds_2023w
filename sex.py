@@ -72,13 +72,13 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
                 go.Violin(
                     x=row['urban_type'].unique().repeat(y_female.count()),
                     y=y_female,
-                    name="female",
+                    name=f"female ({urban_type})",
                     legendgroup='female',
                     scalegroup='female',
                     side='negative',
                     customdata=row['age_label'],
                     scalemode='count',
-                    line_color=add_opacity_to_color(sample_color(pc.sequential.Plotly3, 2, 5), opacity=opacity),
+                    line_color=add_opacity_to_color(sample_color(URBAN_TYPE_COLORSCALES[urban_type], 1, 5), opacity=opacity),
                     hovertemplate=HOVER_TEMPLATE,
                     hoveron='violins+kde',
                     meanline={'visible': True}
@@ -89,13 +89,13 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
                 go.Violin(
                     x=row['urban_type'].unique().repeat(y_male.count()),
                     y=y_male,
-                    name="male",
+                    name=f"male ({urban_type})",
                     legendgroup='male',
                     scalegroup='male',
                     side='positive',
                     customdata=row['age_label'],
                     scalemode='count',
-                    line_color=add_opacity_to_color(sample_color(pc.sequential.Plotly3, 4, 5), opacity=opacity),
+                    line_color=add_opacity_to_color(sample_color(URBAN_TYPE_COLORSCALES[urban_type], 3, 5), opacity=opacity),
                     hovertemplate=HOVER_TEMPLATE,
                     hoveron='violins+kde',
                     meanline={'visible': True}
@@ -112,17 +112,19 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
             y_female = row[row['sex'] == 'F']['age_median'].reset_index(drop=True).repeat(female_proportion)
             y_male = row[row['sex'] == 'M']['age_median'].reset_index(drop=True).repeat(female_proportion)
 
+            urban_type = get_urban_types_of_geos([geo], as_string=True, unique=False).unique()[0]
+
             fig.add_trace(
                 go.Violin(
                     x=row['geo'].unique().repeat(y_female.count()),
                     y=y_female,
-                    name="female",
+                    name=f"female ({geo})",
                     legendgroup='female',
                     scalegroup='female',
                     side='negative',
                     customdata=row['age_label'],
                     scalemode='count',
-                    line_color=add_opacity_to_color(sample_color(pc.sequential.Plotly3, 2, 5), opacity=opacity),
+                    line_color=add_opacity_to_color(sample_color(URBAN_TYPE_COLORSCALES[urban_type], 2, 5), opacity=opacity),
                     hovertemplate=HOVER_TEMPLATE,
                     hoveron='violins+kde',
                     meanline={'visible': True}
@@ -133,13 +135,13 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
                 go.Violin(
                     x=row['geo'].unique().repeat(y_male.count()),
                     y=y_male,
-                    name="male",
+                    name=f"male ({geo})",
                     legendgroup='male',
                     scalegroup='male',
                     side='positive',
                     customdata=row['age_label'],
                     scalemode='count',
-                    line_color=add_opacity_to_color(sample_color(pc.sequential.Plotly3, 4, 5), opacity=opacity),
+                    line_color=add_opacity_to_color(sample_color(URBAN_TYPE_COLORSCALES[urban_type], 4, 5), opacity=opacity),
                     hovertemplate=HOVER_TEMPLATE,
                     hoveron='violins+kde',
                     meanline={'visible': True}

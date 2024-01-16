@@ -15,6 +15,20 @@ DEFAULT_FIGURE_LAYOUT = go.Layout(
     margin={"r":10,"t":50,"l":10,"b":50},
 )
 
+URBAN_TYPE_COLORSCALES = {
+    "urban": pc.sequential.Purples_r,
+    "rural": pc.sequential.Greens_r,
+    "intermediate": pc.sequential.Oranges_r,
+    "unavailable": pc.sequential.Greys_r,
+}
+
+URBAN_TYPE_COLORS = {
+    "urban": "#582F93",
+    "rural": "#238B44",
+    "intermediate": "#E25609",
+    "unavailable": "#bdbdbd",
+}
+
 mapbox_style = {
     'version': 8,
     'name': 'Custom Style',
@@ -57,15 +71,17 @@ def sample_color(colorscale, index, total):
     return colorscale[index * len(colorscale) // total]
 
 def add_opacity_to_color(color, opacity):
+    if type(color) is list and len(color) == 1:
+        color = color[0]
     if type(color) is str and color.startswith('#'):
         color, _ = pc.convert_colors_to_same_type(color, colortype='tuple')
         color = color[0]
         color = f'rgba{color + (opacity,)}'
-        return color
-    if type(color) is str and color.startswith("rgb"):
+    elif type(color) is str and color.startswith("rgb"):
         color = color.replace("rgb", "rgba")
         color = color.replace(")", f", {opacity})")
-        return color
-    if type(color) is tuple:
+    elif type(color) is str and color.startswith("rgba"):
+        color = color.replace(r", .*?\)", f", {opacity})")
+    elif type(color) is tuple:
         return color + (opacity,)
     return color
