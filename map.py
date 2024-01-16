@@ -18,8 +18,9 @@ LOG_COLORSCALE = logarithmic_color_scale(pc.sequential.Purples, base=3.1, num_sa
 
 HOVERTEMPLATE = "<b>%{text}</b><br>Population density: %{z:.2f} people per km²<br>Urban type: <b>%{customdata}</b>"
 
-df_population_density = sort_to_numeric_ffill(pd.read_csv(ROOT_DIR + "data/density.tsv", dtype={'geo': str}))
+df_population_density = pd.read_csv(ROOT_DIR + "data/density.tsv", dtype={'geo': str})
 df_population_density = df_population_density[df_population_density.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
+df_population_density = sort_to_numeric_ffill(df_population_density)
 df_population_density = assign_urbanization_type(df_population_density)
 years_population_density = get_years(df_population_density)
 
@@ -62,7 +63,6 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
     else:
         fig['data'][0]['z'] = values
         fig['data'][0]['colorscale'] = LOG_COLORSCALE
-        fig['data'] = [fig['data'][0]]
         fig['data'][0]['marker']['opacity'] = UNHIGLIGHT_OPACITY if len(highlight_locations) > 0 else BASE_OPACITY
         fig['data'][0]['customdata'] = df_population_density.urban_type.values
         fig['data'].append(go.Choroplethmapbox(

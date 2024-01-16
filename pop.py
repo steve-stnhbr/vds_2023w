@@ -18,7 +18,7 @@ MAX_GEOS_AT_ONCE = 50
 df_population = pd.read_csv(ROOT_DIR + "data/population_january1st.tsv", dtype={'geo': str})
 df_population = df_population[(df_population['age'] == "TOTAL") & (df_population['sex'] == "T")].reset_index()
 df_population = df_population[df_population.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
-df_population = sort_to_numeric(df_population)
+df_population = sort_to_numeric_ffill(df_population)
 years_population = get_years(df_population)
 
 def create_population_line_plot(fig, geos=[], year=None, selected=[]):
