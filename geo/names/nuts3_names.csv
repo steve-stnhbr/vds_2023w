@@ -1,0 +1,1552 @@
+nuts;name;country_name;country_code
+BE100;Arr. de Bruxelles-Capitale/Arr. Brussel-Hoofdstad;Belgium;BE
+BE211;Arr. Antwerpen;Belgium;BE
+BE212;Arr. Mechelen;Belgium;BE
+BE213;Arr. Turnhout;Belgium;BE
+BE223;Arr. Tongeren;Belgium;BE
+BE224;Arr. Hasselt;Belgium;BE
+BE225;Arr. Maaseik;Belgium;BE
+BE231;Arr. Aalst;Belgium;BE
+BE232;Arr. Dendermonde;Belgium;BE
+BE233;Arr. Eeklo;Belgium;BE
+BE234;Arr. Gent;Belgium;BE
+BE235;Arr. Oudenaarde;Belgium;BE
+BE236;Arr. Sint-Niklaas;Belgium;BE
+BE241;Arr. Halle-Vilvoorde;Belgium;BE
+BE242;Arr. Leuven;Belgium;BE
+BE251;Arr. Brugge;Belgium;BE
+BE252;Arr. Diksmuide;Belgium;BE
+BE253;Arr. Ieper;Belgium;BE
+BE254;Arr. Kortrijk;Belgium;BE
+BE255;Arr. Oostende;Belgium;BE
+BE256;Arr. Roeselare;Belgium;BE
+BE257;Arr. Tielt;Belgium;BE
+BE258;Arr. Veurne;Belgium;BE
+BE310;Arr. Nivelles;Belgium;BE
+BE323;Arr. Mons;Belgium;BE
+BE328;Arr. Tournai-Mouscron;Belgium;BE
+BE329;Arr. La Louvière;Belgium;BE
+BE32A;Arr. Ath;Belgium;BE
+BE32B;Arr. Charleroi;Belgium;BE
+BE32C;Arr. Soignies;Belgium;BE
+BE32D;Arr. Thuin;Belgium;BE
+BE331;Arr. Huy;Belgium;BE
+BE332;Arr. Liège;Belgium;BE
+BE334;Arr. Waremme;Belgium;BE
+BE335;Arr. Verviers — communes francophones;Belgium;BE
+BE336;Bezirk Verviers — Deutschsprachige Gemeinschaft;Belgium;BE
+BE341;Arr. Arlon;Belgium;BE
+BE342;Arr. Bastogne;Belgium;BE
+BE343;Arr. Marche-en-Famenne;Belgium;BE
+BE344;Arr. Neufchâteau;Belgium;BE
+BE345;Arr. Virton;Belgium;BE
+BE351;Arr. Dinant;Belgium;BE
+BE352;Arr. Namur;Belgium;BE
+BE353;Arr. Philippeville;Belgium;BE
+BEZZZ;Extra-Regio NUTS 3;Belgium;BE
+BG311;Vidin;Bulgaria;BG
+BG312;Montana;Bulgaria;BG
+BG313;Vratsa;Bulgaria;BG
+BG314;Pleven;Bulgaria;BG
+BG315;Lovech;Bulgaria;BG
+BG321;Veliko Tarnovo;Bulgaria;BG
+BG322;Gabrovo;Bulgaria;BG
+BG323;Ruse;Bulgaria;BG
+BG324;Razgrad;Bulgaria;BG
+BG325;Silistra;Bulgaria;BG
+BG331;Varna;Bulgaria;BG
+BG332;Dobrich;Bulgaria;BG
+BG333;Shumen;Bulgaria;BG
+BG334;Targovishte;Bulgaria;BG
+BG341;Burgas;Bulgaria;BG
+BG342;Sliven;Bulgaria;BG
+BG343;Yambol;Bulgaria;BG
+BG344;Stara Zagora;Bulgaria;BG
+BG411;Sofia (stolitsa);Bulgaria;BG
+BG412;Sofia;Bulgaria;BG
+BG413;Blagoevgrad;Bulgaria;BG
+BG414;Pernik;Bulgaria;BG
+BG415;Kyustendil;Bulgaria;BG
+BG421;Plovdiv;Bulgaria;BG
+BG422;Haskovo;Bulgaria;BG
+BG423;Pazardzhik;Bulgaria;BG
+BG424;Smolyan;Bulgaria;BG
+BG425;Kardzhali;Bulgaria;BG
+BGZZZ;Extra-Regio NUTS 3;Bulgaria;BG
+CZ010;Hlavní město Praha;Czechia;CZ
+CZ020;Středočeský kraj;Czechia;CZ
+CZ031;Jihočeský kraj;Czechia;CZ
+CZ032;Plzeňský kraj;Czechia;CZ
+CZ041;Karlovarský kraj;Czechia;CZ
+CZ042;Ústecký kraj;Czechia;CZ
+CZ051;Liberecký kraj;Czechia;CZ
+CZ052;Královéhradecký kraj;Czechia;CZ
+CZ053;Pardubický kraj;Czechia;CZ
+CZ063;Kraj Vysočina;Czechia;CZ
+CZ064;Jihomoravský kraj;Czechia;CZ
+CZ071;Olomoucký kraj;Czechia;CZ
+CZ072;Zlínský kraj;Czechia;CZ
+CZ080;Moravskoslezský kraj;Czechia;CZ
+CZZZZ;Extra-Regio NUTS 3;Czechia;CZ
+DK011;Byen København;Denmark;DK
+DK012;Københavns omegn;Denmark;DK
+DK013;Nordsjælland;Denmark;DK
+DK014;Bornholm;Denmark;DK
+DK021;Østsjælland;Denmark;DK
+DK022;Vest- og Sydsjælland;Denmark;DK
+DK031;Fyn;Denmark;DK
+DK032;Sydjylland;Denmark;DK
+DK041;Vestjylland;Denmark;DK
+DK042;Østjylland;Denmark;DK
+DK050;Nordjylland;Denmark;DK
+DKZZZ;Extra-Regio NUTS 3;Denmark;DK
+DE111;Stuttgart, Stadtkreis;Germany;DE
+DE112;Böblingen;Germany;DE
+DE113;Esslingen;Germany;DE
+DE114;Göppingen;Germany;DE
+DE115;Ludwigsburg;Germany;DE
+DE116;Rems-Murr-Kreis;Germany;DE
+DE117;Heilbronn, Stadtkreis;Germany;DE
+DE118;Heilbronn, Landkreis;Germany;DE
+DE119;Hohenlohekreis;Germany;DE
+DE11A;Schwäbisch Hall;Germany;DE
+DE11B;Main-Tauber-Kreis;Germany;DE
+DE11C;Heidenheim;Germany;DE
+DE11D;Ostalbkreis;Germany;DE
+DE121;Baden-Baden, Stadtkreis;Germany;DE
+DE122;Karlsruhe, Stadtkreis;Germany;DE
+DE123;Karlsruhe, Landkreis;Germany;DE
+DE124;Rastatt;Germany;DE
+DE125;Heidelberg, Stadtkreis;Germany;DE
+DE126;Mannheim, Stadtkreis;Germany;DE
+DE127;Neckar-Odenwald-Kreis;Germany;DE
+DE128;Rhein-Neckar-Kreis;Germany;DE
+DE129;Pforzheim, Stadtkreis;Germany;DE
+DE12A;Calw;Germany;DE
+DE12B;Enzkreis;Germany;DE
+DE12C;Freudenstadt;Germany;DE
+DE131;Freiburg im Breisgau, Stadtkreis;Germany;DE
+DE132;Breisgau-Hochschwarzwald;Germany;DE
+DE133;Emmendingen;Germany;DE
+DE134;Ortenaukreis;Germany;DE
+DE135;Rottweil;Germany;DE
+DE136;Schwarzwald-Baar-Kreis;Germany;DE
+DE137;Tuttlingen;Germany;DE
+DE138;Konstanz;Germany;DE
+DE139;Lörrach;Germany;DE
+DE13A;Waldshut;Germany;DE
+DE141;Reutlingen;Germany;DE
+DE142;Tübingen, Landkreis;Germany;DE
+DE143;Zollernalbkreis;Germany;DE
+DE144;Ulm, Stadtkreis;Germany;DE
+DE145;Alb-Donau-Kreis;Germany;DE
+DE146;Biberach;Germany;DE
+DE147;Bodenseekreis;Germany;DE
+DE148;Ravensburg;Germany;DE
+DE149;Sigmaringen;Germany;DE
+DE211;Ingolstadt, Kreisfreie Stadt;Germany;DE
+DE212;München, Kreisfreie Stadt;Germany;DE
+DE213;Rosenheim, Kreisfreie Stadt;Germany;DE
+DE214;Altötting;Germany;DE
+DE215;Berchtesgadener Land;Germany;DE
+DE216;Bad Tölz-Wolfratshausen;Germany;DE
+DE217;Dachau;Germany;DE
+DE218;Ebersberg;Germany;DE
+DE219;Eichstätt;Germany;DE
+DE21A;Erding;Germany;DE
+DE21B;Freising;Germany;DE
+DE21C;Fürstenfeldbruck;Germany;DE
+DE21D;Garmisch-Partenkirchen;Germany;DE
+DE21E;Landsberg am Lech;Germany;DE
+DE21F;Miesbach;Germany;DE
+DE21G;Mühldorf a. Inn;Germany;DE
+DE21H;München, Landkreis;Germany;DE
+DE21I;Neuburg-Schrobenhausen;Germany;DE
+DE21J;Pfaffenhofen a. d. Ilm;Germany;DE
+DE21K;Rosenheim, Landkreis;Germany;DE
+DE21L;Starnberg;Germany;DE
+DE21M;Traunstein;Germany;DE
+DE21N;Weilheim-Schongau;Germany;DE
+DE221;Landshut, Kreisfreie Stadt;Germany;DE
+DE222;Passau, Kreisfreie Stadt;Germany;DE
+DE223;Straubing, Kreisfreie Stadt;Germany;DE
+DE224;Deggendorf;Germany;DE
+DE225;Freyung-Grafenau;Germany;DE
+DE226;Kelheim;Germany;DE
+DE227;Landshut, Landkreis;Germany;DE
+DE228;Passau, Landkreis;Germany;DE
+DE229;Regen;Germany;DE
+DE22A;Rottal-Inn;Germany;DE
+DE22B;Straubing-Bogen;Germany;DE
+DE22C;Dingolfing-Landau;Germany;DE
+DE231;Amberg, Kreisfreie Stadt;Germany;DE
+DE232;Regensburg, Kreisfreie Stadt;Germany;DE
+DE233;Weiden i. d. Opf, Kreisfreie Stadt;Germany;DE
+DE234;Amberg-Sulzbach;Germany;DE
+DE235;Cham;Germany;DE
+DE236;Neumarkt i. d. OPf.;Germany;DE
+DE237;Neustadt a. d. Waldnaab;Germany;DE
+DE238;Regensburg, Landkreis;Germany;DE
+DE239;Schwandorf;Germany;DE
+DE23A;Tirschenreuth;Germany;DE
+DE241;Bamberg, Kreisfreie Stadt;Germany;DE
+DE242;Bayreuth, Kreisfreie Stadt;Germany;DE
+DE243;Coburg, Kreisfreie Stadt;Germany;DE
+DE244;Hof, Kreisfreie Stadt;Germany;DE
+DE245;Bamberg, Landkreis;Germany;DE
+DE246;Bayreuth, Landkreis;Germany;DE
+DE247;Coburg, Landkreis;Germany;DE
+DE248;Forchheim;Germany;DE
+DE249;Hof, Landkreis;Germany;DE
+DE24A;Kronach;Germany;DE
+DE24B;Kulmbach;Germany;DE
+DE24C;Lichtenfels;Germany;DE
+DE24D;Wunsiedel i. Fichtelgebirge;Germany;DE
+DE251;Ansbach, Kreisfreie Stadt;Germany;DE
+DE252;Erlangen, Kreisfreie Stadt;Germany;DE
+DE253;Fürth, Kreisfreie Stadt;Germany;DE
+DE254;Nürnberg, Kreisfreie Stadt;Germany;DE
+DE255;Schwabach, Kreisfreie Stadt;Germany;DE
+DE256;Ansbach, Landkreis;Germany;DE
+DE257;Erlangen-Höchstadt;Germany;DE
+DE258;Fürth, Landkreis;Germany;DE
+DE259;Nürnberger Land;Germany;DE
+DE25A;Neustadt a. d. Aisch-Bad Windsheim;Germany;DE
+DE25B;Roth;Germany;DE
+DE25C;Weißenburg-Gunzenhausen;Germany;DE
+DE261;Aschaffenburg, Kreisfreie Stadt;Germany;DE
+DE262;Schweinfurt, Kreisfreie Stadt;Germany;DE
+DE263;Würzburg, Kreisfreie Stadt;Germany;DE
+DE264;Aschaffenburg, Landkreis;Germany;DE
+DE265;Bad Kissingen;Germany;DE
+DE266;Rhön-Grabfeld;Germany;DE
+DE267;Haßberge;Germany;DE
+DE268;Kitzingen;Germany;DE
+DE269;Miltenberg;Germany;DE
+DE26A;Main-Spessart;Germany;DE
+DE26B;Schweinfurt, Landkreis;Germany;DE
+DE26C;Würzburg, Landkreis;Germany;DE
+DE271;Augsburg, Kreisfreie Stadt;Germany;DE
+DE272;Kaufbeuren, Kreisfreie Stadt;Germany;DE
+DE273;Kempten (Allgäu), Kreisfreie Stadt;Germany;DE
+DE274;Memmingen, Kreisfreie Stadt;Germany;DE
+DE275;Aichach-Friedberg;Germany;DE
+DE276;Augsburg, Landkreis;Germany;DE
+DE277;Dillingen a.d. Donau;Germany;DE
+DE278;Günzburg;Germany;DE
+DE279;Neu-Ulm;Germany;DE
+DE27A;Lindau (Bodensee);Germany;DE
+DE27B;Ostallgäu;Germany;DE
+DE27C;Unterallgäu;Germany;DE
+DE27D;Donau-Ries;Germany;DE
+DE27E;Oberallgäu;Germany;DE
+DE300;Berlin;Germany;DE
+DE401;Brandenburg an der Havel, Kreisfreie Stadt;Germany;DE
+DE402;Cottbus, Kreisfreie Stadt;Germany;DE
+DE403;Frankfurt (Oder), Kreisfreie Stadt;Germany;DE
+DE404;Potsdam, Kreisfreie Stadt;Germany;DE
+DE405;Barnim;Germany;DE
+DE406;Dahme-Spreewald;Germany;DE
+DE407;Elbe-Elster;Germany;DE
+DE408;Havelland;Germany;DE
+DE409;Märkisch-Oderland;Germany;DE
+DE40A;Oberhavel;Germany;DE
+DE40B;Oberspreewald-Lausitz;Germany;DE
+DE40C;Oder-Spree;Germany;DE
+DE40D;Ostprignitz-Ruppin;Germany;DE
+DE40E;Potsdam-Mittelmark;Germany;DE
+DE40F;Prignitz;Germany;DE
+DE40G;Spree-Neiße;Germany;DE
+DE40H;Teltow-Fläming;Germany;DE
+DE40I;Uckermark;Germany;DE
+DE501;Bremen, Kreisfreie Stadt;Germany;DE
+DE502;Bremerhaven, Kreisfreie Stadt;Germany;DE
+DE600;Hamburg;Germany;DE
+DE711;Darmstadt, Kreisfreie Stadt;Germany;DE
+DE712;Frankfurt am Main, Kreisfreie Stadt;Germany;DE
+DE713;Offenbach am Main, Kreisfreie Stadt;Germany;DE
+DE714;Wiesbaden, Kreisfreie Stadt;Germany;DE
+DE715;Bergstraße;Germany;DE
+DE716;Darmstadt-Dieburg;Germany;DE
+DE717;Groß-Gerau;Germany;DE
+DE718;Hochtaunuskreis;Germany;DE
+DE719;Main-Kinzig-Kreis;Germany;DE
+DE71A;Main-Taunus-Kreis;Germany;DE
+DE71B;Odenwaldkreis;Germany;DE
+DE71C;Offenbach, Landkreis;Germany;DE
+DE71D;Rheingau-Taunus-Kreis;Germany;DE
+DE71E;Wetteraukreis;Germany;DE
+DE721;Gießen, Landkreis;Germany;DE
+DE722;Lahn-Dill-Kreis;Germany;DE
+DE723;Limburg-Weilburg;Germany;DE
+DE724;Marburg-Biedenkopf;Germany;DE
+DE725;Vogelsbergkreis;Germany;DE
+DE731;Kassel, Kreisfreie Stadt;Germany;DE
+DE732;Fulda;Germany;DE
+DE733;Hersfeld-Rotenburg;Germany;DE
+DE734;Kassel, Landkreis;Germany;DE
+DE735;Schwalm-Eder-Kreis;Germany;DE
+DE736;Waldeck-Frankenberg;Germany;DE
+DE737;Werra-Meißner-Kreis;Germany;DE
+DE803;Rostock, Kreisfreie Stadt;Germany;DE
+DE804;Schwerin, Kreisfreie Stadt;Germany;DE
+DE80J;Mecklenburgische Seenplatte;Germany;DE
+DE80K;Landkreis Rostock;Germany;DE
+DE80L;Vorpommern-Rügen;Germany;DE
+DE80M;Nordwestmecklenburg;Germany;DE
+DE80N;Vorpommern-Greifswald;Germany;DE
+DE80O;Ludwigslust-Parchim;Germany;DE
+DE911;Braunschweig, Kreisfreie Stadt;Germany;DE
+DE912;Salzgitter, Kreisfreie Stadt;Germany;DE
+DE913;Wolfsburg, Kreisfreie Stadt;Germany;DE
+DE914;Gifhorn;Germany;DE
+DE916;Goslar;Germany;DE
+DE917;Helmstedt;Germany;DE
+DE918;Northeim;Germany;DE
+DE91A;Peine;Germany;DE
+DE91B;Wolfenbüttel;Germany;DE
+DE91C;Göttingen;Germany;DE
+DE922;Diepholz;Germany;DE
+DE923;Hameln-Pyrmont;Germany;DE
+DE925;Hildesheim;Germany;DE
+DE926;Holzminden;Germany;DE
+DE927;Nienburg (Weser);Germany;DE
+DE928;Schaumburg;Germany;DE
+DE929;Region Hannover;Germany;DE
+DE931;Celle;Germany;DE
+DE932;Cuxhaven;Germany;DE
+DE933;Harburg;Germany;DE
+DE934;Lüchow-Dannenberg;Germany;DE
+DE935;Lüneburg, Landkreis;Germany;DE
+DE936;Osterholz;Germany;DE
+DE937;Rotenburg (Wümme);Germany;DE
+DE938;Heidekreis;Germany;DE
+DE939;Stade;Germany;DE
+DE93A;Uelzen;Germany;DE
+DE93B;Verden;Germany;DE
+DE941;Delmenhorst, Kreisfreie Stadt;Germany;DE
+DE942;Emden, Kreisfreie Stadt;Germany;DE
+DE943;Oldenburg (Oldenburg), Kreisfreie Stadt;Germany;DE
+DE944;Osnabrück, Kreisfreie Stadt;Germany;DE
+DE945;Wilhelmshaven, Kreisfreie Stadt;Germany;DE
+DE946;Ammerland;Germany;DE
+DE947;Aurich;Germany;DE
+DE948;Cloppenburg;Germany;DE
+DE949;Emsland;Germany;DE
+DE94A;Friesland (DE);Germany;DE
+DE94B;Grafschaft Bentheim;Germany;DE
+DE94C;Leer;Germany;DE
+DE94D;Oldenburg, Landkreis;Germany;DE
+DE94E;Osnabrück, Landkreis;Germany;DE
+DE94F;Vechta;Germany;DE
+DE94G;Wesermarsch;Germany;DE
+DE94H;Wittmund;Germany;DE
+DEA11;Düsseldorf, Kreisfreie Stadt;Germany;DE
+DEA12;Duisburg, Kreisfreie Stadt;Germany;DE
+DEA13;Essen, Kreisfreie Stadt;Germany;DE
+DEA14;Krefeld, Kreisfreie Stadt;Germany;DE
+DEA15;Mönchengladbach, Kreisfreie Stadt;Germany;DE
+DEA16;Mülheim an der Ruhr, Kreisfreie Stadt;Germany;DE
+DEA17;Oberhausen, Kreisfreie Stadt;Germany;DE
+DEA18;Remscheid, Kreisfreie Stadt;Germany;DE
+DEA19;Solingen, Kreisfreie Stadt;Germany;DE
+DEA1A;Wuppertal, Kreisfreie Stadt;Germany;DE
+DEA1B;Kleve;Germany;DE
+DEA1C;Mettmann;Germany;DE
+DEA1D;Rhein-Kreis Neuss;Germany;DE
+DEA1E;Viersen;Germany;DE
+DEA1F;Wesel;Germany;DE
+DEA22;Bonn, Kreisfreie Stadt;Germany;DE
+DEA23;Köln, Kreisfreie Stadt;Germany;DE
+DEA24;Leverkusen, Kreisfreie Stadt;Germany;DE
+DEA26;Düren;Germany;DE
+DEA27;Rhein-Erft-Kreis;Germany;DE
+DEA28;Euskirchen;Germany;DE
+DEA29;Heinsberg;Germany;DE
+DEA2A;Oberbergischer Kreis;Germany;DE
+DEA2B;Rheinisch-Bergischer Kreis;Germany;DE
+DEA2C;Rhein-Sieg-Kreis;Germany;DE
+DEA2D;Städteregion Aachen;Germany;DE
+DEA31;Bottrop, Kreisfreie Stadt;Germany;DE
+DEA32;Gelsenkirchen, Kreisfreie Stadt;Germany;DE
+DEA33;Münster, Kreisfreie Stadt;Germany;DE
+DEA34;Borken;Germany;DE
+DEA35;Coesfeld;Germany;DE
+DEA36;Recklinghausen;Germany;DE
+DEA37;Steinfurt;Germany;DE
+DEA38;Warendorf;Germany;DE
+DEA41;Bielefeld, Kreisfreie Stadt;Germany;DE
+DEA42;Gütersloh;Germany;DE
+DEA43;Herford;Germany;DE
+DEA44;Höxter;Germany;DE
+DEA45;Lippe;Germany;DE
+DEA46;Minden-Lübbecke;Germany;DE
+DEA47;Paderborn;Germany;DE
+DEA51;Bochum, Kreisfreie Stadt;Germany;DE
+DEA52;Dortmund, Kreisfreie Stadt;Germany;DE
+DEA53;Hagen, Kreisfreie Stadt;Germany;DE
+DEA54;Hamm, Kreisfreie Stadt;Germany;DE
+DEA55;Herne, Kreisfreie Stadt;Germany;DE
+DEA56;Ennepe-Ruhr-Kreis;Germany;DE
+DEA57;Hochsauerlandkreis;Germany;DE
+DEA58;Märkischer Kreis;Germany;DE
+DEA59;Olpe;Germany;DE
+DEA5A;Siegen-Wittgenstein;Germany;DE
+DEA5B;Soest;Germany;DE
+DEA5C;Unna;Germany;DE
+DEB11;Koblenz, Kreisfreie Stadt;Germany;DE
+DEB12;Ahrweiler;Germany;DE
+DEB13;Altenkirchen (Westerwald);Germany;DE
+DEB14;Bad Kreuznach;Germany;DE
+DEB15;Birkenfeld;Germany;DE
+DEB17;Mayen-Koblenz;Germany;DE
+DEB18;Neuwied;Germany;DE
+DEB1A;Rhein-Lahn-Kreis;Germany;DE
+DEB1B;Westerwaldkreis;Germany;DE
+DEB1C;Cochem-Zell;Germany;DE
+DEB1D;Rhein-Hunsrück-Kreis;Germany;DE
+DEB21;Trier, Kreisfreie Stadt;Germany;DE
+DEB22;Bernkastel-Wittlich;Germany;DE
+DEB23;Eifelkreis Bitburg-Prüm;Germany;DE
+DEB24;Vulkaneifel;Germany;DE
+DEB25;Trier-Saarburg;Germany;DE
+DEB31;Frankenthal (Pfalz), Kreisfreie Stadt;Germany;DE
+DEB32;Kaiserslautern, Kreisfreie Stadt;Germany;DE
+DEB33;Landau in der Pfalz, Kreisfreie Stadt;Germany;DE
+DEB34;Ludwigshafen am Rhein, Kreisfreie Stadt;Germany;DE
+DEB35;Mainz, Kreisfreie Stadt;Germany;DE
+DEB36;Neustadt an der Weinstraße, Kreisfreie Stadt;Germany;DE
+DEB37;Pirmasens, Kreisfreie Stadt;Germany;DE
+DEB38;Speyer, Kreisfreie Stadt;Germany;DE
+DEB39;Worms, Kreisfreie Stadt;Germany;DE
+DEB3A;Zweibrücken, Kreisfreie Stadt;Germany;DE
+DEB3B;Alzey-Worms;Germany;DE
+DEB3C;Bad Dürkheim;Germany;DE
+DEB3D;Donnersbergkreis;Germany;DE
+DEB3E;Germersheim;Germany;DE
+DEB3F;Kaiserslautern, Landkreis;Germany;DE
+DEB3G;Kusel;Germany;DE
+DEB3H;Südliche Weinstraße;Germany;DE
+DEB3I;Rhein-Pfalz-Kreis;Germany;DE
+DEB3J;Mainz-Bingen;Germany;DE
+DEB3K;Südwestpfalz;Germany;DE
+DEC01;Regionalverband Saarbrücken;Germany;DE
+DEC02;Merzig-Wadern;Germany;DE
+DEC03;Neunkirchen;Germany;DE
+DEC04;Saarlouis;Germany;DE
+DEC05;Saarpfalz-Kreis;Germany;DE
+DEC06;St. Wendel;Germany;DE
+DED21;Dresden, Kreisfreie Stadt;Germany;DE
+DED2C;Bautzen;Germany;DE
+DED2D;Görlitz;Germany;DE
+DED2E;Meißen;Germany;DE
+DED2F;Sächsische Schweiz-Osterzgebirge;Germany;DE
+DED41;Chemnitz, Kreisfreie Stadt;Germany;DE
+DED42;Erzgebirgskreis;Germany;DE
+DED43;Mittelsachsen;Germany;DE
+DED44;Vogtlandkreis;Germany;DE
+DED45;Zwickau;Germany;DE
+DED51;Leipzig, Kreisfreie Stadt;Germany;DE
+DED52;Leipzig;Germany;DE
+DED53;Nordsachsen;Germany;DE
+DEE01;Dessau-Roßlau, Kreisfreie Stadt;Germany;DE
+DEE02;Halle (Saale), Kreisfreie Stadt;Germany;DE
+DEE03;Magdeburg, Kreisfreie Stadt;Germany;DE
+DEE04;Altmarkkreis Salzwedel;Germany;DE
+DEE05;Anhalt-Bitterfeld;Germany;DE
+DEE06;Jerichower Land;Germany;DE
+DEE07;Börde;Germany;DE
+DEE08;Burgenlandkreis;Germany;DE
+DEE09;Harz;Germany;DE
+DEE0A;Mansfeld-Südharz;Germany;DE
+DEE0B;Saalekreis;Germany;DE
+DEE0C;Salzlandkreis;Germany;DE
+DEE0D;Stendal;Germany;DE
+DEE0E;Wittenberg;Germany;DE
+DEF01;Flensburg, Kreisfreie Stadt;Germany;DE
+DEF02;Kiel, Kreisfreie Stadt;Germany;DE
+DEF03;Lübeck, Kreisfreie Stadt;Germany;DE
+DEF04;Neumünster, Kreisfreie Stadt;Germany;DE
+DEF05;Dithmarschen;Germany;DE
+DEF06;Herzogtum Lauenburg;Germany;DE
+DEF07;Nordfriesland;Germany;DE
+DEF08;Ostholstein;Germany;DE
+DEF09;Pinneberg;Germany;DE
+DEF0A;Plön;Germany;DE
+DEF0B;Rendsburg-Eckernförde;Germany;DE
+DEF0C;Schleswig-Flensburg;Germany;DE
+DEF0D;Segeberg;Germany;DE
+DEF0E;Steinburg;Germany;DE
+DEF0F;Stormarn;Germany;DE
+DEG01;Erfurt, Kreisfreie Stadt;Germany;DE
+DEG02;Gera, Kreisfreie Stadt;Germany;DE
+DEG03;Jena, Kreisfreie Stadt;Germany;DE
+DEG04;Suhl, Kreisfreie Stadt;Germany;DE
+DEG05;Weimar, Kreisfreie Stadt;Germany;DE
+DEG06;Eichsfeld;Germany;DE
+DEG07;Nordhausen;Germany;DE
+DEG09;Unstrut-Hainich-Kreis;Germany;DE
+DEG0A;Kyffhäuserkreis;Germany;DE
+DEG0B;Schmalkalden-Meiningen;Germany;DE
+DEG0C;Gotha;Germany;DE
+DEG0D;Sömmerda;Germany;DE
+DEG0E;Hildburghausen;Germany;DE
+DEG0F;Ilm-Kreis;Germany;DE
+DEG0G;Weimarer Land;Germany;DE
+DEG0H;Sonneberg;Germany;DE
+DEG0I;Saalfeld-Rudolstadt;Germany;DE
+DEG0J;Saale-Holzland-Kreis;Germany;DE
+DEG0K;Saale-Orla-Kreis;Germany;DE
+DEG0L;Greiz;Germany;DE
+DEG0M;Altenburger Land;Germany;DE
+DEG0N;Eisenach, Kreisfreie Stadt;Germany;DE
+DEG0P;Wartburgkreis;Germany;DE
+DEZZZ;Extra-Regio NUTS 3;Germany;DE
+EE001;Põhja-Eesti;Estonia;EE
+EE004;Lääne-Eesti;Estonia;EE
+EE008;Lõuna-Eesti;Estonia;EE
+EE009;Kesk-Eesti;Estonia;EE
+EE00A;Kirde-Eesti;Estonia;EE
+EEZZZ;Extra-Regio NUTS 3;Estonia;EE
+IE041;Border;Ireland;IE
+IE042;West;Ireland;IE
+IE051;Mid-West ;Ireland;IE
+IE052;South-East ;Ireland;IE
+IE053;South-West ;Ireland;IE
+IE061;Dublin;Ireland;IE
+IE062;Mid-East;Ireland;IE
+IE063;Midland;Ireland;IE
+IEZZZ;Extra-Regio NUTS 3;Ireland;IE
+EL301;Voreios Tomeas Athinon;Greece;EL
+EL302;Dytikos Tomeas Athinon;Greece;EL
+EL303;Kentrikos Tomeas Athinon;Greece;EL
+EL304;Notios Tomeas Athinon;Greece;EL
+EL305;Anatoliki Attiki;Greece;EL
+EL306;Dytiki Attiki;Greece;EL
+EL307;Peiraias, Nisoi;Greece;EL
+EL411;Lesvos, Limnos;Greece;EL
+EL412;Ikaria, Samos;Greece;EL
+EL413;Chios;Greece;EL
+EL421;Kalymnos, Karpathos, Kasos, Kos, Rodos;Greece;EL
+EL422;Andros, Thira, Kea, Milos, Mykonos, Naxos, Paros,  Syros, Tinos;Greece;EL
+EL431;Irakleio;Greece;EL
+EL432;Lasithi;Greece;EL
+EL433;Rethymni;Greece;EL
+EL434;Chania;Greece;EL
+EL511;Evros;Greece;EL
+EL512;Xanthi;Greece;EL
+EL513;Rodopi;Greece;EL
+EL514;Drama;Greece;EL
+EL515;Thasos, Kavala;Greece;EL
+EL521;Imathia;Greece;EL
+EL522;Thessaloniki;Greece;EL
+EL523;Kilkis;Greece;EL
+EL524;Pella;Greece;EL
+EL525;Pieria;Greece;EL
+EL526;Serres;Greece;EL
+EL527;Chalkidiki;Greece;EL
+EL531;Grevena, Kozani;Greece;EL
+EL532;Kastoria;Greece;EL
+EL533;Florina;Greece;EL
+EL541;Arta, Preveza;Greece;EL
+EL542;Thesprotia;Greece;EL
+EL543;Ioannina;Greece;EL
+EL611;Karditsa, Trikala;Greece;EL
+EL612;Larisa;Greece;EL
+EL613;Magnisia, Sporades;Greece;EL
+EL621;Zakynthos;Greece;EL
+EL622;Kerkyra;Greece;EL
+EL623;Ithaki, Kefallinia;Greece;EL
+EL624;Lefkada;Greece;EL
+EL631;Aitoloakarnania;Greece;EL
+EL632;Achaia;Greece;EL
+EL633;Ileia;Greece;EL
+EL641;Voiotia;Greece;EL
+EL642;Evvoia;Greece;EL
+EL643;Evrytania;Greece;EL
+EL644;Fthiotida;Greece;EL
+EL645;Fokida;Greece;EL
+EL651;Argolida, Arkadia;Greece;EL
+EL652;Korinthia;Greece;EL
+EL653;Lakonia, Messinia;Greece;EL
+ELZZZ;Extra-Regio NUTS 3;Greece;EL
+ES111;A Coruña;Spain;ES
+ES112;Lugo;Spain;ES
+ES113;Ourense;Spain;ES
+ES114;Pontevedra;Spain;ES
+ES120;Asturias;Spain;ES
+ES130;Cantabria;Spain;ES
+ES211;Araba/Álava;Spain;ES
+ES212;Gipuzkoa;Spain;ES
+ES213;Bizkaia;Spain;ES
+ES220;Navarra;Spain;ES
+ES230;La Rioja;Spain;ES
+ES241;Huesca;Spain;ES
+ES242;Teruel;Spain;ES
+ES243;Zaragoza;Spain;ES
+ES300;Madrid;Spain;ES
+ES411;Ávila;Spain;ES
+ES412;Burgos;Spain;ES
+ES413;León;Spain;ES
+ES414;Palencia;Spain;ES
+ES415;Salamanca;Spain;ES
+ES416;Segovia;Spain;ES
+ES417;Soria;Spain;ES
+ES418;Valladolid;Spain;ES
+ES419;Zamora;Spain;ES
+ES421;Albacete;Spain;ES
+ES422;Ciudad Real;Spain;ES
+ES423;Cuenca;Spain;ES
+ES424;Guadalajara;Spain;ES
+ES425;Toledo;Spain;ES
+ES431;Badajoz;Spain;ES
+ES432;Cáceres;Spain;ES
+ES511;Barcelona;Spain;ES
+ES512;Girona;Spain;ES
+ES513;Lleida;Spain;ES
+ES514;Tarragona;Spain;ES
+ES521;Alicante/Alacant;Spain;ES
+ES522;Castellón/Castelló;Spain;ES
+ES523;Valencia/València;Spain;ES
+ES531;Eivissa y Formentera;Spain;ES
+ES532;Mallorca;Spain;ES
+ES533;Menorca;Spain;ES
+ES611;Almería;Spain;ES
+ES612;Cádiz;Spain;ES
+ES613;Córdoba;Spain;ES
+ES614;Granada;Spain;ES
+ES615;Huelva;Spain;ES
+ES616;Jaén;Spain;ES
+ES617;Málaga;Spain;ES
+ES618;Sevilla;Spain;ES
+ES620;Murcia;Spain;ES
+ES630;Ceuta;Spain;ES
+ES640;Melilla;Spain;ES
+ES703;El Hierro;Spain;ES
+ES704;Fuerteventura;Spain;ES
+ES705;Gran Canaria;Spain;ES
+ES706;La Gomera;Spain;ES
+ES707;La Palma;Spain;ES
+ES708;Lanzarote;Spain;ES
+ES709;Tenerife;Spain;ES
+ESZZZ;Extra-Regio NUTS 3;Spain;ES
+FR101;Paris;France;FR
+FR102;Seine-et-Marne ;France;FR
+FR103;Yvelines ;France;FR
+FR104;Essonne;France;FR
+FR105;Hauts-de-Seine ;France;FR
+FR106;Seine-Saint-Denis ;France;FR
+FR107;Val-de-Marne;France;FR
+FR108;Val-d’Oise;France;FR
+FRB01;Cher;France;FR
+FRB02;Eure-et-Loir;France;FR
+FRB03;Indre;France;FR
+FRB04;Indre-et-Loire;France;FR
+FRB05;Loir-et-Cher;France;FR
+FRB06;Loiret;France;FR
+FRC11;Côte-d’Or;France;FR
+FRC12;Nièvre;France;FR
+FRC13;Saône-et-Loire;France;FR
+FRC14;Yonne;France;FR
+FRC21;Doubs;France;FR
+FRC22;Jura;France;FR
+FRC23;Haute-Saône;France;FR
+FRC24;Territoire de Belfort;France;FR
+FRD11;Calvados ;France;FR
+FRD12;Manche ;France;FR
+FRD13;Orne;France;FR
+FRD21;Eure;France;FR
+FRD22;Seine-Maritime;France;FR
+FRE11;Nord;France;FR
+FRE12;Pas-de-Calais;France;FR
+FRE21;Aisne;France;FR
+FRE22;Oise;France;FR
+FRE23;Somme;France;FR
+FRF11;Bas-Rhin;France;FR
+FRF12;Haut-Rhin;France;FR
+FRF21;Ardennes;France;FR
+FRF22;Aube;France;FR
+FRF23;Marne;France;FR
+FRF24;Haute-Marne;France;FR
+FRF31;Meurthe-et-Moselle ;France;FR
+FRF32;Meuse ;France;FR
+FRF33;Moselle;France;FR
+FRF34;Vosges;France;FR
+FRG01;Loire-Atlantique;France;FR
+FRG02;Maine-et-Loire;France;FR
+FRG03;Mayenne;France;FR
+FRG04;Sarthe;France;FR
+FRG05;Vendée;France;FR
+FRH01;Côtes-d’Armor;France;FR
+FRH02;Finistère;France;FR
+FRH03;Ille-et-Vilaine;France;FR
+FRH04;Morbihan;France;FR
+FRI11;Dordogne;France;FR
+FRI12;Gironde;France;FR
+FRI13;Landes;France;FR
+FRI14;Lot-et-Garonne;France;FR
+FRI15;Pyrénées-Atlantiques;France;FR
+FRI21;Corrèze;France;FR
+FRI22;Creuse;France;FR
+FRI23;Haute-Vienne;France;FR
+FRI31;Charente;France;FR
+FRI32;Charente-Maritime;France;FR
+FRI33;Deux-Sèvres;France;FR
+FRI34;Vienne;France;FR
+FRJ11;Aude;France;FR
+FRJ12;Gard;France;FR
+FRJ13;Hérault;France;FR
+FRJ14;Lozère;France;FR
+FRJ15;Pyrénées-Orientales;France;FR
+FRJ21;Ariège;France;FR
+FRJ22;Aveyron;France;FR
+FRJ23;Haute-Garonne;France;FR
+FRJ24;Gers;France;FR
+FRJ25;Lot;France;FR
+FRJ26;Hautes-Pyrénées ;France;FR
+FRJ27;Tarn;France;FR
+FRJ28;Tarn-et-Garonne;France;FR
+FRK11;Allier;France;FR
+FRK12;Cantal;France;FR
+FRK13;Haute-Loire;France;FR
+FRK14;Puy-de-Dôme;France;FR
+FRK21;Ain;France;FR
+FRK22;Ardèche;France;FR
+FRK23;Drôme;France;FR
+FRK24;Isère;France;FR
+FRK25;Loire;France;FR
+FRK26;Rhône;France;FR
+FRK27;Savoie;France;FR
+FRK28;Haute-Savoie;France;FR
+FRL01;Alpes-de-Haute-Provence;France;FR
+FRL02;Hautes-Alpes ;France;FR
+FRL03;Alpes-Maritimes;France;FR
+FRL04;Bouches-du-Rhône;France;FR
+FRL05;Var;France;FR
+FRL06;Vaucluse;France;FR
+FRM01;Corse-du-Sud;France;FR
+FRM02;Haute-Corse;France;FR
+FRY10;Guadeloupe;France;FR
+FRY20;Martinique ;France;FR
+FRY30;Guyane;France;FR
+FRY40;La Réunion;France;FR
+FRY50;Mayotte ;France;FR
+FRZZZ;Extra-Regio NUTS 3;France;FR
+HR021;Bjelovarsko-bilogorska županija;Croatia;HR
+HR022;Virovitičko-podravska županija;Croatia;HR
+HR023;Požeško-slavonska županija;Croatia;HR
+HR024;Brodsko-posavska županija;Croatia;HR
+HR025;Osječko-baranjska županija;Croatia;HR
+HR026;Vukovarsko-srijemska županija;Croatia;HR
+HR027;Karlovačka županija;Croatia;HR
+HR028;Sisačko-moslavačka županija;Croatia;HR
+HR031;Primorsko-goranska županija;Croatia;HR
+HR032;Ličko-senjska županija;Croatia;HR
+HR033;Zadarska županija;Croatia;HR
+HR034;Šibensko-kninska županija;Croatia;HR
+HR035;Splitsko-dalmatinska županija;Croatia;HR
+HR036;Istarska županija;Croatia;HR
+HR037;Dubrovačko-neretvanska županija;Croatia;HR
+HR050;Grad Zagreb;Croatia;HR
+HR061;Međimurska županija;Croatia;HR
+HR062;Varaždinska županija;Croatia;HR
+HR063;Koprivničko-križevačka županija;Croatia;HR
+HR064;Krapinsko-zagorska županija;Croatia;HR
+HR065;Zagrebačka županija;Croatia;HR
+HRZZZ;Extra-Regio NUTS 3;Croatia;HR
+ITC11;Torino;Italy;IT
+ITC12;Vercelli;Italy;IT
+ITC13;Biella;Italy;IT
+ITC14;Verbano-Cusio-Ossola;Italy;IT
+ITC15;Novara;Italy;IT
+ITC16;Cuneo;Italy;IT
+ITC17;Asti;Italy;IT
+ITC18;Alessandria;Italy;IT
+ITC20;Valle d’Aosta/Vallée d’Aoste;Italy;IT
+ITC31;Imperia;Italy;IT
+ITC32;Savona;Italy;IT
+ITC33;Genova;Italy;IT
+ITC34;La Spezia;Italy;IT
+ITC41;Varese;Italy;IT
+ITC42;Como;Italy;IT
+ITC43;Lecco;Italy;IT
+ITC44;Sondrio;Italy;IT
+ITC46;Bergamo;Italy;IT
+ITC47;Brescia;Italy;IT
+ITC48;Pavia;Italy;IT
+ITC49;Lodi;Italy;IT
+ITC4A;Cremona;Italy;IT
+ITC4B;Mantova;Italy;IT
+ITC4C;Milano;Italy;IT
+ITC4D;Monza e della Brianza;Italy;IT
+ITF11;L’Aquila;Italy;IT
+ITF12;Teramo;Italy;IT
+ITF13;Pescara;Italy;IT
+ITF14;Chieti;Italy;IT
+ITF21;Isernia;Italy;IT
+ITF22;Campobasso;Italy;IT
+ITF31;Caserta;Italy;IT
+ITF32;Benevento;Italy;IT
+ITF33;Napoli;Italy;IT
+ITF34;Avellino;Italy;IT
+ITF35;Salerno;Italy;IT
+ITF43;Taranto;Italy;IT
+ITF44;Brindisi;Italy;IT
+ITF45;Lecce;Italy;IT
+ITF46;Foggia;Italy;IT
+ITF47;Bari;Italy;IT
+ITF48;Barletta-Andria-Trani;Italy;IT
+ITF51;Potenza;Italy;IT
+ITF52;Matera;Italy;IT
+ITF61;Cosenza;Italy;IT
+ITF62;Crotone;Italy;IT
+ITF63;Catanzaro;Italy;IT
+ITF64;Vibo Valentia;Italy;IT
+ITF65;Reggio di Calabria;Italy;IT
+ITG11;Trapani;Italy;IT
+ITG12;Palermo;Italy;IT
+ITG13;Messina;Italy;IT
+ITG14;Agrigento;Italy;IT
+ITG15;Caltanissetta;Italy;IT
+ITG16;Enna;Italy;IT
+ITG17;Catania;Italy;IT
+ITG18;Ragusa;Italy;IT
+ITG19;Siracusa;Italy;IT
+ITG2D;Sassari;Italy;IT
+ITG2E;Nuoro;Italy;IT
+ITG2F;Cagliari;Italy;IT
+ITG2G;Oristano;Italy;IT
+ITG2H;Sud Sardegna;Italy;IT
+ITH10;Bolzano-Bozen;Italy;IT
+ITH20;Trento;Italy;IT
+ITH31;Verona;Italy;IT
+ITH32;Vicenza;Italy;IT
+ITH33;Belluno;Italy;IT
+ITH34;Treviso;Italy;IT
+ITH35;Venezia;Italy;IT
+ITH36;Padova;Italy;IT
+ITH37;Rovigo;Italy;IT
+ITH41;Pordenone;Italy;IT
+ITH42;Udine;Italy;IT
+ITH43;Gorizia;Italy;IT
+ITH44;Trieste;Italy;IT
+ITH51;Piacenza;Italy;IT
+ITH52;Parma;Italy;IT
+ITH53;Reggio nell’Emilia;Italy;IT
+ITH54;Modena;Italy;IT
+ITH55;Bologna;Italy;IT
+ITH56;Ferrara;Italy;IT
+ITH57;Ravenna;Italy;IT
+ITH58;Forlì-Cesena;Italy;IT
+ITH59;Rimini;Italy;IT
+ITI11;Massa-Carrara;Italy;IT
+ITI12;Lucca;Italy;IT
+ITI13;Pistoia;Italy;IT
+ITI14;Firenze;Italy;IT
+ITI15;Prato;Italy;IT
+ITI16;Livorno;Italy;IT
+ITI17;Pisa;Italy;IT
+ITI18;Arezzo;Italy;IT
+ITI19;Siena;Italy;IT
+ITI1A;Grosseto;Italy;IT
+ITI21;Perugia;Italy;IT
+ITI22;Terni;Italy;IT
+ITI31;Pesaro e Urbino;Italy;IT
+ITI32;Ancona;Italy;IT
+ITI33;Macerata;Italy;IT
+ITI34;Ascoli Piceno;Italy;IT
+ITI35;Fermo;Italy;IT
+ITI41;Viterbo;Italy;IT
+ITI42;Rieti;Italy;IT
+ITI43;Roma;Italy;IT
+ITI44;Latina;Italy;IT
+ITI45;Frosinone;Italy;IT
+ITZZZ;Extra-Regio NUTS 3;Italy;IT
+CY000;Kýpros;Cyprus;CY
+CYZZZ;Extra-Regio NUTS 3;Cyprus;CY
+LV003;Kurzeme;Latvia;LV
+LV005;Latgale;Latvia;LV
+LV006;Rīga;Latvia;LV
+LV007;Pierīga;Latvia;LV
+LV008;Vidzeme;Latvia;LV
+LV009;Zemgale;Latvia;LV
+LVZZZ;Extra-Regio NUTS 3;Latvia;LV
+LT011;Vilniaus apskritis;Lithuania;LT
+LT021;Alytaus apskritis;Lithuania;LT
+LT022;Kauno apskritis;Lithuania;LT
+LT023;Klaipėdos apskritis;Lithuania;LT
+LT024;Marijampolės apskritis;Lithuania;LT
+LT025;Panevėžio apskritis;Lithuania;LT
+LT026;Šiaulių apskritis;Lithuania;LT
+LT027;Tauragės apskritis;Lithuania;LT
+LT028;Telšių apskritis;Lithuania;LT
+LT029;Utenos apskritis;Lithuania;LT
+LTZZZ;Extra-Regio NUTS 3;Lithuania;LT
+LU000;Luxembourg;Luxembourg;LU
+LUZZZ;Extra-Regio NUTS 3;Luxembourg;LU
+HU110;Budapest;Hungary;HU
+HU120;Pest;Hungary;HU
+HU211;Fejér;Hungary;HU
+HU212;Komárom-Esztergom;Hungary;HU
+HU213;Veszprém;Hungary;HU
+HU221;Győr-Moson-Sopron;Hungary;HU
+HU222;Vas;Hungary;HU
+HU223;Zala;Hungary;HU
+HU231;Baranya;Hungary;HU
+HU232;Somogy;Hungary;HU
+HU233;Tolna;Hungary;HU
+HU311;Borsod-Abaúj-Zemplén;Hungary;HU
+HU312;Heves;Hungary;HU
+HU313;Nógrád;Hungary;HU
+HU321;Hajdú-Bihar;Hungary;HU
+HU322;Jász-Nagykun-Szolnok;Hungary;HU
+HU323;Szabolcs-Szatmár-Bereg;Hungary;HU
+HU331;Bács-Kiskun;Hungary;HU
+HU332;Békés;Hungary;HU
+HU333;Csongrád;Hungary;HU
+HUZZZ;Extra-Regio NUTS 3;Hungary;HU
+MT001;Malta;Malta;MT
+MT002;Gozo and Comino/Għawdex u Kemmuna;Malta;MT
+MTZZZ;Extra-Regio NUTS 3;Malta;MT
+NL111;Oost-Groningen;Netherlands;NL
+NL112;Delfzijl en omgeving;Netherlands;NL
+NL113;Overig Groningen;Netherlands;NL
+NL124;Noord-Friesland;Netherlands;NL
+NL125;Zuidwest-Friesland;Netherlands;NL
+NL126;Zuidoost-Friesland;Netherlands;NL
+NL131;Noord-Drenthe;Netherlands;NL
+NL132;Zuidoost-Drenthe;Netherlands;NL
+NL133;Zuidwest-Drenthe;Netherlands;NL
+NL211;Noord-Overijssel;Netherlands;NL
+NL212;Zuidwest-Overijssel;Netherlands;NL
+NL213;Twente;Netherlands;NL
+NL221;Veluwe;Netherlands;NL
+NL224;Zuidwest-Gelderland;Netherlands;NL
+NL225;Achterhoek;Netherlands;NL
+NL226;Arnhem/Nijmegen;Netherlands;NL
+NL230;Flevoland;Netherlands;NL
+NL310;Utrecht;Netherlands;NL
+NL321;Kop van Noord-Holland;Netherlands;NL
+NL323;IJmond;Netherlands;NL
+NL324;Agglomeratie Haarlem;Netherlands;NL
+NL325;Zaanstreek;Netherlands;NL
+NL327;Het Gooi en Vechtstreek;Netherlands;NL
+NL328;Alkmaar en omgeving;Netherlands;NL
+NL329;Groot-Amsterdam;Netherlands;NL
+NL332;Agglomeratie ’s-Gravenhage;Netherlands;NL
+NL333;Delft en Westland;Netherlands;NL
+NL337;Agglomeratie Leiden en Bollenstreek;Netherlands;NL
+NL33A;Zuidoost-Zuid-Holland;Netherlands;NL
+NL33B;Oost-Zuid-Holland;Netherlands;NL
+NL33C;Groot-Rijnmond;Netherlands;NL
+NL341;Zeeuwsch-Vlaanderen;Netherlands;NL
+NL342;Overig Zeeland;Netherlands;NL
+NL411;West-Noord-Brabant;Netherlands;NL
+NL412;Midden-Noord-Brabant;Netherlands;NL
+NL413;Noordoost-Noord-Brabant;Netherlands;NL
+NL414;Zuidoost-Noord-Brabant;Netherlands;NL
+NL421;Noord-Limburg;Netherlands;NL
+NL422;Midden-Limburg;Netherlands;NL
+NL423;Zuid-Limburg;Netherlands;NL
+NLZZZ;Extra-Regio NUTS 3;Netherlands;NL
+AT111;Mittelburgenland;Austria;AT
+AT112;Nordburgenland;Austria;AT
+AT113;Südburgenland;Austria;AT
+AT121;Mostviertel-Eisenwurzen;Austria;AT
+AT122;Niederösterreich-Süd;Austria;AT
+AT123;Sankt Pölten;Austria;AT
+AT124;Waldviertel;Austria;AT
+AT125;Weinviertel;Austria;AT
+AT126;Wiener Umland/Nordteil;Austria;AT
+AT127;Wiener Umland/Südteil;Austria;AT
+AT130;Wien;Austria;AT
+AT211;Klagenfurt-Villach;Austria;AT
+AT212;Oberkärnten;Austria;AT
+AT213;Unterkärnten;Austria;AT
+AT221;Graz;Austria;AT
+AT222;Liezen;Austria;AT
+AT223;Östliche Obersteiermark;Austria;AT
+AT224;Oststeiermark;Austria;AT
+AT225;West- und Südsteiermark;Austria;AT
+AT226;Westliche Obersteiermark;Austria;AT
+AT311;Innviertel;Austria;AT
+AT312;Linz-Wels;Austria;AT
+AT313;Mühlviertel;Austria;AT
+AT314;Steyr-Kirchdorf;Austria;AT
+AT315;Traunviertel;Austria;AT
+AT321;Lungau;Austria;AT
+AT322;Pinzgau-Pongau;Austria;AT
+AT323;Salzburg und Umgebung;Austria;AT
+AT331;Außerfern;Austria;AT
+AT332;Innsbruck;Austria;AT
+AT333;Osttirol;Austria;AT
+AT334;Tiroler Oberland;Austria;AT
+AT335;Tiroler Unterland;Austria;AT
+AT341;Bludenz-Bregenzer Wald;Austria;AT
+AT342;Rheintal-Bodenseegebiet;Austria;AT
+ATZZZ;Extra-Regio NUTS 3;Austria;AT
+PL213;Miasto Kraków;Poland;PL
+PL214;Krakowski;Poland;PL
+PL217;Tarnowski;Poland;PL
+PL218;Nowosądecki;Poland;PL
+PL219;Nowotarski;Poland;PL
+PL21A;Oświęcimski;Poland;PL
+PL224;Częstochowski;Poland;PL
+PL225;Bielski;Poland;PL
+PL227;Rybnicki;Poland;PL
+PL228;Bytomski;Poland;PL
+PL229;Gliwicki;Poland;PL
+PL22A;Katowicki;Poland;PL
+PL22B;Sosnowiecki;Poland;PL
+PL22C;Tyski;Poland;PL
+PL411;Pilski;Poland;PL
+PL414;Koniński;Poland;PL
+PL415;Miasto Poznań;Poland;PL
+PL416;Kaliski;Poland;PL
+PL417;Leszczyński;Poland;PL
+PL418;Poznański;Poland;PL
+PL424;Miasto Szczecin;Poland;PL
+PL426;Koszaliński;Poland;PL
+PL427;Szczecinecko-pyrzycki;Poland;PL
+PL428;Szczeciński;Poland;PL
+PL431;Gorzowski;Poland;PL
+PL432;Zielonogórski;Poland;PL
+PL514;Miasto Wrocław;Poland;PL
+PL515;Jeleniogórski;Poland;PL
+PL516;Legnicko-głogowski;Poland;PL
+PL517;Wałbrzyski;Poland;PL
+PL518;Wrocławski;Poland;PL
+PL523;Nyski;Poland;PL
+PL524;Opolski;Poland;PL
+PL613;Bydgosko-toruński;Poland;PL
+PL616;Grudziądzki;Poland;PL
+PL617;Inowrocławski;Poland;PL
+PL618;Świecki;Poland;PL
+PL619;Włocławski;Poland;PL
+PL621;Elbląski;Poland;PL
+PL622;Olsztyński;Poland;PL
+PL623;Ełcki;Poland;PL
+PL633;Trójmiejski;Poland;PL
+PL634;Gdański;Poland;PL
+PL636;Słupski;Poland;PL
+PL637;Chojnicki;Poland;PL
+PL638;Starogardzki;Poland;PL
+PL711;Miasto Łódź;Poland;PL
+PL712;Łódzki;Poland;PL
+PL713;Piotrkowski;Poland;PL
+PL714;Sieradzki;Poland;PL
+PL715;Skierniewicki;Poland;PL
+PL721;Kielecki;Poland;PL
+PL722;Sandomiersko-jędrzejowski;Poland;PL
+PL811;Bialski;Poland;PL
+PL812;Chełmsko-zamojski;Poland;PL
+PL814;Lubelski;Poland;PL
+PL815;Puławski;Poland;PL
+PL821;Krośnieński;Poland;PL
+PL822;Przemyski;Poland;PL
+PL823;Rzeszowski;Poland;PL
+PL824;Tarnobrzeski;Poland;PL
+PL841;Białostocki;Poland;PL
+PL842;Łomżyński;Poland;PL
+PL843;Suwalski;Poland;PL
+PL911;Miasto Warszawa;Poland;PL
+PL912;Warszawski wschodni;Poland;PL
+PL913;Warszawski zachodni;Poland;PL
+PL921;Radomski;Poland;PL
+PL922;Ciechanowski;Poland;PL
+PL923;Płocki;Poland;PL
+PL924;Ostrołęcki;Poland;PL
+PL925;Siedlecki;Poland;PL
+PL926;Żyrardowski;Poland;PL
+PLZZZ;Extra-Regio NUTS 3;Poland;PL
+PT111;Alto Minho;Portugal;PT
+PT112;Cávado;Portugal;PT
+PT119;Ave;Portugal;PT
+PT11A;Área Metropolitana do Porto;Portugal;PT
+PT11B;Alto Tâmega;Portugal;PT
+PT11C;Tâmega e Sousa;Portugal;PT
+PT11D;Douro;Portugal;PT
+PT11E;Terras de Trás-os-Montes;Portugal;PT
+PT150;Algarve;Portugal;PT
+PT16B;Oeste;Portugal;PT
+PT16D;Região de Aveiro;Portugal;PT
+PT16E;Região de Coimbra;Portugal;PT
+PT16F;Região de Leiria;Portugal;PT
+PT16G;Viseu Dão Lafões;Portugal;PT
+PT16H;Beira Baixa;Portugal;PT
+PT16I;Médio Tejo;Portugal;PT
+PT16J;Beiras e Serra da Estrela;Portugal;PT
+PT170;Área Metropolitana de Lisboa;Portugal;PT
+PT181;Alentejo Litoral;Portugal;PT
+PT184;Baixo Alentejo;Portugal;PT
+PT185;Lezíria do Tejo;Portugal;PT
+PT186;Alto Alentejo;Portugal;PT
+PT187;Alentejo Central;Portugal;PT
+PT200;Região Autónoma dos Açores;Portugal;PT
+PT300;Região Autónoma da Madeira;Portugal;PT
+PTZZZ;Extra-Regio NUTS 3;Portugal;PT
+RO111;Bihor;Romania;RO
+RO112;Bistriţa-Năsăud;Romania;RO
+RO113;Cluj;Romania;RO
+RO114;Maramureş;Romania;RO
+RO115;Satu Mare;Romania;RO
+RO116;Sălaj;Romania;RO
+RO121;Alba;Romania;RO
+RO122;Braşov;Romania;RO
+RO123;Covasna;Romania;RO
+RO124;Harghita;Romania;RO
+RO125;Mureş;Romania;RO
+RO126;Sibiu;Romania;RO
+RO211;Bacău;Romania;RO
+RO212;Botoşani;Romania;RO
+RO213;Iaşi;Romania;RO
+RO214;Neamţ;Romania;RO
+RO215;Suceava;Romania;RO
+RO216;Vaslui;Romania;RO
+RO221;Brăila;Romania;RO
+RO222;Buzău;Romania;RO
+RO223;Constanţa;Romania;RO
+RO224;Galaţi;Romania;RO
+RO225;Tulcea;Romania;RO
+RO226;Vrancea;Romania;RO
+RO311;Argeş;Romania;RO
+RO312;Călăraşi;Romania;RO
+RO313;Dâmboviţa;Romania;RO
+RO314;Giurgiu;Romania;RO
+RO315;Ialomiţa;Romania;RO
+RO316;Prahova;Romania;RO
+RO317;Teleorman;Romania;RO
+RO321;Bucureşti;Romania;RO
+RO322;Ilfov;Romania;RO
+RO411;Dolj;Romania;RO
+RO412;Gorj;Romania;RO
+RO413;Mehedinţi;Romania;RO
+RO414;Olt;Romania;RO
+RO415;Vâlcea;Romania;RO
+RO421;Arad;Romania;RO
+RO422;Caraş-Severin;Romania;RO
+RO423;Hunedoara;Romania;RO
+RO424;Timiş;Romania;RO
+ROZZZ;Extra-Regio NUTS 3;Romania;RO
+SI031;Pomurska;Slovenia;SI
+SI032;Podravska;Slovenia;SI
+SI033;Koroška;Slovenia;SI
+SI034;Savinjska;Slovenia;SI
+SI035;Zasavska;Slovenia;SI
+SI036;Posavska;Slovenia;SI
+SI037;Jugovzhodna Slovenija;Slovenia;SI
+SI038;Primorsko-notranjska;Slovenia;SI
+SI041;Osrednjeslovenska;Slovenia;SI
+SI042;Gorenjska;Slovenia;SI
+SI043;Goriška;Slovenia;SI
+SI044;Obalno-kraška;Slovenia;SI
+SIZZZ;Extra-Regio NUTS 3;Slovenia;SI
+SK010;Bratislavský kraj;Slovakia;SK
+SK021;Trnavský kraj;Slovakia;SK
+SK022;Trenčiansky kraj;Slovakia;SK
+SK023;Nitriansky kraj;Slovakia;SK
+SK031;Žilinský kraj;Slovakia;SK
+SK032;Banskobystrický kraj;Slovakia;SK
+SK041;Prešovský kraj;Slovakia;SK
+SK042;Košický kraj;Slovakia;SK
+SKZZZ;Extra-Regio NUTS 3;Slovakia;SK
+FI193;Keski-Suomi;Finland;FI
+FI194;Etelä-Pohjanmaa;Finland;FI
+FI195;Pohjanmaa;Finland;FI
+FI196;Satakunta;Finland;FI
+FI197;Pirkanmaa;Finland;FI
+FI1B1;Helsinki-Uusimaa;Finland;FI
+FI1C1;Varsinais-Suomi;Finland;FI
+FI1C2;Kanta-Häme;Finland;FI
+FI1C3;Päijät-Häme;Finland;FI
+FI1C4;Kymenlaakso;Finland;FI
+FI1C5;Etelä-Karjala;Finland;FI
+FI1D1;Etelä-Savo;Finland;FI
+FI1D2;Pohjois-Savo;Finland;FI
+FI1D3;Pohjois-Karjala;Finland;FI
+FI1D5;Keski-Pohjanmaa;Finland;FI
+FI1D7;Lappi;Finland;FI
+FI1D8;Kainuu;Finland;FI
+FI1D9;Pohjois-Pohjanmaa;Finland;FI
+FI200;Åland;Finland;FI
+FIZZZ;Extra-Regio NUTS 3;Finland;FI
+SE110;Stockholms län;Sweden;SE
+SE121;Uppsala län;Sweden;SE
+SE122;Södermanlands län;Sweden;SE
+SE123;Östergötlands län;Sweden;SE
+SE124;Örebro län;Sweden;SE
+SE125;Västmanlands län;Sweden;SE
+SE211;Jönköpings län;Sweden;SE
+SE212;Kronobergs län;Sweden;SE
+SE213;Kalmar län;Sweden;SE
+SE214;Gotlands län;Sweden;SE
+SE221;Blekinge län;Sweden;SE
+SE224;Skåne län;Sweden;SE
+SE231;Hallands län;Sweden;SE
+SE232;Västra Götalands län;Sweden;SE
+SE311;Värmlands län;Sweden;SE
+SE312;Dalarnas län;Sweden;SE
+SE313;Gävleborgs län;Sweden;SE
+SE321;Västernorrlands län;Sweden;SE
+SE322;Jämtlands län;Sweden;SE
+SE331;Västerbottens län;Sweden;SE
+SE332;Norrbottens län;Sweden;SE
+SEZZZ;Extra-Regio NUTS 3;Sweden;SE
+UKC11;Hartlepool and Stockton-on-Tees;United Kingdom of Great Britain and Northern Ireland;UK
+UKC12;South Teesside;United Kingdom of Great Britain and Northern Ireland;UK
+UKC13;Darlington;United Kingdom of Great Britain and Northern Ireland;UK
+UKC14;Durham CC;United Kingdom of Great Britain and Northern Ireland;UK
+UKC21;Northumberland;United Kingdom of Great Britain and Northern Ireland;UK
+UKC22;Tyneside;United Kingdom of Great Britain and Northern Ireland;UK
+UKC23;Sunderland;United Kingdom of Great Britain and Northern Ireland;UK
+UKD11;West Cumbria;United Kingdom of Great Britain and Northern Ireland;UK
+UKD12;East Cumbria;United Kingdom of Great Britain and Northern Ireland;UK
+UKD33;Manchester;United Kingdom of Great Britain and Northern Ireland;UK
+UKD34;Greater Manchester South West;United Kingdom of Great Britain and Northern Ireland;UK
+UKD35;Greater Manchester South East;United Kingdom of Great Britain and Northern Ireland;UK
+UKD36;Greater Manchester North West;United Kingdom of Great Britain and Northern Ireland;UK
+UKD37;Greater Manchester North East;United Kingdom of Great Britain and Northern Ireland;UK
+UKD41;Blackburn with Darwen;United Kingdom of Great Britain and Northern Ireland;UK
+UKD42;Blackpool;United Kingdom of Great Britain and Northern Ireland;UK
+UKD44;Lancaster and Wyre;United Kingdom of Great Britain and Northern Ireland;UK
+UKD45;Mid Lancashire;United Kingdom of Great Britain and Northern Ireland;UK
+UKD46;East Lancashire;United Kingdom of Great Britain and Northern Ireland;UK
+UKD47;Chorley and West Lancashire;United Kingdom of Great Britain and Northern Ireland;UK
+UKD61;Warrington;United Kingdom of Great Britain and Northern Ireland;UK
+UKD62;Cheshire East;United Kingdom of Great Britain and Northern Ireland;UK
+UKD63;Cheshire West and Chester;United Kingdom of Great Britain and Northern Ireland;UK
+UKD71;East Merseyside;United Kingdom of Great Britain and Northern Ireland;UK
+UKD72;Liverpool;United Kingdom of Great Britain and Northern Ireland;UK
+UKD73;Sefton;United Kingdom of Great Britain and Northern Ireland;UK
+UKD74;Wirral;United Kingdom of Great Britain and Northern Ireland;UK
+UKE11;Kingston upon Hull, City of;United Kingdom of Great Britain and Northern Ireland;UK
+UKE12;East Riding of Yorkshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKE13;North and North East Lincolnshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKE21;York;United Kingdom of Great Britain and Northern Ireland;UK
+UKE22;North Yorkshire CC;United Kingdom of Great Britain and Northern Ireland;UK
+UKE31;Barnsley, Doncaster and Rotherham;United Kingdom of Great Britain and Northern Ireland;UK
+UKE32;Sheffield;United Kingdom of Great Britain and Northern Ireland;UK
+UKE41;Bradford;United Kingdom of Great Britain and Northern Ireland;UK
+UKE42;Leeds;United Kingdom of Great Britain and Northern Ireland;UK
+UKE44;Calderdale and Kirklees;United Kingdom of Great Britain and Northern Ireland;UK
+UKE45;Wakefield;United Kingdom of Great Britain and Northern Ireland;UK
+UKF11;Derby;United Kingdom of Great Britain and Northern Ireland;UK
+UKF12;East Derbyshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKF13;South and West Derbyshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKF14;Nottingham;United Kingdom of Great Britain and Northern Ireland;UK
+UKF15;North Nottinghamshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKF16;South Nottinghamshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKF21;Leicester;United Kingdom of Great Britain and Northern Ireland;UK
+UKF22;Leicestershire CC and Rutland;United Kingdom of Great Britain and Northern Ireland;UK
+UKF24;West Northamptonshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKF25;North Northamptonshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKF30;Lincolnshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKG11;Herefordshire, County of;United Kingdom of Great Britain and Northern Ireland;UK
+UKG12;Worcestershire;United Kingdom of Great Britain and Northern Ireland;UK
+UKG13;Warwickshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKG21;Telford and Wrekin;United Kingdom of Great Britain and Northern Ireland;UK
+UKG22;Shropshire CC;United Kingdom of Great Britain and Northern Ireland;UK
+UKG23;Stoke-on-Trent;United Kingdom of Great Britain and Northern Ireland;UK
+UKG24;Staffordshire CC;United Kingdom of Great Britain and Northern Ireland;UK
+UKG31;Birmingham;United Kingdom of Great Britain and Northern Ireland;UK
+UKG32;Solihull;United Kingdom of Great Britain and Northern Ireland;UK
+UKG33;Coventry;United Kingdom of Great Britain and Northern Ireland;UK
+UKG36;Dudley;United Kingdom of Great Britain and Northern Ireland;UK
+UKG37;Sandwell;United Kingdom of Great Britain and Northern Ireland;UK
+UKG38;Walsall;United Kingdom of Great Britain and Northern Ireland;UK
+UKG39;Wolverhampton;United Kingdom of Great Britain and Northern Ireland;UK
+UKH11;Peterborough;United Kingdom of Great Britain and Northern Ireland;UK
+UKH12;Cambridgeshire CC;United Kingdom of Great Britain and Northern Ireland;UK
+UKH14;Suffolk;United Kingdom of Great Britain and Northern Ireland;UK
+UKH15;Norwich and East Norfolk;United Kingdom of Great Britain and Northern Ireland;UK
+UKH16;North and West Norfolk;United Kingdom of Great Britain and Northern Ireland;UK
+UKH17;Breckland and South Norfolk;United Kingdom of Great Britain and Northern Ireland;UK
+UKH21;Luton;United Kingdom of Great Britain and Northern Ireland;UK
+UKH23;Hertfordshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKH24;Bedford;United Kingdom of Great Britain and Northern Ireland;UK
+UKH25;Central Bedfordshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKH31;Southend-on-Sea;United Kingdom of Great Britain and Northern Ireland;UK
+UKH32;Thurrock;United Kingdom of Great Britain and Northern Ireland;UK
+UKH34;Essex Haven Gateway;United Kingdom of Great Britain and Northern Ireland;UK
+UKH35;West Essex;United Kingdom of Great Britain and Northern Ireland;UK
+UKH36;Heart of Essex;United Kingdom of Great Britain and Northern Ireland;UK
+UKH37;Essex Thames Gateway;United Kingdom of Great Britain and Northern Ireland;UK
+UKI31;Camden and City of London;United Kingdom of Great Britain and Northern Ireland;UK
+UKI32;Westminster;United Kingdom of Great Britain and Northern Ireland;UK
+UKI33;Kensington & Chelsea and Hammersmith & Fulham;United Kingdom of Great Britain and Northern Ireland;UK
+UKI34;Wandsworth;United Kingdom of Great Britain and Northern Ireland;UK
+UKI41;Hackney and Newham;United Kingdom of Great Britain and Northern Ireland;UK
+UKI42;Tower Hamlets;United Kingdom of Great Britain and Northern Ireland;UK
+UKI43;Haringey and Islington;United Kingdom of Great Britain and Northern Ireland;UK
+UKI44;Lewisham and Southwark;United Kingdom of Great Britain and Northern Ireland;UK
+UKI45;Lambeth;United Kingdom of Great Britain and Northern Ireland;UK
+UKI51;Bexley and Greenwich;United Kingdom of Great Britain and Northern Ireland;UK
+UKI52;Barking & Dagenham and Havering;United Kingdom of Great Britain and Northern Ireland;UK
+UKI53;Redbridge and Waltham Forest;United Kingdom of Great Britain and Northern Ireland;UK
+UKI54;Enfield;United Kingdom of Great Britain and Northern Ireland;UK
+UKI61;Bromley;United Kingdom of Great Britain and Northern Ireland;UK
+UKI62;Croydon;United Kingdom of Great Britain and Northern Ireland;UK
+UKI63;Merton, Kingston upon Thames and Sutton;United Kingdom of Great Britain and Northern Ireland;UK
+UKI71;Barnet;United Kingdom of Great Britain and Northern Ireland;UK
+UKI72;Brent;United Kingdom of Great Britain and Northern Ireland;UK
+UKI73;Ealing;United Kingdom of Great Britain and Northern Ireland;UK
+UKI74;Harrow and Hillingdon;United Kingdom of Great Britain and Northern Ireland;UK
+UKI75;Hounslow and Richmond upon Thames;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ11;Berkshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ12;Milton Keynes;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ13;Buckinghamshire CC;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ14;Oxfordshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ21;Brighton and Hove;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ22;East Sussex CC;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ25;West Surrey;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ26;East Surrey;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ27;West Sussex (South West);United Kingdom of Great Britain and Northern Ireland;UK
+UKJ28;West Sussex (North East);United Kingdom of Great Britain and Northern Ireland;UK
+UKJ31;Portsmouth;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ32;Southampton;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ34;Isle of Wight;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ35;South Hampshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ36;Central Hampshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ37;North Hampshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ41;Medway;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ43;Kent Thames Gateway;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ44;East Kent;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ45;Mid Kent;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ46;West Kent;United Kingdom of Great Britain and Northern Ireland;UK
+UKK11;Bristol, City of;United Kingdom of Great Britain and Northern Ireland;UK
+UKK12;Bath and North East Somerset, North Somerset and South Gloucestershire;United Kingdom of Great Britain and Northern Ireland;UK
+UKK13;Gloucestershire;United Kingdom of Great Britain and Northern Ireland;UK
+UKK14;Swindon;United Kingdom of Great Britain and Northern Ireland;UK
+UKK15;Wiltshire CC;United Kingdom of Great Britain and Northern Ireland;UK
+UKK23;Somerset;United Kingdom of Great Britain and Northern Ireland;UK
+UKK24;Bournemouth, Christchurch and Poole;United Kingdom of Great Britain and Northern Ireland;UK
+UKK25;Dorset;United Kingdom of Great Britain and Northern Ireland;UK
+UKK30;Cornwall and Isles of Scilly;United Kingdom of Great Britain and Northern Ireland;UK
+UKK41;Plymouth;United Kingdom of Great Britain and Northern Ireland;UK
+UKK42;Torbay;United Kingdom of Great Britain and Northern Ireland;UK
+UKK43;Devon CC;United Kingdom of Great Britain and Northern Ireland;UK
+UKL11;Isle of Anglesey;United Kingdom of Great Britain and Northern Ireland;UK
+UKL12;Gwynedd;United Kingdom of Great Britain and Northern Ireland;UK
+UKL13;Conwy and Denbighshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKL14;South West Wales;United Kingdom of Great Britain and Northern Ireland;UK
+UKL15;Central Valleys;United Kingdom of Great Britain and Northern Ireland;UK
+UKL16;Gwent Valleys;United Kingdom of Great Britain and Northern Ireland;UK
+UKL17;Bridgend and Neath Port Talbot;United Kingdom of Great Britain and Northern Ireland;UK
+UKL18;Swansea;United Kingdom of Great Britain and Northern Ireland;UK
+UKL21;Monmouthshire and Newport;United Kingdom of Great Britain and Northern Ireland;UK
+UKL22;Cardiff and Vale of Glamorgan;United Kingdom of Great Britain and Northern Ireland;UK
+UKL23;Flintshire and Wrexham;United Kingdom of Great Britain and Northern Ireland;UK
+UKL24;Powys;United Kingdom of Great Britain and Northern Ireland;UK
+UKM50;Aberdeen City and Aberdeenshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKM61;Caithness & Sutherland and Ross & Cromarty;United Kingdom of Great Britain and Northern Ireland;UK
+UKM62;Inverness & Nairn and Moray, Badenoch & Strathspey;United Kingdom of Great Britain and Northern Ireland;UK
+UKM63;Lochaber, Skye & Lochalsh, Arran & Cumbrae and Argyll & Bute;United Kingdom of Great Britain and Northern Ireland;UK
+UKM64;Na h-Eileanan Siar (Western Isles);United Kingdom of Great Britain and Northern Ireland;UK
+UKM65;Orkney Islands;United Kingdom of Great Britain and Northern Ireland;UK
+UKM66;Shetland Islands;United Kingdom of Great Britain and Northern Ireland;UK
+UKM71;Angus and Dundee City;United Kingdom of Great Britain and Northern Ireland;UK
+UKM72;Clackmannanshire and Fife;United Kingdom of Great Britain and Northern Ireland;UK
+UKM73;East Lothian and Midlothian;United Kingdom of Great Britain and Northern Ireland;UK
+UKM75;Edinburgh, City of;United Kingdom of Great Britain and Northern Ireland;UK
+UKM76;Falkirk;United Kingdom of Great Britain and Northern Ireland;UK
+UKM77;Perth & Kinross and Stirling;United Kingdom of Great Britain and Northern Ireland;UK
+UKM78;West Lothian;United Kingdom of Great Britain and Northern Ireland;UK
+UKM81;East Dunbartonshire, West Dunbartonshire and Helensburgh & Lomond;United Kingdom of Great Britain and Northern Ireland;UK
+UKM82;Glasgow City;United Kingdom of Great Britain and Northern Ireland;UK
+UKM83;Inverclyde, East Renfrewshire and Renfrewshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKM84;North Lanarkshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKM91;Scottish Borders;United Kingdom of Great Britain and Northern Ireland;UK
+UKM92;Dumfries & Galloway;United Kingdom of Great Britain and Northern Ireland;UK
+UKM93;East Ayrshire and North Ayrshire mainland;United Kingdom of Great Britain and Northern Ireland;UK
+UKM94;South Ayrshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKM95;South Lanarkshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKN06;Belfast;United Kingdom of Great Britain and Northern Ireland;UK
+UKN07;Armagh City, Banbridge and Craigavon;United Kingdom of Great Britain and Northern Ireland;UK
+UKN08;Newry, Mourne and Down;United Kingdom of Great Britain and Northern Ireland;UK
+UKN09;Ards and North Down ;United Kingdom of Great Britain and Northern Ireland;UK
+UKN0A;Derry City and Strabane;United Kingdom of Great Britain and Northern Ireland;UK
+UKN0B;Mid Ulster;United Kingdom of Great Britain and Northern Ireland;UK
+UKN0C;Causeway Coast and Glens;United Kingdom of Great Britain and Northern Ireland;UK
+UKN0D;Antrim and Newtownabbey;United Kingdom of Great Britain and Northern Ireland;UK
+UKN0E;Lisburn and Castlereagh;United Kingdom of Great Britain and Northern Ireland;UK
+UKN0F;Mid and East Antrim;United Kingdom of Great Britain and Northern Ireland;UK
+UKN0G;Fermanagh and Omagh;United Kingdom of Great Britain and Northern Ireland;UK
+UKZZZ;Extra-Regio NUTS 3;United Kingdom of Great Britain and Northern Ireland;UK
+IS001;Höfuðborgarsvæði;Iceland;IS
+IS002;Landsbyggð;Iceland;IS
+ISZZZ;Extra-Regio NUTS 3;Iceland;IS
+LI000;Liechtenstein;Liechtenstein;LI
+LIZZZ;Extra-Regio NUTS 3;Liechtenstein;LI
+NO020;Innlandet;Norway;NO
+NO060;Trøndelag;Norway;NO
+NO071;Nordland;Norway;NO
+NO074;Troms og Finnmark;Norway;NO
+NO081;Oslo;Norway;NO
+NO082;Viken;Norway;NO
+NO091;Vestfold og Telemark;Norway;NO
+NO092;Agder;Norway;NO
+NO0A1;Rogaland;Norway;NO
+NO0A2;Vestland;Norway;NO
+NO0A3;Møre og Romsdal;Norway;NO
+NO0B1;Jan Mayen;Norway;NO
+NO0B2;Svalbard;Norway;NO
+NOZZZ;Extra-Regio NUTS 3;Norway;NO
+CH011;Vaud;Switzerland;CH
+CH012;Valais / Wallis;Switzerland;CH
+CH013;Genève;Switzerland;CH
+CH021;Bern / Berne;Switzerland;CH
+CH022;Fribourg / Freiburg;Switzerland;CH
+CH023;Solothurn;Switzerland;CH
+CH024;Neuchâtel;Switzerland;CH
+CH025;Jura;Switzerland;CH
+CH031;Basel-Stadt;Switzerland;CH
+CH032;Basel-Landschaft;Switzerland;CH
+CH033;Aargau;Switzerland;CH
+CH040;Zürich;Switzerland;CH
+CH051;Glarus;Switzerland;CH
+CH052;Schaffhausen;Switzerland;CH
+CH053;Appenzell Ausserrhoden;Switzerland;CH
+CH054;Appenzell Innerrhoden;Switzerland;CH
+CH055;St. Gallen;Switzerland;CH
+CH056;Graubünden / Grigioni / Grischun;Switzerland;CH
+CH057;Thurgau;Switzerland;CH
+CH061;Luzern;Switzerland;CH
+CH062;Uri;Switzerland;CH
+CH063;Schwyz;Switzerland;CH
+CH064;Obwalden;Switzerland;CH
+CH065;Nidwalden;Switzerland;CH
+CH066;Zug;Switzerland;CH
+CH070;Ticino;Switzerland;CH
+CHZZZ;Extra-Regio NUTS 3;Switzerland;CH
+ME000;Crna Gora;Montenegro;ME
+MEZZZ;Extra-Regio NUTS 3;Montenegro;ME
+MK001;Vardarski;North Macedonia;MK
+MK002;Istočen;North Macedonia;MK
+MK003;Jugozapaden;North Macedonia;MK
+MK004;Jugoistočen;North Macedonia;MK
+MK005;Pelagoniski;North Macedonia;MK
+MK006;Pološki;North Macedonia;MK
+MK007;Severoistočen;North Macedonia;MK
+MK008;Skopski;North Macedonia;MK
+MKZZZ;Extra-Regio NUTS 3;North Macedonia;MK
+AL011;Dibër;Albania;AL
+AL012;Durrës;Albania;AL
+AL013;Kukës;Albania;AL
+AL014;Lezhë;Albania;AL
+AL015;Shkodër;Albania;AL
+AL021;Elbasan;Albania;AL
+AL022;Tiranë;Albania;AL
+AL031;Berat;Albania;AL
+AL032;Fier;Albania;AL
+AL033;Gjirokastër;Albania;AL
+AL034;Korcë;Albania;AL
+AL035;Vlorë;Albania;AL
+ALZZZ;Extra-Regio NUTS 3;Albania;AL
+RS110;City of Belgrade;Serbia;RS
+RS121;Zapadnobačka oblast ;Serbia;RS
+RS122;Južnobanatska oblast;Serbia;RS
+RS123;Južnobačka oblast;Serbia;RS
+RS124;Severnobanatska oblast;Serbia;RS
+RS125;Severnobačka oblast;Serbia;RS
+RS126;Srednjobanatska oblast;Serbia;RS
+RS127;Sremska oblast;Serbia;RS
+RS211;Zlatiborska oblast;Serbia;RS
+RS212;Kolubarska oblast;Serbia;RS
+RS213;Mačvanska oblast;Serbia;RS
+RS214;Moravička oblast;Serbia;RS
+RS215;Pomoravska oblast;Serbia;RS
+RS216;Rasinska oblast;Serbia;RS
+RS217;Raška oblast;Serbia;RS
+RS218;Šumadijska oblast;Serbia;RS
+RS221;Borska oblast;Serbia;RS
+RS222;Braničevska oblast;Serbia;RS
+RS223;Zaječarska oblast;Serbia;RS
+RS224;Jablanička oblast;Serbia;RS
+RS225;Nišavska oblast;Serbia;RS
+RS226;Pirotska oblast;Serbia;RS
+RS227;Podunavska oblast;Serbia;RS
+RS228;Pčinjska oblast;Serbia;RS
+RS229;Toplička oblast;Serbia;RS
+RSZZZ;Extra-Regio NUTS 3;Serbia;RS
+TR100;İstanbul;Turkey;TR
+TR211;Tekirdağ;Turkey;TR
+TR212;Edirne;Turkey;TR
+TR213;Kırklareli;Turkey;TR
+TR221;Balıkesir;Turkey;TR
+TR222;Çanakkale;Turkey;TR
+TR310;İzmir;Turkey;TR
+TR321;Aydın;Turkey;TR
+TR322;Denizli;Turkey;TR
+TR323;Muğla;Turkey;TR
+TR331;Manisa;Turkey;TR
+TR332;Afyonkarahisar;Turkey;TR
+TR333;Kütahya;Turkey;TR
+TR334;Uşak;Turkey;TR
+TR411;Bursa;Turkey;TR
+TR412;Eskişehir;Turkey;TR
+TR413;Bilecik;Turkey;TR
+TR421;Kocaeli;Turkey;TR
+TR422;Sakarya;Turkey;TR
+TR423;Düzce;Turkey;TR
+TR424;Bolu;Turkey;TR
+TR425;Yalova;Turkey;TR
+TR510;Ankara;Turkey;TR
+TR521;Konya;Turkey;TR
+TR522;Karaman;Turkey;TR
+TR611;Antalya;Turkey;TR
+TR612;Isparta;Turkey;TR
+TR613;Burdur;Turkey;TR
+TR621;Adana;Turkey;TR
+TR622;Mersin;Turkey;TR
+TR631;Hatay;Turkey;TR
+TR632;Kahramanmaraş;Turkey;TR
+TR633;Osmaniye;Turkey;TR
+TR711;Kırıkkale;Turkey;TR
+TR712;Aksaray;Turkey;TR
+TR713;Niğde;Turkey;TR
+TR714;Nevşehir;Turkey;TR
+TR715;Kırşehir;Turkey;TR
+TR721;Kayseri;Turkey;TR
+TR722;Sivas;Turkey;TR
+TR723;Yozgat;Turkey;TR
+TR811;Zonguldak;Turkey;TR
+TR812;Karabük;Turkey;TR
+TR813;Bartın;Turkey;TR
+TR821;Kastamonu;Turkey;TR
+TR822;Çankırı;Turkey;TR
+TR823;Sinop;Turkey;TR
+TR831;Samsun;Turkey;TR
+TR832;Tokat;Turkey;TR
+TR833;Çorum;Turkey;TR
+TR834;Amasya;Turkey;TR
+TR901;Trabzon;Turkey;TR
+TR902;Ordu;Turkey;TR
+TR903;Giresun;Turkey;TR
+TR904;Rize;Turkey;TR
+TR905;Artvin;Turkey;TR
+TR906;Gümüşhane;Turkey;TR
+TRA11;Erzurum;Turkey;TR
+TRA12;Erzincan;Turkey;TR
+TRA13;Bayburt;Turkey;TR
+TRA21;Ağrı;Turkey;TR
+TRA22;Kars;Turkey;TR
+TRA23;Iğdır;Turkey;TR
+TRA24;Ardahan;Turkey;TR
+TRB11;Malatya;Turkey;TR
+TRB12;Elazığ;Turkey;TR
+TRB13;Bingöl;Turkey;TR
+TRB14;Tunceli;Turkey;TR
+TRB21;Van;Turkey;TR
+TRB22;Muş;Turkey;TR
+TRB23;Bitlis;Turkey;TR
+TRB24;Hakkari;Turkey;TR
+TRC11;Gaziantep;Turkey;TR
+TRC12;Adıyaman;Turkey;TR
+TRC13;Kilis;Turkey;TR
+TRC21;Şanlıurfa;Turkey;TR
+TRC22;Diyarbakır;Turkey;TR
+TRC31;Mardin;Turkey;TR
+TRC32;Batman;Turkey;TR
+TRC33;Şırnak;Turkey;TR
+TRC34;Siirt;Turkey;TR
+TRZZZ;Extra-Regio NUTS 3;Turkey;TR

@@ -1,0 +1,372 @@
+nuts;name;country_name;country_code
+BE10;Région de Bruxelles-Capitale/ Brussels Hoofdstedelijk Gewest;Belgium;BE
+BE21;Prov. Antwerpen;Belgium;BE
+BE22;Prov. Limburg (BE);Belgium;BE
+BE23;Prov. Oost-Vlaanderen;Belgium;BE
+BE24;Prov. Vlaams-Brabant;Belgium;BE
+BE25;Prov. West-Vlaanderen;Belgium;BE
+BE31;Prov. Brabant Wallon;Belgium;BE
+BE32;Prov. Hainaut;Belgium;BE
+BE33;Prov. Liège;Belgium;BE
+BE34;Prov. Luxembourg (BE);Belgium;BE
+BE35;Prov. Namur;Belgium;BE
+BEZZ;Extra-Regio NUTS 2;Belgium;BE
+BG31;Severozapaden;Bulgaria;BG
+BG32;Severen tsentralen;Bulgaria;BG
+BG33;Severoiztochen;Bulgaria;BG
+BG34;Yugoiztochen;Bulgaria;BG
+BG41;Yugozapaden;Bulgaria;BG
+BG42;Yuzhen tsentralen;Bulgaria;BG
+BGZZ;Extra-Regio NUTS 2;Bulgaria;BG
+CZ01;Praha;Czechia;CZ
+CZ02;Střední Čechy;Czechia;CZ
+CZ03;Jihozápad;Czechia;CZ
+CZ04;Severozápad;Czechia;CZ
+CZ05;Severovýchod;Czechia;CZ
+CZ06;Jihovýchod;Czechia;CZ
+CZ07;Střední Morava;Czechia;CZ
+CZ08;Moravskoslezsko;Czechia;CZ
+CZZZ;Extra-Regio NUTS 2;Czechia;CZ
+DK01;Hovedstaden;Denmark;DK
+DK02;Sjælland;Denmark;DK
+DK03;Syddanmark;Denmark;DK
+DK04;Midtjylland;Denmark;DK
+DK05;Nordjylland;Denmark;DK
+DKZZ;Extra-Regio NUTS 2;Denmark;DK
+DE11;Stuttgart;Germany;DE
+DE12;Karlsruhe;Germany;DE
+DE13;Freiburg;Germany;DE
+DE14;Tübingen;Germany;DE
+DE21;Oberbayern;Germany;DE
+DE22;Niederbayern;Germany;DE
+DE23;Oberpfalz;Germany;DE
+DE24;Oberfranken;Germany;DE
+DE25;Mittelfranken;Germany;DE
+DE26;Unterfranken;Germany;DE
+DE27;Schwaben;Germany;DE
+DE30;Berlin;Germany;DE
+DE40;Brandenburg;Germany;DE
+DE50;Bremen;Germany;DE
+DE60;Hamburg;Germany;DE
+DE71;Darmstadt;Germany;DE
+DE72;Gießen;Germany;DE
+DE73;Kassel;Germany;DE
+DE80;Mecklenburg-Vorpommern;Germany;DE
+DE91;Braunschweig;Germany;DE
+DE92;Hannover;Germany;DE
+DE93;Lüneburg;Germany;DE
+DE94;Weser-Ems;Germany;DE
+DEA1;Düsseldorf;Germany;DE
+DEA2;Köln;Germany;DE
+DEA3;Münster;Germany;DE
+DEA4;Detmold;Germany;DE
+DEA5;Arnsberg;Germany;DE
+DEB1;Koblenz;Germany;DE
+DEB2;Trier;Germany;DE
+DEB3;Rheinhessen-Pfalz;Germany;DE
+DEC0;Saarland;Germany;DE
+DED2;Dresden;Germany;DE
+DED4;Chemnitz;Germany;DE
+DED5;Leipzig;Germany;DE
+DEE0;Sachsen-Anhalt;Germany;DE
+DEF0;Schleswig-Holstein;Germany;DE
+DEG0;Thüringen;Germany;DE
+DEZZ;Extra-Regio NUTS 2;Germany;DE
+EE00;Eesti;Estonia;EE
+EEZZ;Extra-Regio NUTS 2;Estonia;EE
+IE04;Northern and Western;Ireland;IE
+IE05;Southern;Ireland;IE
+IE06;Eastern and Midland;Ireland;IE
+IEZZ;Extra-Regio NUTS 2;Ireland;IE
+EL30;Attiki;Greece;EL
+EL41;Voreio Aigaio;Greece;EL
+EL42;Notio Aigaio;Greece;EL
+EL43;Kriti;Greece;EL
+EL51;Anatoliki Makedonia, Thraki;Greece;EL
+EL52;Kentriki Makedonia;Greece;EL
+EL53;Dytiki Makedonia;Greece;EL
+EL54;Ipeiros;Greece;EL
+EL61;Thessalia;Greece;EL
+EL62;Ionia Nisia;Greece;EL
+EL63;Dytiki Elláda;Greece;EL
+EL64;Sterea Elláda;Greece;EL
+EL65;Peloponnisos;Greece;EL
+ELZZ;Extra-Regio NUTS 2;Greece;EL
+ES11;Galicia;Spain;ES
+ES12;Principado de Asturias;Spain;ES
+ES13;Cantabria;Spain;ES
+ES21;País Vasco;Spain;ES
+ES22;Comunidad Foral de Navarra;Spain;ES
+ES23;La Rioja;Spain;ES
+ES24;Aragón;Spain;ES
+ES30;Comunidad de Madrid;Spain;ES
+ES41;Castilla y León;Spain;ES
+ES42;Castilla-La Mancha;Spain;ES
+ES43;Extremadura;Spain;ES
+ES51;Cataluña;Spain;ES
+ES52;Comunitat Valenciana ;Spain;ES
+ES53;Illes Balears;Spain;ES
+ES61;Andalucía;Spain;ES
+ES62;Región de Murcia;Spain;ES
+ES63;Ciudad de Ceuta;Spain;ES
+ES64;Ciudad de Melilla;Spain;ES
+ES70;Canarias;Spain;ES
+ESZZ;Extra-Regio NUTS 2;Spain;ES
+FR10;Ile-de-France;France;FR
+FRB0;Centre — Val de Loire;France;FR
+FRC1;Bourgogne;France;FR
+FRC2;Franche-Comté;France;FR
+FRD1;Basse-Normandie ;France;FR
+FRD2;Haute-Normandie ;France;FR
+FRE1;Nord-Pas de Calais;France;FR
+FRE2;Picardie;France;FR
+FRF1;Alsace;France;FR
+FRF2;Champagne-Ardenne;France;FR
+FRF3;Lorraine;France;FR
+FRG0;Pays de la Loire;France;FR
+FRH0;Bretagne;France;FR
+FRI1;Aquitaine;France;FR
+FRI2;Limousin;France;FR
+FRI3;Poitou-Charentes;France;FR
+FRJ1;Languedoc-Roussillon;France;FR
+FRJ2;Midi-Pyrénées;France;FR
+FRK1;Auvergne;France;FR
+FRK2;Rhône-Alpes;France;FR
+FRL0;Provence-Alpes-Côte d’Azur;France;FR
+FRM0;Corse;France;FR
+FRY1;Guadeloupe;France;FR
+FRY2;Martinique ;France;FR
+FRY3;Guyane;France;FR
+FRY4;La Réunion ;France;FR
+FRY5;Mayotte;France;FR
+FRZZ;Extra-Regio NUTS 2;France;FR
+HR02;Panonska Hrvatska;Croatia;HR
+HR03;Jadranska Hrvatska;Croatia;HR
+HR05;Grad Zagreb;Croatia;HR
+HR06;Sjeverna Hrvatska;Croatia;HR
+HRZZ;Extra-Regio NUTS 2;Croatia;HR
+ITC1;Piemonte;Italy;IT
+ITC2;Valle d’Aosta/Vallée d’Aoste;Italy;IT
+ITC3;Liguria;Italy;IT
+ITC4;Lombardia;Italy;IT
+ITF1;Abruzzo;Italy;IT
+ITF2;Molise;Italy;IT
+ITF3;Campania;Italy;IT
+ITF4;Puglia;Italy;IT
+ITF5;Basilicata;Italy;IT
+ITF6;Calabria;Italy;IT
+ITG1;Sicilia;Italy;IT
+ITG2;Sardegna;Italy;IT
+ITH1;Provincia Autonoma di Bolzano/Bozen;Italy;IT
+ITH2;Provincia Autonoma di Trento;Italy;IT
+ITH3;Veneto;Italy;IT
+ITH4;Friuli-Venezia Giulia;Italy;IT
+ITH5;Emilia-Romagna;Italy;IT
+ITI1;Toscana;Italy;IT
+ITI2;Umbria;Italy;IT
+ITI3;Marche;Italy;IT
+ITI4;Lazio;Italy;IT
+ITZZ;Extra-Regio NUTS 2;Italy;IT
+CY00;Kýpros;Cyprus;CY
+CYZZ;Extra-Regio NUTS 2;Cyprus;CY
+LV00;Latvija;Latvia;LV
+LVZZ;Extra-Regio NUTS 2;Latvia;LV
+LT01;Sostinės regionas;Lithuania;LT
+LT02;Vidurio ir vakarų Lietuvos regionas ;Lithuania;LT
+LTZZ;Extra-Regio NUTS 2;Lithuania;LT
+LU00;Luxembourg;Luxembourg;LU
+LUZZ;Extra-Regio NUTS 2;Luxembourg;LU
+HU11;Budapest;Hungary;HU
+HU12;Pest;Hungary;HU
+HU21;Közép-Dunántúl;Hungary;HU
+HU22;Nyugat-Dunántúl;Hungary;HU
+HU23;Dél-Dunántúl;Hungary;HU
+HU31;Észak-Magyarország;Hungary;HU
+HU32;Észak-Alföld;Hungary;HU
+HU33;Dél-Alföld;Hungary;HU
+HUZZ;Extra-Regio NUTS 2;Hungary;HU
+MT00;Malta;Malta;MT
+MTZZ;Extra-Regio NUTS 2;Malta;MT
+NL11;Groningen;Netherlands;NL
+NL12;Friesland (NL);Netherlands;NL
+NL13;Drenthe;Netherlands;NL
+NL21;Overijssel;Netherlands;NL
+NL22;Gelderland;Netherlands;NL
+NL23;Flevoland;Netherlands;NL
+NL31;Utrecht;Netherlands;NL
+NL32;Noord-Holland;Netherlands;NL
+NL33;Zuid-Holland;Netherlands;NL
+NL34;Zeeland;Netherlands;NL
+NL41;Noord-Brabant;Netherlands;NL
+NL42;Limburg (NL);Netherlands;NL
+NLZZ;Extra-Regio NUTS 2;Netherlands;NL
+AT11;Burgenland;Austria;AT
+AT12;Niederösterreich;Austria;AT
+AT13;Wien;Austria;AT
+AT21;Kärnten;Austria;AT
+AT22;Steiermark;Austria;AT
+AT31;Oberösterreich;Austria;AT
+AT32;Salzburg;Austria;AT
+AT33;Tirol;Austria;AT
+AT34;Vorarlberg;Austria;AT
+ATZZ;Extra-Regio NUTS 2;Austria;AT
+PL21;Małopolskie;Poland;PL
+PL22;Śląskie;Poland;PL
+PL41;Wielkopolskie;Poland;PL
+PL42;Zachodniopomorskie;Poland;PL
+PL43;Lubuskie;Poland;PL
+PL51;Dolnośląskie;Poland;PL
+PL52;Opolskie;Poland;PL
+PL61;Kujawsko-pomorskie;Poland;PL
+PL62;Warmińsko-mazurskie;Poland;PL
+PL63;Pomorskie;Poland;PL
+PL71;Łódzkie;Poland;PL
+PL72;Świętokrzyskie;Poland;PL
+PL81;Lubelskie;Poland;PL
+PL82;Podkarpackie;Poland;PL
+PL84;Podlaskie;Poland;PL
+PL91;Warszawski stołeczny;Poland;PL
+PL92;Mazowiecki regionalny;Poland;PL
+PLZZ;Extra-Regio NUTS 2;Poland;PL
+PT11;Norte;Portugal;PT
+PT15;Algarve;Portugal;PT
+PT16;Centro (PT);Portugal;PT
+PT17;Área Metropolitana de Lisboa;Portugal;PT
+PT18;Alentejo;Portugal;PT
+PT20;Região Autónoma dos Açores;Portugal;PT
+PT30;Região Autónoma da Madeira;Portugal;PT
+PTZZ;Extra-Regio NUTS 2;Portugal;PT
+RO11;Nord-Vest;Romania;RO
+RO12;Centru;Romania;RO
+RO21;Nord-Est;Romania;RO
+RO22;Sud-Est;Romania;RO
+RO31;Sud-Muntenia;Romania;RO
+RO32;Bucureşti-Ilfov;Romania;RO
+RO41;Sud-Vest Oltenia;Romania;RO
+RO42;Vest;Romania;RO
+ROZZ;Extra-Regio NUTS 2;Romania;RO
+SI03;Vzhodna Slovenija;Slovenia;SI
+SI04;Zahodna Slovenija;Slovenia;SI
+SIZZ;Extra-Regio NUTS 2;Slovenia;SI
+SK01;Bratislavský kraj;Slovakia;SK
+SK02;Západné Slovensko;Slovakia;SK
+SK03;Stredné Slovensko;Slovakia;SK
+SK04;Východné Slovensko;Slovakia;SK
+SKZZ;Extra-Regio NUTS 2;Slovakia;SK
+FI19;Länsi-Suomi;Finland;FI
+FI1B;Helsinki-Uusimaa;Finland;FI
+FI1C;Etelä-Suomi;Finland;FI
+FI1D;Pohjois- ja Itä-Suomi;Finland;FI
+FI20;Åland;Finland;FI
+FIZZ;Extra-Regio NUTS 2;Finland;FI
+SE11;Stockholm;Sweden;SE
+SE12;Östra Mellansverige;Sweden;SE
+SE21;Småland med öarna;Sweden;SE
+SE22;Sydsverige;Sweden;SE
+SE23;Västsverige;Sweden;SE
+SE31;Norra Mellansverige;Sweden;SE
+SE32;Mellersta Norrland;Sweden;SE
+SE33;Övre Norrland;Sweden;SE
+SEZZ;Extra-Regio NUTS 2;Sweden;SE
+UKC1;Tees Valley and Durham;United Kingdom of Great Britain and Northern Ireland;UK
+UKC2;Northumberland and Tyne and Wear;United Kingdom of Great Britain and Northern Ireland;UK
+UKD1;Cumbria;United Kingdom of Great Britain and Northern Ireland;UK
+UKD3;Greater Manchester;United Kingdom of Great Britain and Northern Ireland;UK
+UKD4;Lancashire;United Kingdom of Great Britain and Northern Ireland;UK
+UKD6;Cheshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKD7;Merseyside;United Kingdom of Great Britain and Northern Ireland;UK
+UKE1;East Yorkshire and Northern Lincolnshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKE2;North Yorkshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKE3;South Yorkshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKE4;West Yorkshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKF1;Derbyshire and Nottinghamshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKF2;Leicestershire, Rutland and Northamptonshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKF3;Lincolnshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKG1;Herefordshire, Worcestershire and Warwickshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKG2;Shropshire and Staffordshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKG3;West Midlands;United Kingdom of Great Britain and Northern Ireland;UK
+UKH1;East Anglia;United Kingdom of Great Britain and Northern Ireland;UK
+UKH2;Bedfordshire and Hertfordshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKH3;Essex;United Kingdom of Great Britain and Northern Ireland;UK
+UKI3;Inner London — West;United Kingdom of Great Britain and Northern Ireland;UK
+UKI4;Inner London — East;United Kingdom of Great Britain and Northern Ireland;UK
+UKI5;Outer London — East and North East;United Kingdom of Great Britain and Northern Ireland;UK
+UKI6;Outer London — South;United Kingdom of Great Britain and Northern Ireland;UK
+UKI7;Outer London — West and North West;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ1;Berkshire, Buckinghamshire and Oxfordshire;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ2;Surrey, East and West Sussex;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ3;Hampshire and Isle of Wight;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ4;Kent;United Kingdom of Great Britain and Northern Ireland;UK
+UKK1;Gloucestershire, Wiltshire and Bristol/Bath area;United Kingdom of Great Britain and Northern Ireland;UK
+UKK2;Dorset and Somerset;United Kingdom of Great Britain and Northern Ireland;UK
+UKK3;Cornwall and Isles of Scilly;United Kingdom of Great Britain and Northern Ireland;UK
+UKK4;Devon;United Kingdom of Great Britain and Northern Ireland;UK
+UKL1;West Wales and The Valleys;United Kingdom of Great Britain and Northern Ireland;UK
+UKL2;East Wales;United Kingdom of Great Britain and Northern Ireland;UK
+UKM5;North Eastern Scotland;United Kingdom of Great Britain and Northern Ireland;UK
+UKM6;Highlands and Islands;United Kingdom of Great Britain and Northern Ireland;UK
+UKM7;Eastern Scotland;United Kingdom of Great Britain and Northern Ireland;UK
+UKM8;West Central Scotland;United Kingdom of Great Britain and Northern Ireland;UK
+UKM9;Southern Scotland;United Kingdom of Great Britain and Northern Ireland;UK
+UKN0;Northern Ireland;United Kingdom of Great Britain and Northern Ireland;UK
+UKZZ;Extra-Regio NUTS 2;United Kingdom of Great Britain and Northern Ireland;UK
+IS00;Ísland;Iceland;IS
+ISZZ;Extra-Regio NUTS 2;Iceland;IS
+LI00;Liechtenstein;Liechtenstein;LI
+LIZZ;Extra-Regio NUTS 2;Liechtenstein;LI
+NO02;Innlandet;Norway;NO
+NO06;Trøndelag;Norway;NO
+NO07;Nord-Norge;Norway;NO
+NO08;Oslo og Viken;Norway;NO
+NO09;Agder og Sør-Østlandet;Norway;NO
+NO0A;Vestlandet;Norway;NO
+NO0B;Svalbard og Jan Mayen;Norway;NO
+NOZZ;Extra-Regio NUTS 2;Norway;NO
+CH01;Région lémanique;Switzerland;CH
+CH02;Espace Mittelland;Switzerland;CH
+CH03;Nordwestschweiz;Switzerland;CH
+CH04;Zürich;Switzerland;CH
+CH05;Ostschweiz;Switzerland;CH
+CH06;Zentralschweiz;Switzerland;CH
+CH07;Ticino;Switzerland;CH
+CHZZ;Extra-Regio NUTS 2;Switzerland;CH
+ME00;Crna Gora;Montenegro;ME
+MEZZ;Extra-Regio NUTS 2;Montenegro;ME
+MK00;Severna Makedonija ;North Macedonia;MK
+MKZZ;Extra-Regio NUTS 2;North Macedonia;MK
+AL01;Veri;Albania;AL
+AL02;Qender;Albania;AL
+AL03;Jug;Albania;AL
+ALZZ;Extra-Regio NUTS 2;Albania;AL
+RS11;City of Belgrade;Serbia;RS
+RS12;Autonomous Province of Vojvodina;Serbia;RS
+RS21;Region Šumadije i Zapadne Srbije;Serbia;RS
+RS22;Region Južne i Istočne Srbije;Serbia;RS
+RSZZ;Extra-Regio NUTS 2;Serbia;RS
+TR10;İstanbul;Turkey;TR
+TR21;Tekirdağ, Edirne, Kırklareli;Turkey;TR
+TR22;Balıkesir, Çanakkale;Turkey;TR
+TR31;İzmir;Turkey;TR
+TR32;Aydın, Denizli, Muğla;Turkey;TR
+TR33;Manisa, Afyonkarahisar, Kütahya, Uşak;Turkey;TR
+TR41;Bursa, Eskişehir, Bilecik;Turkey;TR
+TR42;Kocaeli, Sakarya, Düzce, Bolu, Yalova;Turkey;TR
+TR51;Ankara;Turkey;TR
+TR52;Konya, Karaman;Turkey;TR
+TR61;Antalya, Isparta, Burdur;Turkey;TR
+TR62;Adana, Mersin;Turkey;TR
+TR63;Hatay, Kahramanmaraş, Osmaniye;Turkey;TR
+TR71;Kırıkkale, Aksaray, Niğde, Nevşehir, Kırşehir;Turkey;TR
+TR72;Kayseri, Sivas, Yozgat;Turkey;TR
+TR81;Zonguldak, Karabük, Bartın;Turkey;TR
+TR82;Kastamonu, Çankırı, Sinop;Turkey;TR
+TR83;Samsun, Tokat, Çorum, Amasya;Turkey;TR
+TR90;Trabzon, Ordu, Giresun, Rize, Artvin, Gümüşhane;Turkey;TR
+TRA1;Erzurum, Erzincan, Bayburt;Turkey;TR
+TRA2;Ağrı, Kars, Iğdır, Ardahan;Turkey;TR
+TRB1;Malatya, Elazığ, Bingöl, Tunceli;Turkey;TR
+TRB2;Van, Muş, Bitlis, Hakkari;Turkey;TR
+TRC1;Gaziantep, Adıyaman, Kilis;Turkey;TR
+TRC2;Şanlıurfa, Diyarbakır;Turkey;TR
+TRC3;Mardin, Batman, Şırnak, Siirt;Turkey;TR
+TRZZ;Extra-Regio NUTS 2;Turkey;TR
