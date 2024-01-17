@@ -12,16 +12,24 @@ class NoDataAvailableError(Exception):
 
 def extract_selected(map_hover, hovers, id, checkkeys=[], checkarray=[]):
     selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
-    for hover, array, key in zip(hovers, checkarray, checkkeys):
+    for i, hover in enumerate(hovers):
+        try:
+            array = checkarray[i]
+        except IndexError:
+            array = False
+        try:
+            key = checkkeys[i]
+        except IndexError:
+            key = 'id'
         if hover is not None:
-            selected = selected + ([datum[key or 'id'] 
-                                    for datum in hover['points'] 
-                                        if (id in datum['custom_data'] 
-                                            if array 
-                                            else datum['custom_data'] == id)] 
-                                    if hover is not None 
-                                    else []
-                                    )
+            for datum in hover['points']:
+                add = False
+                if array:
+                    add = id in datum['customdata']
+                else:
+                    add = datum['customdata'] == id
+                if add:
+                    selected.append(datum[key])
     return selected
 
 def extract_geos(selected_data):

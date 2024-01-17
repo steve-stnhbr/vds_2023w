@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 import pandas as pd
 import plotly.colors as pc
-import time
+import functools
 
 from lib.transformations import *
 from lib.geo import *

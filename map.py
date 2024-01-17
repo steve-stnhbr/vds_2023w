@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
 import pandas as pd
-from collections import Counter
+import functools
 
 from lib.geo import *
 from lib.graphics import *
@@ -107,7 +107,7 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
     return fig
 
 def update_existing_traces(fig, df_population_density, highlight_locations, selected_data, color_urban_types, color_population_density, year, min_value, max_value, id):
-    #fig['data'] = fig['data'][:len(URBAN_TYPES.values())]
+    fig['data'] = fig['data'][:len(URBAN_TYPES.values())]
     opacity = UNHIGHLIGHT_OPACITY if len(highlight_locations) > 0 or len(selected_data) > 0 else BASE_OPACITY
     for i, urban_type in enumerate(URBAN_TYPES.values()):
         data = fig['data'][i]
@@ -119,26 +119,29 @@ def update_existing_traces(fig, df_population_density, highlight_locations, sele
         data['colorscale'] = LOG_COLORSCALES[urban_type] if color_urban_types else LOG_COLORSCALE
 
     # add selected traces
-    selected_changed = False
-    for i, _ in enumerate(URBAN_TYPES.values()):
-        if not list_equals(fig['data'][len(URBAN_TYPES.values()) + i]['locations'], selected_data):
-            selected_changed = True
-            break;
+    fig['data'].append(add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value, id))
     
-    if selected_changed:
-        if len(selected_data) > 0:
-            fig['data'][len(URBAN_TYPES.values()):len(URBAN_TYPES.values())*2-1] = add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value, id)
-        else:
-            fig['data'][len(URBAN_TYPES.values()):len(URBAN_TYPES.values())*2-1] = [EMPTY_TRACE] * len(URBAN_TYPES.values())
-
     # add highlighted traces
-    if not list_equals(fig['data'][len(URBAN_TYPES.values())*2]['locations'], highlight_locations):
-        if len(highlight_locations) > 0:
-            fig['data'][len(URBAN_TYPES.values())*2] = add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value, id)
-        else:
-            fig['data'][len(URBAN_TYPES.values())*2] = EMPTY_TRACE
-        
+    fig['data'].append(add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value, id))
+    # selected_changed = False
+    # for i, _ in enumerate(URBAN_TYPES.values()):
+    #     if not list_equals(fig['data'][len(URBAN_TYPES.values()) + i]['locations'], selected_data):
+    #         selected_changed = True
+    #         break;
+    
+    # if selected_changed:
+    #     if len(selected_data) > 0:
+    #         fig['data'][len(URBAN_TYPES.values()):len(URBAN_TYPES.values())*2-1] = add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value, id)
+    #     else:
+    #         fig['data'][len(URBAN_TYPES.values()):len(URBAN_TYPES.values())*2-1] = [EMPTY_TRACE] * len(URBAN_TYPES.values())
 
+    # # add highlighted traces
+    # if not list_equals(fig['data'][len(URBAN_TYPES.values())*2]['locations'], highlight_locations):
+    #     if len(highlight_locations) > 0:
+    #         fig['data'][len(URBAN_TYPES.values())*2-1] = add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value, id)
+    #     else:
+    #         fig['data'][len(URBAN_TYPES.values())*2-1] = EMPTY_TRACE
+        
 def add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value, id):
     df_selected = df_population_density[df_population_density['geo'].isin(selected_data)]
     traces = []
@@ -165,7 +168,7 @@ def add_selected_traces(fig, df_population_density, selected_data, color_urban_t
 def add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value, id):
     traces = []
     for urban_type in get_urban_types_of_geos(highlight_locations, as_string=True, unique=True):
-        locations, values, names = df_population_density[df_population_density['geo'].isin(highlight_locations)][['geo', str(year), 'names']].values.T
+        locations, values, names = df_population_density[df_population_density['geo'].isin(highlight_locations)][['geo', str(year), 'name']].values.T
         traces.append(
             go.Choroplethmapbox(
                 geojson=current_geojson,

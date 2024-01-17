@@ -1,12 +1,12 @@
 import plotly.graph_objects as go
 import plotly.colors as pc
 import pandas as pd
+import functools
 
 from lib.transformations import *
 from lib.geo import *
 from lib.style import *
 from lib.util import *
-import time
 
 HEADING_REGION = "Age Distribution by NUTS3 Region"
 HEADING_URBAN_TYPE = "Age Distribution by Urban Type"

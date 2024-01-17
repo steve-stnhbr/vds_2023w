@@ -3,9 +3,8 @@ import numpy as np
 from dash import Dash, dcc, html, Input, Output, State
 import os
 import flask
-import plotly.io as pio
-import dash_bootstrap_components as dbc
 import dash_mantine_components as dmc
+from flask_caching import Cache
 
 from map import *
 from pop_structure import *
@@ -21,6 +20,7 @@ DEFAULT_GRAPH_LAYOUT = go.Layout(
     paper_bgcolor='rgba(0,0,0,0)',
     plot_bgcolor='rgba(0,0,0,0)'
 )
+TIMEOUT = 60 * 60
 
 #pio.templates.default = "plotly_dark"
 
@@ -32,6 +32,12 @@ external_scripts = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootst
 
 app = Dash(__name__, external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 server = app.server
+
+cache = Cache(None, config={
+        'CACHE_TYPE': 'filesystem',
+        'CACHE_DIR': 'cache',
+    }
+)
 
 @app.server.route('{}<stylesheet>'.format(static_css_route))
 def serve_stylesheet(stylesheet):
@@ -205,6 +211,7 @@ app.layout = html.Div([
     ],
     [State("center_map", "figure")],
 )
+#@cache.memoize(timeout=TIMEOUT)
 def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_pop_density, show_urban_type, figure):
     highlighted = extract_selected(None, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
     map_selected_locations = extract_geos(map_selection)
@@ -231,8 +238,9 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
     ],
     [State("center_map2", "figure")],
 )
+#@cache.memoize(timeout=TIMEOUT)
 def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_pop_density, show_urban_type, figure):
-    highlighted = extract_selected(None, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
+    highlighted = extract_selected(None, [pop_distr_hover, sex_distr_hover], ['id', 'x'], [False, False])
     map_selected_locations = extract_geos(map_selection)
     return create_map_graph(
         figure, 
@@ -260,6 +268,7 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
     ],
     [State("pop_distr_graph", "figure")]
 )
+#@cache.memoize(timeout=TIMEOUT)
 def update_pop_distr_grap(selected_data0, selected_data1, age_group, year, map_hover0, map_hover1, sex_distr_hover, figure):
     try:
         selected0 = extract_selected(map_hover0, [sex_distr_hover], 0, ['x'])
@@ -293,6 +302,7 @@ def update_pop_distr_grap(selected_data0, selected_data1, age_group, year, map_h
     ],
     [State("pop_graph", "figure")]
 )
+#@cache.memoize(timeout=TIMEOUT)
 def update_pop_graph(selected_data0, selected_data1, year, map_hover0, map_hover1, pop_distr_hover, sex_distr_hover, figure):
     try:
         selected0 = extract_selected(map_hover0, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
@@ -324,6 +334,7 @@ def update_pop_graph(selected_data0, selected_data1, year, map_hover0, map_hover
     ],
     [State("births_deaths_graph", "figure")]
 )
+#@cache.memoize(timeout=TIMEOUT)
 def update_births_deaths_graph(selected_data0, selected_data1, year, map_hover0, map_hover1, pop_distr_hover, sex_distr_hover, figure):
     try:
         selected0 = extract_selected(map_hover0, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
@@ -355,6 +366,7 @@ def update_births_deaths_graph(selected_data0, selected_data1, year, map_hover0,
     ],
     [State("sex_distr_graph", "figure")]
 )
+#@cache.memoize(timeout=TIMEOUT)
 def update_sex_distr_graph(selected_data0, selected_data1, year, map_hover0, map_hover1, pop_distr_hover, figure):
     try:
         selected0 = extract_selected(map_hover0, [pop_distr_hover], 0)
