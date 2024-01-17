@@ -7,7 +7,7 @@ from lib.style import *
 
 HEADING_REGION = "Sex Distribution by NUTS3 Region"
 
-UNSELECTED_OPACITY = .43
+UNSELECTED_OPACITY = .2
 
 MAX_GEOS_AT_ONCE = 20
 
@@ -56,7 +56,8 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
         geos = df_sex_use['geo'].unique()
     if len(geos) > MAX_GEOS_AT_ONCE:
         if selected is not None and len(selected) > 0:
-            selected = get_urban_types_of_geos(selected)
+            if len(intersection(URBAN_TYPES.values(), selected)) == 0:
+                selected = get_urban_types_of_geos(selected)
         df_sex_use = df_sex_use.groupby(['urban_type', 'age', 'age_median', 'age_label', 'sex'])[years_sex].sum().reset_index()
 
         for urban_type in set(df_sex_use['urban_type'].unique().tolist()) - {'unavailable'}:

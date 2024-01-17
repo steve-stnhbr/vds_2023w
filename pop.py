@@ -39,7 +39,8 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
     if len(geos) > MAX_GEOS_AT_ONCE:
         heading = HEADING_URBAN_TYPE
         if selected is not None and len(selected) > 0:
-            selected = get_urban_types_of_geos(selected)
+            if len(intersection(URBAN_TYPES.values(), selected)) == 0:
+                selected = get_urban_types_of_geos(selected)
         df_pop = assign_urbanization_type(df_pop)
         df_pop = df_pop.groupby(['urban_type'])[years_population].sum().reset_index()
         length = len(set(df_pop['urban_type'].unique().tolist()) - {'unavailable'})
@@ -49,7 +50,7 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
         for urban_type in set(df_pop['urban_type'].unique().tolist()) - {'unavailable'}:
             row = df_pop[df_pop['urban_type'] == urban_type]
             opacity = 1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
-            color = sample_color(pc.sequential.Plotly3, list(set(df_pop['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type), length)
+            color = URBAN_TYPE_COLORS[urban_type]
             color_transparent = add_opacity_to_color(color, opacity)
             fig.add_trace(
                 go.Scatter(
@@ -90,7 +91,8 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
         for geo in geos:
             row = df_pop[df_pop['geo'] == geo]
             opacity = 1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
-            color = sample_color(pc.sequential.Plotly3, geos.index(geo), len(geos))
+            color = URBAN_TYPE_COLORS[get_urban_types_of_geos([geo], as_string=True, unique=False).unique()[0]]
+
             color_transparent = add_opacity_to_color(color, opacity)
             fig.add_trace(
                 go.Scatter(

@@ -80,8 +80,7 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
     df_pop = df_pop_structure.loc[:, ['indic_de', 'geo', 'urban_type', year]]
     if geos is not None and len(geos) > 0:
         df_pop = df_pop[df_pop['geo'].str.startswith(tuple(geos))]
-    # only select NUTS3 regions TODO: maybe not do this
-    df_pop = df_pop[df_pop['geo'].str.len() == 5]
+
     # only display MAX_GEOS_AT_ONCE NUTS3 regions at once, otherwise aggregate them by urban_types
     if len(df_pop['geo'].unique()) > MAX_GEOS_AT_ONCE:
         heading = HEADING_URBAN_TYPE
@@ -97,7 +96,7 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
                 color = add_opacity_to_color(color, opacity)
                 fig.add_trace(
                     go.Bar(
-                        ids=chunk['urban_type'],
+                        ids=[urban_type],
                         x=[urban_type],
                         y=chunk[chunk['urban_type'] == urban_type][year],
                         name=values['name'],
@@ -117,7 +116,7 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
                 opacity = 1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1
                 fig.add_trace(
                     go.Bar(
-                        ids=row['geo'],
+                        ids=[geo],
                         x=[geo],
                         y=row[year],
                         name=values['name'],

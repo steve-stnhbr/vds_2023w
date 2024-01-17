@@ -50,14 +50,16 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
     fig = create_figure()
     fig.update_yaxes(rangemode="tozero")
     fig.update_layout(hovermode="x unified")
+
     if len(geos) > MAX_GEOS_AT_ONCE:
         heading = HEADING_URBAN_TYPE
         if selected is not None and len(selected) > 0:
-            selected = get_urban_types_of_geos(selected)
+            # if no urban type is selected, convert geos to urban types
+            if len(intersection(selected, URBAN_TYPES.values())) == 0:
+                selected = get_urban_types_of_geos(selected)
+
         df_births_use = df_births.groupby(['urban_type'])[years].sum().reset_index()
-        length_births = len(set(df_births_use['urban_type'].unique().tolist()) - {'unavailable'})
         df_deaths_use = df_deaths.groupby(['urban_type'])[years].sum().reset_index()
-        length_deaths = len(set(df_deaths_use['urban_type'].unique().tolist()) - {'unavailable'})
         total_births = df_births[years].sum().reset_index(drop=True)
         total_deaths = df_deaths[years].sum().reset_index(drop=True)
 
@@ -101,7 +103,8 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     hovertemplate=HOVER_TEMPLATE_BIRTHS,
                     opacity=1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        'color': sample_color(BIRTHS_COLORSCALE, list(set(df_births['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length_births + COLOR_OFFSET),
+                        #'color': sample_color(BIRTHS_COLORSCALE, list(set(df_births['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length_births + COLOR_OFFSET),
+                        'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 3, 6),
                         'width': LINE_WIDTH
                     }
                 )
@@ -116,7 +119,8 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     hovertemplate=HOVER_TEMPLATE_DEATHS,
                     opacity=1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        'color': sample_color(DEATHS_COLORSCALE, list(set(df_deaths['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length_deaths + COLOR_OFFSET),
+                        #'color': sample_color(DEATHS_COLORSCALE, list(set(df_deaths['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length_deaths + COLOR_OFFSET),
+                        'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 1, 6),
                         'width': LINE_WIDTH
                     }
                 )
@@ -125,24 +129,33 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
         heading = HEADING_REGION
         total_births = df_births[df_births['geo'].isin(geos)][years].sum().reset_index()
         total_deaths = df_deaths[df_deaths['geo'].isin(geos)][years].sum().reset_index()
+        
+
         fig.add_trace(
             go.Scatter(
                 x=years,
                 y=total_births,
-                name="total",
-                opacity=0,
-                showlegend=False,
-                hovertemplate=HOVER_TEMPLATE_BIRTHS
+                name="total (births)",
+                opacity=1,
+                line={
+                    'color': 'grey',
+                    'width': LINE_WIDTH
+                },
+                hovertemplate=HOVER_TEMPLATE_BIRTHS,
             )
         )
+
         fig.add_trace(
             go.Scatter(
                 x=years,
                 y=total_deaths,
-                name="total",
-                opacity=0,
-                showlegend=False,
-                hovertemplate=HOVER_TEMPLATE_DEATHS
+                name="total (deaths)",
+                opacity=1,
+                line={
+                    'color': 'black',
+                    'width': LINE_WIDTH
+                },
+                hovertemplate=HOVER_TEMPLATE_DEATHS,
             )
         )
         for geo in geos:
@@ -156,7 +169,8 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     hovertemplate=HOVER_TEMPLATE_BIRTHS,
                     opacity=1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        'color': sample_color(BIRTHS_COLORSCALE, geos.index(geo) + COLOR_OFFSET, len(geos) + COLOR_OFFSET),
+                        #'color': sample_color(BIRTHS_COLORSCALE, geos.index(geo) + COLOR_OFFSET, len(geos) + COLOR_OFFSET),
+                        'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 2, 6),
                         'width': LINE_WIDTH
                     }
                 )
@@ -171,7 +185,8 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     hovertemplate=HOVER_TEMPLATE_DEATHS,
                     opacity=1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        'color': sample_color(DEATHS_COLORSCALE, geos.index(geo) + COLOR_OFFSET, len(geos) + COLOR_OFFSET),
+                        #'color': sample_color(BIRTHS_COLORSCALE, geos.index(geo) + COLOR_OFFSET, len(geos) + COLOR_OFFSET),
+                        'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 5, 6),
                         'width': LINE_WIDTH
                     }
                 )

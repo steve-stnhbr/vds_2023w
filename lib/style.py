@@ -22,6 +22,13 @@ URBAN_TYPE_COLORSCALES = {
     "unavailable": pc.sequential.Greys_r,
 }
 
+URBAN_TYPE_COLORSCALES_R = {
+    "urban": pc.sequential.Purples,
+    "rural": pc.sequential.Greens,
+    "intermediate": pc.sequential.Oranges,
+    "unavailable": pc.sequential.Greys,
+}
+
 URBAN_TYPE_COLORS = {
     "urban": "#582F93",
     "rural": "#238B44",

@@ -5,6 +5,7 @@ import os
 import flask
 import plotly.io as pio
 import dash_bootstrap_components as dbc
+import dash_mantine_components as dmc
 
 from map import *
 from pop_structure import *
@@ -44,10 +45,10 @@ def serve_stylesheet(stylesheet):
 
 app.layout = html.Div([
     html.H1(HEADING),
+    html.Div([], id="empty"),
     html.Div([
         html.H2("Year"),
-        
-    dcc.Slider(step=None, marks={year: str(year) for year in years_population_density}, id='year_slider', value=int(years_population_density[-1])),
+        dcc.Slider(step=None, marks={year: str(year) for year in years_population_density}, id='year_slider', value=int(years_population_density[-1])),
     ]),
     html.Div([
         html.Div([
@@ -57,7 +58,27 @@ app.layout = html.Div([
                 figure=create_map_graph(None, level=3), 
                 clear_on_unhover=True,
             ),
-            html.Button("debug", id="debug_button")
+            html.Div([
+                html.Div([
+                    dmc.Switch(
+                        size="md",
+                        radius="xl",
+                        label="Show Population Density",
+                        checked=True,
+                        id="pop_density_switch"
+                    ),
+                ], className="col"),
+                html.Div([
+                    dmc.Switch(
+                        size="md",
+                        radius="xl",
+                        label="Show Urban Types",
+                        checked=True,
+                        id="urban_type_switch"
+                    ),
+                ], className="col"),
+                html.Button("debug", id="debug_button", style={"display": "none"}),
+            ], className="pt-3 row display-flex justify-content-center"),
         ], className="col-7", id="map_div"),
         html.Div([
             html.H2("Age Distribution by Region", id="pop_distr_heading"),
@@ -127,22 +148,28 @@ app.layout = html.Div([
     Output("center_map", "figure"),
     [
         Input('year_slider', 'value'), 
-        Input('pop_distr_graph', 'hoverData'), 
-        Input('pop_graph', 'hoverData'), 
-        Input("pop_graph", "figure"),
+        Input('pop_distr_graph', 'hoverData'),
         Input('sex_distr_graph', 'hoverData'),
         Input("center_map", "selectedData"),
-        Input("debug_button", "n_clicks")
+        Input("debug_button", "n_clicks"),
+        Input("pop_density_switch", "checked"),
+        Input("urban_type_switch", "checked"),
     ],
     [State("center_map", "figure")],
 )
-def update_map(year, pop_distr_hover, pop_hover, pop_figure, sex_distr_hover, map_selection, _, figure):
-    #highlighted = [pop_figure['data'][point['curveNumber']]['name'] for point in pop_hover['points']] if pop_hover is not None else []
+def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_pop_density, show_urban_type, figure):
     highlighted = []
     highlighted = highlighted + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
     highlighted = highlighted + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
     map_selected_locations = [datum['location'] for datum in (map_selection['points'])] if map_selection is not None else []
-    return create_map_graph(figure, highlight_locations=highlighted, level=3, year=year, selected_data=map_selected_locations)
+    return create_map_graph(
+        figure, 
+        highlight_locations=highlighted, 
+        level=3, year=year, 
+        selected_data=map_selected_locations,
+        color_population_density=show_pop_density,
+        color_urban_types=show_urban_type
+    )
     
 @app.callback(
     [
@@ -153,13 +180,16 @@ def update_map(year, pop_distr_hover, pop_hover, pop_figure, sex_distr_hover, ma
         Input("center_map", "selectedData"), 
         Input('age_group_select', 'value'), 
         Input('year_slider', 'value'),
-        Input("center_map", "hoverData")
+        Input("center_map", "hoverData"),
+        Input("sex_distr_graph", "hoverData")
     ],
     [State("pop_distr_graph", "figure")]
 )
-def update_pop_distr_grap(selected_data, age_group, year, map_hover, figure):
+def update_pop_distr_grap(selected_data, age_group, year, map_hover, sex_distr_hover, figure):
     try:
         selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
+        selected = selected + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
+    
         year = str(year)
         if selected_data is None:
             fig = create_population_structure_bar_chart(figure, 
@@ -182,13 +212,18 @@ def update_pop_distr_grap(selected_data, age_group, year, map_hover, figure):
     [
         Input("center_map", "selectedData"), 
         Input('year_slider', 'value'),
-        Input("center_map", "hoverData")
+        Input("center_map", "hoverData"),
+        Input("pop_distr_graph", "hoverData"),
+        Input("sex_distr_graph", "hoverData")
     ],
     [State("pop_graph", "figure")]
 )
-def update_pop_graph(selected_data, year, map_hover, figure):
+def update_pop_graph(selected_data, year, map_hover, pop_distr_hover, sex_distr_hover, figure):
     try:
         selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
+        selected = selected + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
+        selected = selected + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
+    
         year = str(year)
         if selected_data is None:
             fig = create_population_line_plot(figure, 
@@ -209,13 +244,18 @@ def update_pop_graph(selected_data, year, map_hover, figure):
     [
         Input("center_map", "selectedData"), 
         Input('year_slider', 'value'),
-        Input("center_map", "hoverData")
+        Input("center_map", "hoverData"),
+        Input("pop_distr_graph", "hoverData"),
+        Input("sex_distr_graph", "hoverData")
     ],
     [State("births_deaths_graph", "figure")]
 )
-def update_births_deaths_graph(selected_data, year, map_hover, figure):
+def update_births_deaths_graph(selected_data, year, map_hover, pop_distr_hover, sex_distr_hover, figure):
     try:
         selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
+        selected = selected + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
+        selected = selected + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
+    
         year = str(year)
         if selected_data is None:
             fig = create_births_deaths_line_plot(figure, 
@@ -236,13 +276,15 @@ def update_births_deaths_graph(selected_data, year, map_hover, figure):
     [
         Input("center_map", "selectedData"), 
         Input('year_slider', 'value'),
-        Input("center_map", "hoverData")
+        Input("center_map", "hoverData"),
+        Input("pop_distr_graph", "hoverData"),
     ],
     [State("sex_distr_graph", "figure")]
 )
-def update_sex_distr_graph(selected_data, year, map_hover, figure):
+def update_sex_distr_graph(selected_data, year, map_hover, pop_distr_hover, figure):
     try:
         selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
+        selected = selected + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
         year = str(year)
         if selected_data is None:
             fig = create_sex_violin_plot(figure, 
@@ -256,6 +298,14 @@ def update_sex_distr_graph(selected_data, year, map_hover, figure):
         return (fig, {"display": "none"})
     except NoDataAvailableError:
         return (figure, {"display": "block"})
+    
+@app.callback(
+    Output("empty", "children"),
+    Input("year_slider", "value")
+)
+def load_geojson(year):
+    get_nuts_geojson(3, year)
+    return []
 
 if __name__ == '__main__':
     app.run_server(debug=True, dev_tools_ui=True)

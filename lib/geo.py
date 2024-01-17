@@ -61,7 +61,7 @@ def get_geos_with_urban_types(urban_types):
         urban_types = [urban_types]
     # check if urban types need to be converted to integers
     if isinstance(urban_types[0], str):
-        urban_types = [list(URBAN_TYPES.keys())[list(URBAN_TYPES.values()).index(urban_type)] for urban_type in urban_types]
+        urban_types = [list(URBAN_TYPES.values()).index(urban_type) for urban_type in urban_types]
     return df_geo[df_geo['urban_type'].isin(urban_types)].id
 
 def get_geo_name(geo):

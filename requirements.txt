@@ -11,3 +11,4 @@ numpy==1.26.2
 pandas==2.1.4
 plotly==5.18.0
 shapely==2.0.2
+dash-mantine-components==0.12.1

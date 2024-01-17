@@ -48,13 +48,14 @@ def get_nuts_geojson(level, year):
     for resolution in AVAILABLE_RESOLUTIONS:
         try:
             filename = f"geo/nuts{level}_{resolution}_{get_most_recent_year(year)}.json"
+            print(f"Loading geojson {filename}")
             nuts = load_geojson(filename)
+            global current_geojson
+            current_geojson = nuts
         except FileNotFoundError:
             print(f"Failed to find geojson for {resolution} {get_most_recent_year(year)}")
             #filename = f"geo/nuts_{resolution}_{get_most_recent_year(year)}.json"
-        global current_geojson
-        current_geojson = nuts
-        return nuts
+        return current_geojson
 def load_geojson(filename):
     with open(filename) as geo_file:
         nuts = load_geo(geo_file)
