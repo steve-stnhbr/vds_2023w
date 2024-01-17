@@ -36,6 +36,11 @@ POP_AGE_GROUPS_FINE = {
 
 HOVER_TEMPLATE = "<b>%{customdata[0]}</b>: %{y:.2f}%"
 
+state_before0 = []
+state_before1 = []
+trace_before0 = []
+trace_before1 = []
+
 df_sex = pd.read_csv("data/population_january1st_fine.tsv", dtype={'geo': str})
 df_sex = sort_to_numeric_ffill(df_sex)
 df_sex = assign_urbanization_type(df_sex)
@@ -152,10 +157,26 @@ def create_sex_violin_plot_traces(fig, geos=[], year='2022', selected=[], id=0):
         
 
 def create_sex_violin_plot(fig, geos0=[], geos1=[], year='2022', selected0=[], selected1=[]):
+    global state_before0, state_before1, trace_before0, trace_before1
+    state0 = [year, geos0, selected0]
+    state1 = [year, geos1, selected1]
     fig = create_figure()
-    traces1 = create_sex_violin_plot_traces(fig, geos0, year, selected0, 0)
-    traces2 = create_sex_violin_plot_traces(fig, geos1, year, selected1, 1)
-    fig.add_traces(traces1.data, rows=1, cols=1)
-    fig.add_traces(traces2.data, rows=1, cols=2)
-    fig.update_layout(traces1.layout)
+    if not list_equals(state_before0, state0):
+        traces0 = create_sex_violin_plot_traces(fig, geos0, year, selected0, 0)
+        fig.add_traces(traces0.data, rows=1, cols=1)
+        state_before0 = state0
+        trace_before0 = traces0
+        fig.update_layout(traces0.layout)
+    else:
+        fig.add_traces(trace_before0.data, rows=1, cols=1)
+        fig.update_layout(trace_before0.layout)
+    if not list_equals(state_before1, state1):
+        traces1 = create_sex_violin_plot_traces(fig, geos1, year, selected1, 1)
+        fig.add_traces(traces1.data, rows=1, cols=2)
+        state_before1 = state1
+        trace_before1 = traces1
+        fig.update_layout(traces1.layout)
+    else :
+        fig.add_traces(trace_before1.data, rows=1, cols=2)
+        fig.update_layout(trace_before1.layout)
     return fig

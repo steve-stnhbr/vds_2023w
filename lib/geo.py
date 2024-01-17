@@ -8,7 +8,7 @@ NUTS_PROPS_COLUMS = ['id', 'level', 'country', 'name', 'name_latin', 'mountainou
 
 df_geo = pd.DataFrame([[(feature['properties'][key] if key in feature['properties'] else '-') for key in NUTS_PROPS_KEYS] for feature in current_geojson['features']], columns=NUTS_PROPS_COLUMS)
 
-df_geo_names = pd.read_csv(ROOT_DIR + '/geo/names/nuts_names.csv', sep=';')
+df_geo_names = pd.read_csv(ROOT_DIR + 'geo/names/nuts_names.csv', sep=';')
 
 def aggregate_groups(df, groupby, columns=None, aggregate='sum', aggregate_others='first', reset_index=True) -> pd.DataFrame:
     if columns is None:
