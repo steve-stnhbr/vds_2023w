@@ -73,7 +73,9 @@ mapbox_style = {
 }
 
 def create_figure(temlpate="plotly_dark"):
-    return make_subplots(rows=1, cols=2)
+    fig = make_subplots(rows=1, cols=2)
+    fig.update_layout(DEFAULT_FIGURE_LAYOUT)
+    return fig
 
 def sample_color(colorscale, index, total):
     return colorscale[index * len(colorscale) // total]

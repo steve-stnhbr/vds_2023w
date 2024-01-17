@@ -6,6 +6,7 @@ from lib.transformations import *
 from lib.geo import *
 from lib.style import *
 from lib.util import *
+import time
 
 HEADING_REGION = "Age Distribution by NUTS3 Region"
 HEADING_URBAN_TYPE = "Age Distribution by Urban Type"
@@ -14,7 +15,8 @@ HOVER_TEMPLATE = "<b>%{y}%</b>"
 
 UNSELECTED_OPACITY = .43
 
-MAX_GEOS_AT_ONCE = 20
+MAX_GEOS_AT_ONCE = 3
+
 POP_AGE_GROUPS_FINE = {
     "PC_Y0_14": "0-14",
     "PC_Y15_19": "15-19",
@@ -58,6 +60,11 @@ POP_AGE_GROUPS = {
 
 COLOR_OFFSET = 5
 
+state_before0 = []
+state_before1 = []
+trace_before0 = []
+trace_before1 = []
+
 # add colors to the age groups
 for age_group in POP_AGE_GROUPS.values():
     for i, (ag_id, name) in enumerate(age_group.items()):
@@ -65,14 +72,16 @@ for age_group in POP_AGE_GROUPS.values():
         age_group[ag_id] = {"name": name, "color": {urban_type: pc.sample_colorscale(URBAN_TYPE_COLORSCALES[urban_type], i/(len(age_group) + COLOR_OFFSET)) for urban_type in URBAN_TYPES.values()}}
 
 df_pop_structure = pd.read_csv(ROOT_DIR + "data/population_structure_indicators.tsv", dtype={'geo': str})
+years_pop_structure = get_years(df_pop_structure)
 df_pop_structure = df_pop_structure[(df_pop_structure['freq'] == "A") & (df_pop_structure['unit'] == "PC")]
+df_pop_structure = df_pop_structure.drop(df_pop_structure.columns.difference(['geo', 'indic_de'] + years_pop_structure), axis=1)
 df_pop_structure = df_pop_structure[df_pop_structure.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
 df_pop_structure = sort_to_numeric_ffill(df_pop_structure)
 df_pop_structure = assign_urbanization_type(df_pop_structure)
 years_pop_structure = get_years(df_pop_structure)
+df_pop_structure_grouped = df_pop_structure.groupby(['urban_type', 'indic_de', 'geo']).mean().reset_index()
 
 def create_population_structure_bar_chart_traces(fig, year='2022', geos=[], groups="fine", selected=[], id=0):
-    print(geos)
     global df_pop_structure
     if year is not None and year not in years_pop_structure:
         raise NoDataAvailableError(year=year)
@@ -80,12 +89,11 @@ def create_population_structure_bar_chart_traces(fig, year='2022', geos=[], grou
 
     df_pop = df_pop_structure.loc[:, ['indic_de', 'geo', 'urban_type', year]]
     if geos is not None and len(geos) > 0:
-        df_pop = df_pop[df_pop['geo'].str.startswith(tuple(geos))]
+        df_pop = df_pop[df_pop['geo'].isin(geos)]
 
     # only display MAX_GEOS_AT_ONCE NUTS3 regions at once, otherwise aggregate them by urban_types
-    if len(df_pop['geo'].unique()) > MAX_GEOS_AT_ONCE:
+    if len(df_pop['geo']) > MAX_GEOS_AT_ONCE:
         heading = HEADING_URBAN_TYPE
-        df_pop = df_pop.groupby(['urban_type', 'indic_de'])[year].mean().reset_index()
         age_group = POP_AGE_GROUPS[groups]
         selected = get_urban_types_of_geos(selected)
 
@@ -145,10 +153,26 @@ def create_population_structure_bar_chart_traces(fig, year='2022', geos=[], grou
 
 
 def create_population_structure_bar_chart(fig, year='2022', geos0=[], geos1=[], groups="fine", selected0=[], selected1=[]):
+    global state_before0, state_before1, trace_before0, trace_before1
+    state0 = [year, geos0, groups, selected0]
+    state1 = [year, geos1, groups, selected1]
     fig = create_figure()
-    traces1 = create_population_structure_bar_chart_traces(fig, year, geos0, groups, selected0, 0)
-    traces2 = create_population_structure_bar_chart_traces(fig, year, geos1, groups, selected1, 1)
-    fig.add_traces(traces1.data, rows=1, cols=1)
-    fig.add_traces(traces2.data, rows=1, cols=2)
-    fig.update_layout(traces1.layout)
+    if not list_equals(state_before0, state0):
+        traces0 = create_population_structure_bar_chart_traces(fig, year, geos0, groups, selected0, 0)
+        fig.add_traces(traces0.data, rows=1, cols=1)
+        state_before0 = state0
+        trace_before0 = traces0
+        fig.update_layout(traces0.layout)
+    else:
+        fig.add_traces(trace_before0.data, rows=1, cols=1)
+        fig.update_layout(trace_before0.layout)
+    if not list_equals(state_before1, state1):
+        traces1 = create_population_structure_bar_chart_traces(fig, year, geos1, groups, selected1, 1)
+        fig.add_traces(traces1.data, rows=1, cols=2)
+        state_before1 = state1
+        trace_before1 = traces1
+        fig.update_layout(traces1.layout)
+    else :
+        fig.add_traces(trace_before1.data, rows=1, cols=2)
+        fig.update_layout(trace_before1.layout)
     return fig

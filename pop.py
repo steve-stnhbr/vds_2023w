@@ -13,13 +13,14 @@ HEADING_URBAN_TYPE = "Population Development by Urban Type"
 UNSELECTED_OPACITY = .24
 FILL_OPACITY = .4
 
-MAX_GEOS_AT_ONCE = 50
+MAX_GEOS_AT_ONCE = 3
 
 HOVER_TEMPLATE = "<b>%{y:.2s}</b> inhabitants in %{x}"
 
 df_population = pd.read_csv(ROOT_DIR + "data/population_january1st.tsv", dtype={'geo': str})
 df_population = df_population[(df_population['age'] == "TOTAL") & (df_population['sex'] == "T")].reset_index()
 df_population = df_population[df_population.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
+df_population = assign_urbanization_type(df_population)
 df_population = sort_to_numeric_ffill(df_population)
 years_population = get_years(df_population)
 
@@ -40,11 +41,10 @@ def create_population_line_plot_traces(fig, geos=[], year=None, selected=[], id=
         if selected is not None and len(selected) > 0:
             if len(intersection(URBAN_TYPES.values(), selected)) == 0:
                 selected = get_urban_types_of_geos(selected)
-        df_pop = assign_urbanization_type(df_pop)
+        df_pop = df_pop[df_pop['geo'].isin(geos)]
         df_pop = df_pop.groupby(['urban_type'])[years_population].sum().reset_index()
-        length = len(set(df_pop['urban_type'].unique().tolist()) - {'unavailable'})
         # calculate the sum of all urban types for each year
-        total_values = df_population[years_population].sum().reset_index(drop=True)
+        total_values = df_pop[years_population].sum().reset_index(drop=True)
 
         for urban_type in set(df_pop['urban_type'].unique().tolist()) - {'unavailable'}:
             row = df_pop[df_pop['urban_type'] == urban_type]

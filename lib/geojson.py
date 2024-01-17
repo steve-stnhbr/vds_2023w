@@ -7,7 +7,12 @@ import functools
 import numpy as np
 
 AVAILABLE_YEARS = [2021, 2016, 2013, 2010, 2006]
-AVAILABLE_RESOLUTIONS = ["60M", "20M", "10M", "03M"]
+AVAILABLE_RESOLUTIONS = [
+    #"60M", 
+    #"20M", 
+    "10M", 
+    "03M"
+]
 
 URBAN_TYPES = {
     0: "unavailable",

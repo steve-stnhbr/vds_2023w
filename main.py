@@ -187,7 +187,7 @@ app.layout = html.Div([
                     html.H3("No data available")
                 ], id="sex_distr_alert", style={"display": "none"}, className="alert")
             ], className="alert-container")
-        ], className="col-3", id="sex_distr_div"),
+        ], className="col", id="sex_distr_div"),
     ], className="row flex-nowrap", id="graphs2_div"),
 ], id="main_div", className="")
 
@@ -206,10 +206,8 @@ app.layout = html.Div([
     [State("center_map", "figure")],
 )
 def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_pop_density, show_urban_type, figure):
-    highlighted = []
-    highlighted = highlighted + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
-    highlighted = highlighted + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
-    map_selected_locations = [datum['location'] for datum in (map_selection['points'])] if map_selection is not None else []
+    highlighted = extract_selected(None, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
+    map_selected_locations = extract_geos(map_selection)
     return create_map_graph(
         figure, 
         highlight_locations=highlighted, 
@@ -234,9 +232,8 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
     [State("center_map2", "figure")],
 )
 def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_pop_density, show_urban_type, figure):
-    print(pop_distr_hover)
     highlighted = extract_selected(None, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
-    map_selected_locations = [datum['location'] for datum in (map_selection['points'])] if map_selection is not None else []
+    map_selected_locations = extract_geos(map_selection)
     return create_map_graph(
         figure, 
         highlight_locations=highlighted, 
@@ -302,7 +299,6 @@ def update_pop_graph(selected_data0, selected_data1, year, map_hover0, map_hover
         selected1 = extract_selected(map_hover1, [pop_distr_hover, sex_distr_hover], 1, ['id', 'x'])
         geos0 = extract_geos(selected_data0)
         geos1 = extract_geos(selected_data1)
-        print(selected0, selected1)
         year = str(year)
         fig = create_population_line_plot(figure, 
                                         geos0=geos0,
