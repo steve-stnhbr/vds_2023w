@@ -103,7 +103,6 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     hovertemplate=HOVER_TEMPLATE_BIRTHS,
                     opacity=1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        #'color': sample_color(BIRTHS_COLORSCALE, list(set(df_births['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length_births + COLOR_OFFSET),
                         'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 3, 6),
                         'width': LINE_WIDTH
                     }
@@ -119,7 +118,6 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     hovertemplate=HOVER_TEMPLATE_DEATHS,
                     opacity=1 if urban_type in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        #'color': sample_color(DEATHS_COLORSCALE, list(set(df_deaths['urban_type'].unique().tolist()) - {'unavailable'}).index(urban_type) + COLOR_OFFSET, length_deaths + COLOR_OFFSET),
                         'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 1, 6),
                         'width': LINE_WIDTH
                     }
@@ -127,10 +125,9 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
             )
     else:
         heading = HEADING_REGION
-        total_births = df_births[df_births['geo'].isin(geos)][years].sum().reset_index()
-        total_deaths = df_deaths[df_deaths['geo'].isin(geos)][years].sum().reset_index()
+        total_births = df_births[df_births['geo'].isin(geos)][years].sum().reset_index(drop=True)
+        total_deaths = df_deaths[df_deaths['geo'].isin(geos)][years].sum().reset_index(drop=True)
         
-
         fig.add_trace(
             go.Scatter(
                 x=years,
@@ -160,6 +157,7 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
         )
         for geo in geos:
             row = df_births[df_births['geo'] == geo]
+            urban_type = row['urban_type'].values[0]
             fig.add_trace(
                 go.Scatter(
                     x=years,
@@ -169,7 +167,6 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     hovertemplate=HOVER_TEMPLATE_BIRTHS,
                     opacity=1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        #'color': sample_color(BIRTHS_COLORSCALE, geos.index(geo) + COLOR_OFFSET, len(geos) + COLOR_OFFSET),
                         'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 2, 6),
                         'width': LINE_WIDTH
                     }
@@ -185,7 +182,6 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     hovertemplate=HOVER_TEMPLATE_DEATHS,
                     opacity=1 if geo in selected else UNSELECTED_OPACITY if selected is not None and len(selected) > 0 else 1,
                     line={
-                        #'color': sample_color(BIRTHS_COLORSCALE, geos.index(geo) + COLOR_OFFSET, len(geos) + COLOR_OFFSET),
                         'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 5, 6),
                         'width': LINE_WIDTH
                     }

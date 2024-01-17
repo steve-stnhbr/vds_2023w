@@ -12,3 +12,6 @@ pandas==2.1.4
 plotly==5.18.0
 shapely==2.0.2
 dash-mantine-components==0.12.1
+beautifulsoup4==4.12.3 
+bs4==0.0.1 
+soupsieve==2.5

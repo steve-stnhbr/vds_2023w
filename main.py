@@ -77,6 +77,14 @@ app.layout = html.Div([
                         id="urban_type_switch"
                     ),
                 ], className="col"),
+                html.Div([
+                    dcc.Dropdown(
+                        options=[{'label': row['country_name'], 'value': row['country_code']} for _, row in df_geo_names.groupby('country_code', as_index=False, sort=False).apply(lambda x: x.iloc[0]).iterrows()],
+                        id="country_select", 
+                        multi=True,
+                        placeholder="Select countries",
+                    ),
+                ], className="col"),
                 html.Button("debug", id="debug_button", style={"display": "none"}),
             ], className="pt-3 row display-flex justify-content-center"),
         ], className="col-7", id="map_div"),
@@ -165,7 +173,8 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
     return create_map_graph(
         figure, 
         highlight_locations=highlighted, 
-        level=3, year=year, 
+        level=3, 
+        year=year, 
         selected_data=map_selected_locations,
         color_population_density=show_pop_density,
         color_urban_types=show_urban_type
@@ -306,6 +315,15 @@ def update_sex_distr_graph(selected_data, year, map_hover, pop_distr_hover, figu
 def load_geojson(year):
     get_nuts_geojson(3, year)
     return []
+
+@app.callback(
+    Output("center_map", "selectedData"),
+    Input("country_select", "value")
+)
+def select_countries(countries):
+    if countries is None or len(countries) == 0:
+        return None
+    return {"points": [{"location": geo} for geo in df_geo[df_geo['id'].str.startswith(tuple(countries))]['id']]}
 
 if __name__ == '__main__':
     app.run_server(debug=True, dev_tools_ui=True)
