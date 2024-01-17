@@ -71,7 +71,8 @@ df_pop_structure = sort_to_numeric_ffill(df_pop_structure)
 df_pop_structure = assign_urbanization_type(df_pop_structure)
 years_pop_structure = get_years(df_pop_structure)
 
-def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fine", selected=[]):
+def create_population_structure_bar_chart_traces(fig, year='2022', geos=[], groups="fine", selected=[], id=0):
+    print(geos)
     global df_pop_structure
     if year is not None and year not in years_pop_structure:
         raise NoDataAvailableError(year=year)
@@ -100,7 +101,7 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
                         x=[urban_type],
                         y=chunk[chunk['urban_type'] == urban_type][year],
                         name=values['name'],
-                        customdata=[values['name']],
+                        customdata=[id],
                         hovertemplate=HOVER_TEMPLATE,
                         showlegend=False,
                         marker_color=color
@@ -120,7 +121,7 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
                         x=[geo],
                         y=row[year],
                         name=values['name'],
-                        customdata=[values['name']],
+                        customdata=[id],
                         hovertemplate=HOVER_TEMPLATE,
                         showlegend=False,
                         marker_color=add_opacity_to_color(values['color'][row['urban_type'].values[0]], opacity=opacity)
@@ -129,7 +130,7 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
 
     fig.update_layout(barmode='stack')
 
-    
+    # add legend
     for urban_type in set(URBAN_TYPE_COLORSCALES.keys()) - {'unavailable'}:
         fig.add_trace(
             go.Bar(
@@ -143,4 +144,11 @@ def create_population_structure_bar_chart(fig, year='2022', geos=[], groups="fin
     return fig
 
 
-
+def create_population_structure_bar_chart(fig, year='2022', geos0=[], geos1=[], groups="fine", selected0=[], selected1=[]):
+    fig = create_figure()
+    traces1 = create_population_structure_bar_chart_traces(fig, year, geos0, groups, selected0, 0)
+    traces2 = create_population_structure_bar_chart_traces(fig, year, geos1, groups, selected1, 1)
+    fig.add_traces(traces1.data, rows=1, cols=1)
+    fig.add_traces(traces2.data, rows=1, cols=2)
+    fig.update_layout(traces1.layout)
+    return fig

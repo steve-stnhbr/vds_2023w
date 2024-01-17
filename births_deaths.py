@@ -39,7 +39,7 @@ years = intersection(years_births, years_deaths)
 years = sorted(years)
 
 
-def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
+def create_births_deaths_line_plot_traces(fig, geos=[], year=None, selected=[], id=0):
     global df_births, df_deaths
     if year is not None and year not in years:
         raise NoDataAvailableError(year=year)
@@ -74,6 +74,7 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     'width': LINE_WIDTH
                 },
                 hovertemplate=HOVER_TEMPLATE_BIRTHS,
+                customdata=[id]
             )
         )
 
@@ -88,6 +89,7 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     'width': LINE_WIDTH
                 },
                 hovertemplate=HOVER_TEMPLATE_DEATHS,
+                customdata=[id]
             )
         )
 
@@ -105,7 +107,8 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     line={
                         'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 3, 6),
                         'width': LINE_WIDTH
-                    }
+                    },
+                    customdata=[id]
                 )
             )
 
@@ -120,7 +123,8 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
                     line={
                         'color': sample_color(URBAN_TYPE_COLORSCALES[urban_type], 1, 6),
                         'width': LINE_WIDTH
-                    }
+                    },
+                    customdata=[id]
                 )
             )
     else:
@@ -192,3 +196,11 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
         fig.add_shape(xref='x', yref='paper', x0=x, x1=x, y0=0, y1=1, line=dict(color=colors['marker'], width=2, dash="dash"))
     return fig
     
+def create_births_deaths_line_plot(fig, geos0=[], geos1=[], year=None, selected0=[], selected1=[]):
+    fig = create_figure()
+    traces1 = create_births_deaths_line_plot_traces(fig, geos0, year, selected0, 0)
+    traces2 = create_births_deaths_line_plot_traces(fig, geos1, year, selected1, 1)
+    fig.add_traces(traces1.data, rows=1, cols=1)
+    fig.add_traces(traces2.data, rows=1, cols=2)
+    fig.update_layout(traces1.layout)
+    return fig

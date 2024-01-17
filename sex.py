@@ -34,7 +34,7 @@ POP_AGE_GROUPS_FINE = {
     "Y_GE90": { "label": "90+", "median": 92 },
 }
 
-HOVER_TEMPLATE = "<b>%{customdata}</b>: %{y:.2f}%"
+HOVER_TEMPLATE = "<b>%{customdata[0]}</b>: %{y:.2f}%"
 
 df_sex = pd.read_csv("data/population_january1st_fine.tsv", dtype={'geo': str})
 df_sex = sort_to_numeric_ffill(df_sex)
@@ -45,7 +45,7 @@ df_sex['age_median'] = df_sex['age'].apply(lambda x: POP_AGE_GROUPS_FINE[x]['med
 df_sex['age_label'] = df_sex['age'].apply(lambda x: POP_AGE_GROUPS_FINE[x]['label'])
 years_sex = get_years(df_sex)
 
-def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
+def create_sex_violin_plot_traces(fig, geos=[], year='2022', selected=[], id=0):
     global df_sex
     if year is not None and year not in years_sex:
         raise NoDataAvailableError(year=year)
@@ -77,7 +77,7 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
                     legendgroup='female',
                     scalegroup='female',
                     side='negative',
-                    customdata=row['age_label'],
+                    customdata=[row['age_label'], id],
                     scalemode='count',
                     line_color=add_opacity_to_color(sample_color(URBAN_TYPE_COLORSCALES[urban_type], 1, 5), opacity=opacity),
                     hovertemplate=HOVER_TEMPLATE,
@@ -94,7 +94,7 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
                     legendgroup='male',
                     scalegroup='male',
                     side='positive',
-                    customdata=row['age_label'],
+                    customdata=[row['age_label'], id],
                     scalemode='count',
                     line_color=add_opacity_to_color(sample_color(URBAN_TYPE_COLORSCALES[urban_type], 3, 5), opacity=opacity),
                     hovertemplate=HOVER_TEMPLATE,
@@ -123,7 +123,7 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
                     legendgroup='female',
                     scalegroup='female',
                     side='negative',
-                    customdata=row['age_label'],
+                    customdata=[id],
                     scalemode='count',
                     line_color=add_opacity_to_color(sample_color(URBAN_TYPE_COLORSCALES[urban_type], 2, 5), opacity=opacity),
                     hovertemplate=HOVER_TEMPLATE,
@@ -140,7 +140,7 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
                     legendgroup='male',
                     scalegroup='male',
                     side='positive',
-                    customdata=row['age_label'],
+                    customdata=[id],
                     scalemode='count',
                     line_color=add_opacity_to_color(sample_color(URBAN_TYPE_COLORSCALES[urban_type], 4, 5), opacity=opacity),
                     hovertemplate=HOVER_TEMPLATE,
@@ -151,5 +151,11 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
     return fig
         
 
-
-    
+def create_sex_violin_plot(fig, geos0=[], geos1=[], year='2022', selected0=[], selected1=[]):
+    fig = create_figure()
+    traces1 = create_sex_violin_plot_traces(fig, geos0, year, selected0, 0)
+    traces2 = create_sex_violin_plot_traces(fig, geos1, year, selected1, 1)
+    fig.add_traces(traces1.data, rows=1, cols=1)
+    fig.add_traces(traces2.data, rows=1, cols=2)
+    fig.update_layout(traces1.layout)
+    return fig

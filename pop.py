@@ -23,7 +23,7 @@ df_population = df_population[df_population.apply(lambda row: geo_is_level(row['
 df_population = sort_to_numeric_ffill(df_population)
 years_population = get_years(df_population)
 
-def create_population_line_plot(fig, geos=[], year=None, selected=[]):
+def create_population_line_plot_traces(fig, geos=[], year=None, selected=[], id=0):
     global df_population
 
     if year is not None and year not in years_population:
@@ -34,7 +34,6 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
     fig.update_layout(hovermode="x unified")
     if geos is None or len(geos) == 0:
         geos = df_pop['geo'].unique()
-
 
     if len(geos) > MAX_GEOS_AT_ONCE:
         heading = HEADING_URBAN_TYPE
@@ -65,7 +64,8 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
                     },
                     fill='tonexty',
                     fillcolor=add_opacity_to_color(color, FILL_OPACITY),
-                    hovertemplate=HOVER_TEMPLATE
+                    hovertemplate=HOVER_TEMPLATE,
+                    customdata=[id]
                 )
             )
         fig.add_trace(
@@ -82,7 +82,8 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
                 fill='none',
                 fillcolor='rgba(0,0,0,0)',
                 hovertemplate=HOVER_TEMPLATE,
-                showlegend=False
+                showlegend=False,
+                customdata=[id]
             )
         )
     else:
@@ -107,7 +108,8 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
                     },
                     fill='tonexty',
                     fillcolor=add_opacity_to_color(color, FILL_OPACITY),
-                    hovertemplate=HOVER_TEMPLATE
+                    hovertemplate=HOVER_TEMPLATE,
+                    customdata=[id]
                 )
             )
         fig.add_trace(
@@ -124,11 +126,21 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
                 fill='none',
                 fillcolor='rgba(0,0,0,0)',
                 hovertemplate=HOVER_TEMPLATE,
-                showlegend=False
+                showlegend=False,
+                customdata=[id]
             )
         )
     fig.update_traces(hovertemplate=HOVER_TEMPLATE)
     if year is not None:
         x = years_population.index(year)
         fig.add_shape(xref='x', yref='paper', x0=x, x1=x, y0=0, y1=1, line=dict(color=colors['marker'], width=2, dash="dash"))
+    return fig
+
+def create_population_line_plot(fig, geos0=[], geos1=[], year=None, selected0=[], selected1=[]):
+    fig = create_figure()
+    traces1 = create_population_line_plot_traces(fig, geos0, year, selected0, 0)
+    traces2 = create_population_line_plot_traces(fig, geos1, year, selected1, 1)
+    fig.add_traces(traces1['data'], rows=1, cols=1)
+    fig.add_traces(traces2['data'], rows=1, cols=2)
+    fig.update_layout(traces1['layout'])
     return fig

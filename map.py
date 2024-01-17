@@ -38,7 +38,7 @@ df_population_density = sort_to_numeric_ffill(df_population_density)
 df_population_density = assign_urbanization_type(df_population_density)
 years_population_density = get_years(df_population_density)
 
-def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_data=[], color_urban_types=True, color_population_density=True):
+def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_data=[], color_urban_types=True, color_population_density=True, id=0):
     global df_population_density
     if str(year) not in years_population_density:
         raise NoDataAvailableError(year=year)
@@ -82,14 +82,14 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
                     colorscale=LOG_COLORSCALES[urban_type] if color_urban_types else LOG_COLORSCALE,
                     text=pd.DataFrame(locations).apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1),
                     hovertemplate=HOVERTEMPLATE,
-                    customdata=[urban_type]*len(locations),
+                    customdata=[[urban_type, id]]*len(locations),
                     showscale=False,
                     zmin=min_value,
                     zmax=max_value,
                 )
             )
     else:
-        update_existing_traces(fig, df_population_density, highlight_locations, selected_data, color_urban_types, color_population_density, year, min_value, max_value)
+        update_existing_traces(fig, df_population_density, highlight_locations, selected_data, color_urban_types, color_population_density, year, min_value, max_value, id)
     if selected_data is not None and len(selected_data) > 0:
         zoom, center = get_zoom_center(selected_data)
         fig['layout']['mapbox']['zoom'] = zoom
@@ -98,7 +98,7 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
     fig['layout']['coloraxis']['cmax'] = max_value
     return fig
 
-def update_existing_traces(fig, df_population_density, highlight_locations, selected_data, color_urban_types, color_population_density, year, min_value, max_value):
+def update_existing_traces(fig, df_population_density, highlight_locations, selected_data, color_urban_types, color_population_density, year, min_value, max_value, id):
     fig['data'] = fig['data'][:len(URBAN_TYPES.values())]
     opacity = UNHIGHLIGHT_OPACITY if len(highlight_locations) > 0 or len(selected_data) > 0 else BASE_OPACITY
     for i, urban_type in enumerate(URBAN_TYPES.values()):
@@ -113,13 +113,13 @@ def update_existing_traces(fig, df_population_density, highlight_locations, sele
         data['text'] = pd.DataFrame(chunk['geo']).apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1)
     # add selected traces
     if len(selected_data) > 0:
-        add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value)
+        add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value, id)
     # add highlighted traces
     if len(highlight_locations) > 0:
-        add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value)
+        add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value, id)
         
 
-def add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value):
+def add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value, id):
     df_selected = df_population_density[df_population_density['geo'].isin(selected_data)]
     for urban_type in get_urban_types_of_geos(selected_data, as_string=True, unique=True):
         locations, values = df_selected[df_selected['urban_type'] == urban_type][['geo', str(year)]].values.T
@@ -133,14 +133,14 @@ def add_selected_traces(fig, df_population_density, selected_data, color_urban_t
                 colorscale=LOG_COLORSCALES[urban_type] if color_urban_types else LOG_COLORSCALE,
                 text=df_selected.apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1),
                 hovertemplate=HOVERTEMPLATE,
-                customdata=[urban_type]*len(locations),
+                customdata=[[urban_type, id]]*len(locations),
                 showscale=False,
                 zmin=min_value,
                 zmax=max_value,
             )
         )
 
-def add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value):
+def add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value, id):
     for urban_type in get_urban_types_of_geos(highlight_locations, as_string=True, unique=True):
         locations, values = df_population_density[df_population_density['geo'].isin(highlight_locations)][['geo', str(year)]].values.T
         fig['data'].append(
@@ -153,7 +153,7 @@ def add_highlighted_traces(fig, df_population_density, highlight_locations, colo
                 colorscale=LOG_COLORSCALES[urban_type] if color_urban_types else LOG_COLORSCALE,
                 text=pd.DataFrame(highlight_locations, columns=['geo']).apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1),
                 hovertemplate=HOVERTEMPLATE,
-                customdata=[urban_type]*len(locations),
+                customdata=[[urban_type, id]]*len(locations),
                 showscale=False,
                 zmin=min_value,
                 zmax=max_value,

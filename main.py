@@ -53,40 +53,80 @@ app.layout = html.Div([
     html.Div([
         html.Div([
             html.H2("Population Density by NUTS3 Region", id="map_heading"),
-            dcc.Graph(
-                id="center_map", 
-                figure=create_map_graph(None, level=3), 
-                clear_on_unhover=True,
-            ),
             html.Div([
                 html.Div([
-                    dmc.Switch(
-                        size="md",
-                        radius="xl",
-                        label="Show Population Density",
-                        checked=True,
-                        id="pop_density_switch"
+                    dcc.Graph(
+                        id="center_map", 
+                        figure=create_map_graph(None, level=3), 
+                        clear_on_unhover=True,
                     ),
+                    html.Div([
+                        html.Div([
+                            dmc.Switch(
+                                size="md",
+                                radius="xl",
+                                label="Show Population Density",
+                                checked=True,
+                                id="pop_density_switch"
+                            ),
+                        ], className="col"),
+                        html.Div([
+                            dmc.Switch(
+                                size="md",
+                                radius="xl",
+                                label="Show Urban Types",
+                                checked=True,
+                                id="urban_type_switch"
+                            ),
+                        ], className="col"),
+                        html.Div([
+                            dcc.Dropdown(
+                                options=[{'label': row['country_name'], 'value': row['country_code']} for _, row in df_geo_names.groupby('country_code', as_index=False, sort=False).apply(lambda x: x.iloc[0]).iterrows()],
+                                id="country_select", 
+                                multi=True,
+                                placeholder="Select countries",
+                            ),
+                        ], className="col"),
+                        html.Button("debug", id="debug_button", style={"display": "none"}),
+                    ], className="pt-3 row display-flex justify-content-center"),
                 ], className="col"),
                 html.Div([
-                    dmc.Switch(
-                        size="md",
-                        radius="xl",
-                        label="Show Urban Types",
-                        checked=True,
-                        id="urban_type_switch"
+                    dcc.Graph(
+                        id="center_map2", 
+                        figure=create_map_graph(None, level=3), 
+                        clear_on_unhover=True,
                     ),
+                    html.Div([
+                        html.Div([
+                            dmc.Switch(
+                                size="md",
+                                radius="xl",
+                                label="Show Population Density",
+                                checked=True,
+                                id="pop_density_switch2"
+                            ),
+                        ], className="col"),
+                        html.Div([
+                            dmc.Switch(
+                                size="md",
+                                radius="xl",
+                                label="Show Urban Types",
+                                checked=True,
+                                id="urban_type_switch2"
+                            ),
+                        ], className="col"),
+                        html.Div([
+                            dcc.Dropdown(
+                                options=[{'label': row['country_name'], 'value': row['country_code']} for _, row in df_geo_names.groupby('country_code', as_index=False, sort=False).apply(lambda x: x.iloc[0]).iterrows()],
+                                id="country_select2", 
+                                multi=True,
+                                placeholder="Select countries",
+                            ),
+                        ], className="col"),
+                        html.Button("debug", id="debug_button2", style={"display": "none"}),
+                    ], className="pt-3 row display-flex justify-content-center"),
                 ], className="col"),
-                html.Div([
-                    dcc.Dropdown(
-                        options=[{'label': row['country_name'], 'value': row['country_code']} for _, row in df_geo_names.groupby('country_code', as_index=False, sort=False).apply(lambda x: x.iloc[0]).iterrows()],
-                        id="country_select", 
-                        multi=True,
-                        placeholder="Select countries",
-                    ),
-                ], className="col"),
-                html.Button("debug", id="debug_button", style={"display": "none"}),
-            ], className="pt-3 row display-flex justify-content-center"),
+            ], className="row flex-nowrap"),
         ], className="col-7", id="map_div"),
         html.Div([
             html.H2("Age Distribution by Region", id="pop_distr_heading"),
@@ -179,6 +219,33 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
         color_population_density=show_pop_density,
         color_urban_types=show_urban_type
     )
+
+@app.callback(
+    Output("center_map2", "figure"),
+    [
+        Input('year_slider', 'value'), 
+        Input('pop_distr_graph', 'hoverData'),
+        Input('sex_distr_graph', 'hoverData'),
+        Input("center_map2", "selectedData"),
+        Input("debug_button2", "n_clicks"),
+        Input("pop_density_switch2", "checked"),
+        Input("urban_type_switch2", "checked"),
+    ],
+    [State("center_map2", "figure")],
+)
+def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_pop_density, show_urban_type, figure):
+    print(pop_distr_hover)
+    highlighted = extract_selected(None, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
+    map_selected_locations = [datum['location'] for datum in (map_selection['points'])] if map_selection is not None else []
+    return create_map_graph(
+        figure, 
+        highlight_locations=highlighted, 
+        level=3, 
+        year=year, 
+        selected_data=map_selected_locations,
+        color_population_density=show_pop_density,
+        color_urban_types=show_urban_type
+    )
     
 @app.callback(
     [
@@ -186,31 +253,31 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
         Output("pop_distr_alert", "style")
     ],
     [
-        Input("center_map", "selectedData"), 
+        Input("center_map", "selectedData"),
+        Input("center_map2", "selectedData"),
         Input('age_group_select', 'value'), 
         Input('year_slider', 'value'),
         Input("center_map", "hoverData"),
+        Input("center_map2", "hoverData"),
         Input("sex_distr_graph", "hoverData")
     ],
     [State("pop_distr_graph", "figure")]
 )
-def update_pop_distr_grap(selected_data, age_group, year, map_hover, sex_distr_hover, figure):
+def update_pop_distr_grap(selected_data0, selected_data1, age_group, year, map_hover0, map_hover1, sex_distr_hover, figure):
     try:
-        selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
-        selected = selected + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
-    
+        selected0 = extract_selected(map_hover0, [sex_distr_hover], 0, ['x'])
+        selected1 = extract_selected(map_hover1, [sex_distr_hover], 1, ['x'])
+        geos0 = extract_geos(selected_data0)
+        geos1 = extract_geos(selected_data1)
+
         year = str(year)
-        if selected_data is None:
-            fig = create_population_structure_bar_chart(figure, 
-                                                        groups=age_group, 
-                                                        year=year, 
-                                                        selected=selected)
-        else:
-            fig = create_population_structure_bar_chart(figure, 
-                                                    geos=[datum['location'] for datum in selected_data['points']], 
-                                                    groups=age_group, 
-                                                    year=year,
-                                                    selected=selected)
+        fig = create_population_structure_bar_chart(figure, 
+                                                geos0=geos0,
+                                                geos1=geos1,
+                                                year=str(year),
+                                                groups=age_group,
+                                                selected0=selected0,
+                                                selected1=selected1)
         return (fig, {"display": "none"})
     except NoDataAvailableError:
         return (figure, {"display": "block"})
@@ -219,30 +286,30 @@ def update_pop_distr_grap(selected_data, age_group, year, map_hover, sex_distr_h
     [Output("pop_graph", "figure"),
      Output("pop_alert", "style")],
     [
-        Input("center_map", "selectedData"), 
+        Input("center_map", "selectedData"),
+        Input("center_map2", "selectedData"),
         Input('year_slider', 'value'),
         Input("center_map", "hoverData"),
+        Input("center_map2", "hoverData"),
         Input("pop_distr_graph", "hoverData"),
         Input("sex_distr_graph", "hoverData")
     ],
     [State("pop_graph", "figure")]
 )
-def update_pop_graph(selected_data, year, map_hover, pop_distr_hover, sex_distr_hover, figure):
+def update_pop_graph(selected_data0, selected_data1, year, map_hover0, map_hover1, pop_distr_hover, sex_distr_hover, figure):
     try:
-        selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
-        selected = selected + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
-        selected = selected + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
-    
+        selected0 = extract_selected(map_hover0, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
+        selected1 = extract_selected(map_hover1, [pop_distr_hover, sex_distr_hover], 1, ['id', 'x'])
+        geos0 = extract_geos(selected_data0)
+        geos1 = extract_geos(selected_data1)
+        print(selected0, selected1)
         year = str(year)
-        if selected_data is None:
-            fig = create_population_line_plot(figure, 
-                                            year=str(year), 
-                                            selected=selected)
-        else:
-            fig = create_population_line_plot(figure, 
-                                            geos=[datum['location'] for datum in selected_data['points']], 
-                                            year=year,
-                                            selected=selected)
+        fig = create_population_line_plot(figure, 
+                                        geos0=geos0,
+                                        geos1=geos1,
+                                        year=str(year),
+                                        selected0=selected0,
+                                        selected1=selected1)
         return (fig, {"display": "none"})
     except NoDataAvailableError:
         return (figure, {"display": "block"})
@@ -251,30 +318,30 @@ def update_pop_graph(selected_data, year, map_hover, pop_distr_hover, sex_distr_
     [Output("births_deaths_graph", "figure"),
      Output("births_deaths_alert", "style")],
     [
-        Input("center_map", "selectedData"), 
+        Input("center_map", "selectedData"),
+        Input("center_map2", "selectedData"),
         Input('year_slider', 'value'),
         Input("center_map", "hoverData"),
+        Input("center_map2", "hoverData"),
         Input("pop_distr_graph", "hoverData"),
         Input("sex_distr_graph", "hoverData")
     ],
     [State("births_deaths_graph", "figure")]
 )
-def update_births_deaths_graph(selected_data, year, map_hover, pop_distr_hover, sex_distr_hover, figure):
+def update_births_deaths_graph(selected_data0, selected_data1, year, map_hover0, map_hover1, pop_distr_hover, sex_distr_hover, figure):
     try:
-        selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
-        selected = selected + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
-        selected = selected + ([datum['x'] for datum in sex_distr_hover['points']] if sex_distr_hover is not None else [])
+        selected0 = extract_selected(map_hover0, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
+        selected1 = extract_selected(map_hover1, [pop_distr_hover, sex_distr_hover], 1, ['id', 'x'])
+        geos0 = extract_geos(selected_data0)
+        geos1 = extract_geos(selected_data1)
     
         year = str(year)
-        if selected_data is None:
-            fig = create_births_deaths_line_plot(figure, 
+        fig = create_births_deaths_line_plot(figure,
+                                            geos0=geos0,
+                                            geos1=geos1,
                                             year=str(year), 
-                                            selected=selected)
-        else:
-            fig = create_births_deaths_line_plot(figure, 
-                                            geos=[datum['location'] for datum in selected_data['points']], 
-                                            year=year,
-                                            selected=selected)
+                                            selected0=selected0,
+                                            selected1=selected1)
         return (fig, {"display": "none"})
     except NoDataAvailableError:
         return (figure, {"display": "block"})
@@ -283,27 +350,28 @@ def update_births_deaths_graph(selected_data, year, map_hover, pop_distr_hover, 
     [Output("sex_distr_graph", "figure"),
      Output("sex_distr_alert", "style")],
     [
-        Input("center_map", "selectedData"), 
+        Input("center_map", "selectedData"),
+        Input("center_map2", "selectedData"),
         Input('year_slider', 'value'),
         Input("center_map", "hoverData"),
+        Input("center_map2", "hoverData"),
         Input("pop_distr_graph", "hoverData"),
     ],
     [State("sex_distr_graph", "figure")]
 )
-def update_sex_distr_graph(selected_data, year, map_hover, pop_distr_hover, figure):
+def update_sex_distr_graph(selected_data0, selected_data1, year, map_hover0, map_hover1, pop_distr_hover, figure):
     try:
-        selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
-        selected = selected + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
+        selected0 = extract_selected(map_hover0, [pop_distr_hover], 0)
+        selected1 = extract_selected(map_hover1, [pop_distr_hover], 1)
+        geos0 = extract_geos(selected_data0)
+        geos1 = extract_geos(selected_data1)
         year = str(year)
-        if selected_data is None:
-            fig = create_sex_violin_plot(figure, 
-                                            year=str(year), 
-                                            selected=selected)
-        else:
-            fig = create_sex_violin_plot(figure, 
-                                            geos=[datum['location'] for datum in selected_data['points']], 
-                                            year=year,
-                                            selected=selected)
+        fig = create_sex_violin_plot(figure, 
+                                        geos0 = geos0,
+                                        geos1=geos1,
+                                        year=str(year), 
+                                        selected0=selected0,
+                                        selected1=selected1)
         return (fig, {"display": "none"})
     except NoDataAvailableError:
         return (figure, {"display": "block"})
@@ -319,6 +387,15 @@ def load_geojson(year):
 @app.callback(
     Output("center_map", "selectedData"),
     Input("country_select", "value")
+)
+def select_countries(countries):
+    if countries is None or len(countries) == 0:
+        return None
+    return {"points": [{"location": geo} for geo in df_geo[df_geo['id'].str.startswith(tuple(countries))]['id']]}
+
+@app.callback(
+    Output("center_map2", "selectedData"),
+    Input("country_select2", "value")
 )
 def select_countries(countries):
     if countries is None or len(countries) == 0:

@@ -1,5 +1,6 @@
 import plotly.graph_objs as go
 import plotly.colors as pc
+from plotly.subplots import make_subplots
 
 colors = {
     'background': '#111111',
@@ -72,7 +73,7 @@ mapbox_style = {
 }
 
 def create_figure(temlpate="plotly_dark"):
-    return go.Figure(layout=DEFAULT_FIGURE_LAYOUT)
+    return make_subplots(rows=1, cols=2)
 
 def sample_color(colorscale, index, total):
     return colorscale[index * len(colorscale) // total]
