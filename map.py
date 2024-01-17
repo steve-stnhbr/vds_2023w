@@ -119,10 +119,13 @@ def update_existing_traces(fig, df_population_density, highlight_locations, sele
         data['colorscale'] = LOG_COLORSCALES[urban_type] if color_urban_types else LOG_COLORSCALE
 
     # add selected traces
-    fig['data'].append(add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value, id))
+    
+    if len(selected_data) > 0:
+        fig['data'] = fig['data'] + (add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value, id))
     
     # add highlighted traces
-    fig['data'].append(add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value, id))
+    if len(highlight_locations) > 0:
+        fig['data'] = fig['data'] + (add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value, id))
     # selected_changed = False
     # for i, _ in enumerate(URBAN_TYPES.values()):
     #     if not list_equals(fig['data'][len(URBAN_TYPES.values()) + i]['locations'], selected_data):
