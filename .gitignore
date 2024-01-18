@@ -3,3 +3,7 @@ venv
 .DS_Store
 .env
 */**.pyc
+
+profiler
+callback_cache
+cache

@@ -1,0 +1,164 @@
+nuts;name;country_name;country_code
+BE1;Région de Bruxelles-Capitale/Brussels Hoofdstedelijk Gewest;Belgium;BE
+BE2;Vlaams Gewest;Belgium;BE
+BE3;Région wallonne;Belgium;BE
+BEZ;Extra-Regio NUTS 1;Belgium;BE
+BG3;Severna i Yugoiztochna Bulgaria;Bulgaria;BG
+BG4;Yugozapadna i Yuzhna tsentralna Bulgaria;Bulgaria;BG
+BGZ;Extra-Regio NUTS 1;Bulgaria;BG
+CZ0;Česko;Czechia;CZ
+CZZ;Extra-Regio NUTS 1;Czechia;CZ
+DK0;Danmark;Denmark;DK
+DKZ;Extra-Regio NUTS 1;Denmark;DK
+DE1;Baden-Württemberg;Germany;DE
+DE2;Bayern;Germany;DE
+DE3;Berlin;Germany;DE
+DE4;Brandenburg;Germany;DE
+DE5;Bremen;Germany;DE
+DE6;Hamburg;Germany;DE
+DE7;Hessen;Germany;DE
+DE8;Mecklenburg-Vorpommern;Germany;DE
+DE9;Niedersachsen;Germany;DE
+DEA;Nordrhein-Westfalen;Germany;DE
+DEB;Rheinland-Pfalz;Germany;DE
+DEC;Saarland;Germany;DE
+DED;Sachsen;Germany;DE
+DEE;Sachsen-Anhalt;Germany;DE
+DEF;Schleswig-Holstein;Germany;DE
+DEG;Thüringen;Germany;DE
+DEZ;Extra-Regio NUTS 1;Germany;DE
+EE0;Eesti;Estonia;EE
+EEZ;Extra-Regio NUTS 1;Estonia;EE
+IE0;Ireland;Ireland;IE
+IEZ;Extra-Regio NUTS 1;Ireland;IE
+EL3;Attiki;Greece;EL
+EL4;Nisia Aigaiou, Kriti;Greece;EL
+EL5;Voreia Elláda;Greece;EL
+EL6;Kentriki Elláda;Greece;EL
+ELZ;Extra-Regio NUTS 1;Greece;EL
+ES1;Noroeste;Spain;ES
+ES2;Noreste;Spain;ES
+ES3;Comunidad de Madrid;Spain;ES
+ES4;Centro (ES);Spain;ES
+ES5;Este;Spain;ES
+ES6;Sur;Spain;ES
+ES7;Canarias;Spain;ES
+ESZ;Extra-Regio NUTS 1;Spain;ES
+FR1;Ile-de-France;France;FR
+FRB;Centre — Val de Loire;France;FR
+FRC;Bourgogne-Franche-Comté;France;FR
+FRD;Normandie;France;FR
+FRE;Hauts-de-France;France;FR
+FRF;Grand Est;France;FR
+FRG;Pays de la Loire;France;FR
+FRH;Bretagne;France;FR
+FRI;Nouvelle-Aquitaine;France;FR
+FRJ;Occitanie;France;FR
+FRK;Auvergne-Rhône-Alpes;France;FR
+FRL;Provence-Alpes-Côte d’Azur;France;FR
+FRM;Corse;France;FR
+FRY;RUP FR — Régions Ultrapériphériques Françaises;France;FR
+FRZ;Extra-Regio NUTS 1;France;FR
+HR0;Hrvatska;Croatia;HR
+HRZ;Extra-Regio NUTS 1;Croatia;HR
+ITC;Nord-Ovest;Italy;IT
+ITF;Sud;Italy;IT
+ITG;Isole;Italy;IT
+ITH;Nord-Est;Italy;IT
+ITI;Centro (IT);Italy;IT
+ITZ;Extra-Regio NUTS 1;Italy;IT
+CY0;Kýpros;Cyprus;CY
+CYZ;EXTRA-REGIO NUTS 1;Cyprus;CY
+LV0;Latvija;Latvia;LV
+LVZ;Extra-Regio NUTS 1;Latvia;LV
+LT0;Lietuva;Lithuania;LT
+LTZ;Extra-Regio NUTS 1;Lithuania;LT
+LU0;Luxembourg;Luxembourg;LU
+LUZ;Extra-Regio NUTS 1;Luxembourg;LU
+HU1;Közép-Magyarország;Hungary;HU
+HU2;Dunántúl;Hungary;HU
+HU3;Alföld és Észak;Hungary;HU
+HUZ;Extra-Regio NUTS 1;Hungary;HU
+MT0;Malta;Malta;MT
+MTZ;Extra-Regio NUTS 1;Malta;MT
+NL1;Noord-Nederland;Netherlands;NL
+NL2;Oost-Nederland;Netherlands;NL
+NL3;West-Nederland;Netherlands;NL
+NL4;Zuid-Nederland;Netherlands;NL
+NLZ;Extra-Regio NUTS 1;Netherlands;NL
+AT1;Ostösterreich;Austria;AT
+AT2;Südösterreich;Austria;AT
+AT3;Westösterreich;Austria;AT
+ATZ;Extra-Regio NUTS 1;Austria;AT
+PL2;Makroregion południowy;Poland;PL
+PL4;Makroregion północno-zachodni;Poland;PL
+PL5;Makroregion południowo-zachodni;Poland;PL
+PL6;Makroregion północny;Poland;PL
+PL7;Makroregion centralny;Poland;PL
+PL8;Makroregion wschodni;Poland;PL
+PL9;Makroregion województwo mazowieckie;Poland;PL
+PLZ;Extra-Regio NUTS 1;Poland;PL
+PT1;Continente;Portugal;PT
+PT2;Região Autónoma dos Açores;Portugal;PT
+PT3;Região Autónoma da Madeira;Portugal;PT
+PTZ;Extra-Regio NUTS 1;Portugal;PT
+RO1;Macroregiunea Unu;Romania;RO
+RO2;Macroregiunea Doi;Romania;RO
+RO3;Macroregiunea Trei;Romania;RO
+RO322; ;Romania;RO
+RO4;Macroregiunea Patru;Romania;RO
+ROZ;Extra-Regio NUTS 1;Romania;RO
+SI0;Slovenija;Slovenia;SI
+SIZ;Extra-Regio NUTS 1;Slovenia;SI
+SK0;Slovensko;Slovakia;SK
+SKZ;Extra-Regio NUTS 1;Slovakia;SK
+FI1;Manner-Suomi;Finland;FI
+FI2;Åland;Finland;FI
+FIZ;Extra-Regio NUTS 1;Finland;FI
+SE1;Östra Sverige;Sweden;SE
+SE2;Södra Sverige;Sweden;SE
+SE3;Norra Sverige;Sweden;SE
+SEZ;Extra-Regio NUTS 1;Sweden;SE
+UKC;North East (England);United Kingdom of Great Britain and Northern Ireland;UK
+UKD;North West (England);United Kingdom of Great Britain and Northern Ireland;UK
+UKE;Yorkshire and the Humber;United Kingdom of Great Britain and Northern Ireland;UK
+UKF;East Midlands (England);United Kingdom of Great Britain and Northern Ireland;UK
+UKG;West Midlands (England);United Kingdom of Great Britain and Northern Ireland;UK
+UKH;East of England;United Kingdom of Great Britain and Northern Ireland;UK
+UKI;London;United Kingdom of Great Britain and Northern Ireland;UK
+UKJ;South East (England);United Kingdom of Great Britain and Northern Ireland;UK
+UKK;South West (England);United Kingdom of Great Britain and Northern Ireland;UK
+UKL;Wales;United Kingdom of Great Britain and Northern Ireland;UK
+UKM;Scotland;United Kingdom of Great Britain and Northern Ireland;UK
+UKN;Northern Ireland;United Kingdom of Great Britain and Northern Ireland;UK
+UKZ;Extra-Regio NUTS 1;United Kingdom of Great Britain and Northern Ireland;UK
+IS0;Ísland;Iceland;IS
+ISZ;Extra-Regio NUTS 1;Iceland;IS
+LI0;Liechtenstein;Liechtenstein;LI
+LIZ;Extra-Regio NUTS 1;Liechtenstein;LI
+NO0;Norge;Norway;NO
+NOZ;Extra-Regio NUTS 1;Norway;NO
+CH0;Schweiz/Suisse/Svizzera;Switzerland;CH
+CHZ;Extra-Regio NUTS 1;Switzerland;CH
+ME0;Crna Gora;Montenegro;ME
+MEZ;Extra-Regio NUTS 1;Montenegro;ME
+MK0;Severna Makedonija ;North Macedonia;MK
+MKZ;Extra-Regio NUTS 1;North Macedonia;MK
+AL0;Shqipëria;Albania;AL
+ALZ;Extra-Regio NUTS 1;Albania;AL
+RS1;Serbia - sever;Serbia;RS
+RS2;Serbia - jug ;Serbia;RS
+RSZ;Extra-Regio NUTS 1;Serbia;RS
+TR1;İstanbul;Turkey;TR
+TR2;Batı Marmara;Turkey;TR
+TR3;Ege;Turkey;TR
+TR4;Doğu Marmara;Turkey;TR
+TR5;Batı Anadolu;Turkey;TR
+TR6;Akdeniz;Turkey;TR
+TR7;Orta Anadolu;Turkey;TR
+TR8;Batı Karadeniz;Turkey;TR
+TR9;Doğu Karadeniz;Turkey;TR
+TRA;Kuzeydoğu Anadolu;Turkey;TR
+TRB;Ortadoğu Anadolu;Turkey;TR
+TRC;Güneydoğu Anadolu;Turkey;TR
+TRZ;Extra-Regio NUTS 1;Turkey;TR
