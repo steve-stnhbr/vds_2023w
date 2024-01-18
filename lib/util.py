@@ -1,5 +1,7 @@
 import os
 from collections import Counter
+import threading
+from threading import Timer
 
 ROOT_DIR = os.getcwd() + "/"
 
@@ -47,3 +49,45 @@ def list_equals(list1, list2):
             return False
     
     return True
+
+def debounce1(wait_time):
+    """
+    Decorator that will debounce a function so that it is called after wait_time seconds
+    If it is called multiple times, will wait for the last call to be debounced and run only this one.
+    """
+
+    def decorator(function):
+        def debounced(*args, **kwargs):
+            def call_function():
+                debounced._timer = None
+                return function(*args, **kwargs)
+            # if we already have a call to the function currently waiting to be executed, reset the timer
+            if debounced._timer is not None:
+                debounced._timer.cancel()
+
+            # after wait_time, call the function provided to the decorator with its arguments
+            debounced._timer = threading.Timer(wait_time, call_function)
+            debounced._timer.start()
+
+        debounced._timer = None
+        return debounced
+
+    return decorator
+
+
+def debounce(wait):
+    """ Decorator that will postpone a functions
+        execution until after wait seconds
+        have elapsed since the last time it was invoked. """
+    def decorator(fn):
+        def debounced(*args, **kwargs):
+            def call_it():
+                fn(*args, **kwargs)
+            try:
+                debounced.t.cancel()
+            except(AttributeError):
+                pass
+            debounced.t = Timer(wait, call_it)
+            debounced.t.start()
+        return debounced
+    return decorator

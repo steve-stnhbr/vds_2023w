@@ -1,10 +1,16 @@
 import pandas as pd
 import numpy as np
 from dash import Dash, dcc, html, Input, Output, State
+import dash
 import os
 import flask
 import dash_mantine_components as dmc
+import time
 from flask_caching import Cache
+from werkzeug.middleware.profiler import ProfilerMiddleware
+from dash.long_callback import DiskcacheLongCallbackManager
+import diskcache
+
 
 from map import *
 from pop_structure import *
@@ -21,8 +27,12 @@ DEFAULT_GRAPH_LAYOUT = go.Layout(
     plot_bgcolor='rgba(0,0,0,0)'
 )
 TIMEOUT = 60 * 60
+PROF_DIR = "profiler"
 
 #pio.templates.default = "plotly_dark"
+callback_times = {}
+cache = diskcache.Cache("./callback_cache")
+long_callback_manager = DiskcacheLongCallbackManager(cache)
 
 css_directory = os.getcwd()
 stylesheets = ['style.css']
@@ -32,6 +42,7 @@ external_scripts = ["https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootst
 
 app = Dash(__name__, external_stylesheets=external_stylesheets, external_scripts=external_scripts)
 server = app.server
+app.config.prevent_initial_callbacks='initial_duplicate'
 
 cache = Cache(None, config={
         'CACHE_TYPE': 'filesystem',
@@ -198,7 +209,7 @@ app.layout = html.Div([
 ], id="main_div", className="")
 
 
-@app.callback(
+@app.long_callback(
     Output("center_map", "figure"),
     [
         Input('year_slider', 'value'), 
@@ -210,11 +221,22 @@ app.layout = html.Div([
         Input("urban_type_switch", "checked"),
     ],
     [State("center_map", "figure")],
+    # cancel=[
+    #     Input('year_slider', 'value'), 
+    #     Input('pop_distr_graph', 'hoverData'),
+    #     Input('sex_distr_graph', 'hoverData'),
+    #     Input("center_map", "selectedData"),
+    #     Input("debug_button", "n_clicks"),
+    #     Input("pop_density_switch", "checked"),
+    #     Input("urban_type_switch", "checked"),
+    # ],
+    manager=long_callback_manager,
 )
 #@cache.memoize(timeout=TIMEOUT)
 def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_pop_density, show_urban_type, figure):
     highlighted = extract_selected(None, [pop_distr_hover, sex_distr_hover], 0, ['id', 'x'])
     map_selected_locations = extract_geos(map_selection)
+    print("update_map")
     return create_map_graph(
         figure, 
         highlight_locations=highlighted, 
@@ -225,8 +247,8 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
         color_urban_types=show_urban_type
     )
 
-@app.callback(
-    Output("center_map2", "figure"),
+@app.long_callback(
+    Output("center_map2", "figure", allow_duplicate=True),
     [
         Input('year_slider', 'value'), 
         Input('pop_distr_graph', 'hoverData'),
@@ -237,9 +259,19 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
         Input("urban_type_switch2", "checked"),
     ],
     [State("center_map2", "figure")],
+    # cancel=[
+    #     Input('year_slider', 'value'), 
+    #     Input('pop_distr_graph', 'hoverData'),
+    #     Input('sex_distr_graph', 'hoverData'),
+    #     Input("center_map2", "selectedData"),
+    #     Input("debug_button2", "n_clicks"),
+    #     Input("pop_density_switch2", "checked"),
+    #     Input("urban_type_switch2", "checked"),
+    # ],
+    manager=long_callback_manager,
 )
 #@cache.memoize(timeout=TIMEOUT)
-def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_pop_density, show_urban_type, figure):
+def update_map2(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_pop_density, show_urban_type, figure):
     highlighted = extract_selected(None, [pop_distr_hover, sex_distr_hover], ['id', 'x'], [False, False])
     map_selected_locations = extract_geos(map_selection)
     return create_map_graph(
@@ -252,7 +284,7 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
         color_urban_types=show_urban_type
     )
     
-@app.callback(
+@app.long_callback(
     [
         Output("pop_distr_graph", "figure"),
         Output("pop_distr_alert", "style")
@@ -266,7 +298,17 @@ def update_map(year, pop_distr_hover, sex_distr_hover, map_selection, _, show_po
         Input("center_map2", "hoverData"),
         Input("sex_distr_graph", "hoverData")
     ],
-    [State("pop_distr_graph", "figure")]
+    [State("pop_distr_graph", "figure")],
+    # cancel=[
+    #     Input("center_map", "selectedData"),
+    #     Input("center_map2", "selectedData"),
+    #     Input('age_group_select', 'value'), 
+    #     Input('year_slider', 'value'),
+    #     Input("center_map", "hoverData"),
+    #     Input("center_map2", "hoverData"),
+    #     Input("sex_distr_graph", "hoverData")
+    # ],
+    manager=long_callback_manager,
 )
 #@cache.memoize(timeout=TIMEOUT)
 def update_pop_distr_grap(selected_data0, selected_data1, age_group, year, map_hover0, map_hover1, sex_distr_hover, figure):
@@ -288,7 +330,7 @@ def update_pop_distr_grap(selected_data0, selected_data1, age_group, year, map_h
     except NoDataAvailableError:
         return (figure, {"display": "block"})
 
-@app.callback(
+@app.long_callback(
     [Output("pop_graph", "figure"),
      Output("pop_alert", "style")],
     [
@@ -300,7 +342,17 @@ def update_pop_distr_grap(selected_data0, selected_data1, age_group, year, map_h
         Input("pop_distr_graph", "hoverData"),
         Input("sex_distr_graph", "hoverData")
     ],
-    [State("pop_graph", "figure")]
+    [State("pop_graph", "figure")],
+    # cancel=[
+    #     Input("center_map", "selectedData"),
+    #     Input("center_map2", "selectedData"),
+    #     Input('year_slider', 'value'),
+    #     Input("center_map", "hoverData"),
+    #     Input("center_map2", "hoverData"),
+    #     Input("pop_distr_graph", "hoverData"),
+    #     Input("sex_distr_graph", "hoverData")
+    # ],
+    manager=long_callback_manager,
 )
 #@cache.memoize(timeout=TIMEOUT)
 def update_pop_graph(selected_data0, selected_data1, year, map_hover0, map_hover1, pop_distr_hover, sex_distr_hover, figure):
@@ -320,7 +372,7 @@ def update_pop_graph(selected_data0, selected_data1, year, map_hover0, map_hover
     except NoDataAvailableError:
         return (figure, {"display": "block"})
     
-@app.callback(
+@app.long_callback(
     [Output("births_deaths_graph", "figure"),
      Output("births_deaths_alert", "style")],
     [
@@ -332,7 +384,17 @@ def update_pop_graph(selected_data0, selected_data1, year, map_hover0, map_hover
         Input("pop_distr_graph", "hoverData"),
         Input("sex_distr_graph", "hoverData")
     ],
-    [State("births_deaths_graph", "figure")]
+    [State("births_deaths_graph", "figure")],
+    # cancel= [
+    #     Input("center_map", "selectedData"),
+    #     Input("center_map2", "selectedData"),
+    #     Input('year_slider', 'value'),
+    #     Input("center_map", "hoverData"),
+    #     Input("center_map2", "hoverData"),
+    #     Input("pop_distr_graph", "hoverData"),
+    #     Input("sex_distr_graph", "hoverData")
+    # ],
+    manager=long_callback_manager,
 )
 #@cache.memoize(timeout=TIMEOUT)
 def update_births_deaths_graph(selected_data0, selected_data1, year, map_hover0, map_hover1, pop_distr_hover, sex_distr_hover, figure):
@@ -353,7 +415,7 @@ def update_births_deaths_graph(selected_data0, selected_data1, year, map_hover0,
     except NoDataAvailableError:
         return (figure, {"display": "block"})
     
-@app.callback(
+@app.long_callback(
     [Output("sex_distr_graph", "figure"),
      Output("sex_distr_alert", "style")],
     [
@@ -364,7 +426,17 @@ def update_births_deaths_graph(selected_data0, selected_data1, year, map_hover0,
         Input("center_map2", "hoverData"),
         Input("pop_distr_graph", "hoverData"),
     ],
-    [State("sex_distr_graph", "figure")]
+    [State("sex_distr_graph", "figure")],
+    # cancel=[
+    #     Input("center_map", "selectedData"),
+    #     Input("center_map2", "selectedData"),
+    #     Input('year_slider', 'value'),
+    #     Input("center_map", "hoverData"),
+    #     Input("center_map2", "hoverData"),
+    #     Input("pop_distr_graph", "hoverData"),
+    
+    # ],
+    manager=long_callback_manager,
 )
 #@cache.memoize(timeout=TIMEOUT)
 def update_sex_distr_graph(selected_data0, selected_data1, year, map_hover0, map_hover1, pop_distr_hover, figure):
@@ -410,6 +482,23 @@ def select_countries(countries):
         return None
     return {"points": [{"location": geo} for geo in df_geo[df_geo['id'].str.startswith(tuple(countries))]['id']]}
 
+def needs_debounce(name, timeout):
+    global callback_times
+    now = time.time()
+    if name not in callback_times.keys() or now - callback_times[name] > timeout:
+        callback_times[name] = now
+        return False
+    return True
+
 if __name__ == '__main__':
+    if os.getenv("PROFILER", None):
+        app.server.config["PROFILE"] = True
+        app.server.wsgi_app = ProfilerMiddleware(
+            app.server.wsgi_app, 
+            sort_by=["cumtime"], 
+            restrictions=[50],
+            stream=None,
+            profile_dir=PROF_DIR
+        )
     app.run_server(debug=True, dev_tools_ui=True)
 
