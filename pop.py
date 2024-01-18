@@ -13,7 +13,7 @@ HEADING_URBAN_TYPE = "Population Development by Urban Type"
 UNSELECTED_OPACITY = .24
 FILL_OPACITY = .4
 
-MAX_GEOS_AT_ONCE = 50
+MAX_GEOS_AT_ONCE = 10
 
 HOVER_TEMPLATE = "<b>%{y:.2s}</b> inhabitants in %{x}"
 

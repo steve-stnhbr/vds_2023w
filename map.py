@@ -30,16 +30,19 @@ LOG_COLORSCALE = logarithmic_color_scale(pc.sequential.Purples, base=3.1, num_sa
 
 LOG_COLORSCALES = {urban_type: logarithmic_color_scale(URBAN_TYPE_COLORSCALES_R[urban_type], base=3.1, num_samples=100) for urban_type in URBAN_TYPES.values()}
 
-HOVERTEMPLATE = "<b>%{text} (%{location})</b><br>Population density: %{z:.2f}k people per km²<br>Urban type: <b>%{customdata}</b>"
+HOVERTEMPLATE = "<b>%{text} (%{location})</b><br>Population density: %{z:.2f}k people per km²<br>Urban type: <b>%{customdata}</b><extra></extra>"
 
 df_population_density = pd.read_csv(ROOT_DIR + "data/density.tsv", dtype={'geo': str})
 df_population_density = df_population_density[df_population_density.apply(lambda row: geo_is_level(row['geo'], 3), axis=1)]
 df_population_density = sort_to_numeric_ffill(df_population_density)
 df_population_density = assign_urbanization_type(df_population_density)
+df_population_density['name'] = df_population_density.apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1)
 years_population_density = get_years(df_population_density)
 
+year_before = 0
+
 def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_data=[], color_urban_types=True, color_population_density=True):
-    global df_population_density
+    global df_population_density, year_before
     if str(year) not in years_population_density:
         raise NoDataAvailableError(year=year)
     locations = df_population_density['geo']
@@ -80,10 +83,11 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
                     z=values if color_population_density else [NO_DENSITY_VALUE]*len(locations),
                     marker={'opacity': BASE_OPACITY, "line":  {"width": .1}},
                     colorscale=LOG_COLORSCALES[urban_type] if color_urban_types else LOG_COLORSCALE,
-                    text=pd.DataFrame(locations).apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1),
-                    hovertemplate=HOVERTEMPLATE,
+                    text=df_population_density_use['name'],
+                    hovertemplate=HOVERTEMPLATE if len(selected_data) == 0 else None,
                     customdata=[urban_type]*len(locations),
                     showscale=False,
+                    hoverinfo='text' if len(selected_data) == 0 else 'skip',
                     zmin=min_value,
                     zmax=max_value,
                 )
@@ -96,9 +100,11 @@ def create_map_graph(fig, highlight_locations=[], level=3, year=2022, selected_d
         fig['layout']['mapbox']['center'] = center
     fig['layout']['coloraxis']['cmin'] = min_value
     fig['layout']['coloraxis']['cmax'] = max_value
+    year_before = year
     return fig
 
 def update_existing_traces(fig, df_population_density, highlight_locations, selected_data, color_urban_types, color_population_density, year, min_value, max_value):
+    global year_before
     fig['data'] = fig['data'][:len(URBAN_TYPES.values())]
     opacity = UNHIGHLIGHT_OPACITY if len(highlight_locations) > 0 or len(selected_data) > 0 else BASE_OPACITY
     for i, urban_type in enumerate(URBAN_TYPES.values()):
@@ -109,8 +115,10 @@ def update_existing_traces(fig, df_population_density, highlight_locations, sele
         data['z'] = values if color_population_density else [NO_DENSITY_VALUE]*len(chunk)
         data['marker']['opacity'] = opacity
         data['colorscale'] = LOG_COLORSCALES[urban_type] if color_urban_types else LOG_COLORSCALE
-        data['locations'] = chunk['geo']
-        data['text'] = pd.DataFrame(chunk['geo']).apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1)
+        data['hovertemplate'] = HOVERTEMPLATE if len(selected_data) == 0 else None
+        data['hoverinfo'] = 'text' if len(selected_data) == 0 else 'skip'
+        if year_before != year:
+            data['locations'] = chunk['geo']
     # add selected traces
     if len(selected_data) > 0:
         add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value)
@@ -122,7 +130,7 @@ def update_existing_traces(fig, df_population_density, highlight_locations, sele
 def add_selected_traces(fig, df_population_density, selected_data, color_urban_types, color_population_density, year, highlight_locations, min_value, max_value):
     df_selected = df_population_density[df_population_density['geo'].isin(selected_data)]
     for urban_type in get_urban_types_of_geos(selected_data, as_string=True, unique=True):
-        locations, values = df_selected[df_selected['urban_type'] == urban_type][['geo', str(year)]].values.T
+        locations, values, names = df_selected[df_selected['urban_type'] == urban_type][['geo', str(year), 'name']].values.T
         fig['data'].append(
             go.Choroplethmapbox(
                 geojson=current_geojson,
@@ -131,7 +139,7 @@ def add_selected_traces(fig, df_population_density, selected_data, color_urban_t
                 z=values if color_population_density else [NO_DENSITY_VALUE]*len(locations),
                 marker={'opacity': SELECTED_OPACITY if len(highlight_locations) == 0 else SELECTED_UNHIGHLIGHT_OPACITY, "line":  {"width": .3}},
                 colorscale=LOG_COLORSCALES[urban_type] if color_urban_types else LOG_COLORSCALE,
-                text=df_selected.apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1),
+                text=names,
                 hovertemplate=HOVERTEMPLATE,
                 customdata=[urban_type]*len(locations),
                 showscale=False,
@@ -142,7 +150,7 @@ def add_selected_traces(fig, df_population_density, selected_data, color_urban_t
 
 def add_highlighted_traces(fig, df_population_density, highlight_locations, color_urban_types, color_population_density, year, min_value, max_value):
     for urban_type in get_urban_types_of_geos(highlight_locations, as_string=True, unique=True):
-        locations, values = df_population_density[df_population_density['geo'].isin(highlight_locations)][['geo', str(year)]].values.T
+        locations, values, names = df_population_density[df_population_density['geo'].isin(highlight_locations)][['geo', str(year), 'name']].values.T
         fig['data'].append(
             go.Choroplethmapbox(
                 geojson=current_geojson,
@@ -151,7 +159,7 @@ def add_highlighted_traces(fig, df_population_density, highlight_locations, colo
                 z=values if color_population_density else [NO_DENSITY_VALUE]*len(locations),
                 marker={'opacity': HIGHLIGHT_OPACITY, "line":  {"width": 1}},
                 colorscale=LOG_COLORSCALES[urban_type] if color_urban_types else LOG_COLORSCALE,
-                text=pd.DataFrame(highlight_locations, columns=['geo']).apply(lambda x: get_geo_name(x['geo']) or x['geo'], axis=1),
+                text=names,
                 hovertemplate=HOVERTEMPLATE,
                 customdata=[urban_type]*len(locations),
                 showscale=False,

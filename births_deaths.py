@@ -9,7 +9,7 @@ from lib.util import *
 
 UNSELECTED_OPACITY = .12
 
-MAX_GEOS_AT_ONCE = 20
+MAX_GEOS_AT_ONCE = 10
 HEADING_URBAN_TYPE = "Births and Deaths by Urban Type"
 HEADING_REGION = "Births and Deaths by NUTS3 Region"
 
