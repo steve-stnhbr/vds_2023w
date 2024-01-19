@@ -131,7 +131,7 @@ app.layout = html.Div([
                     value="total",
                     size="sm",
                     mb=-35,
-                    style={'position': 'relative', 'z-index': '1000'}
+                    style={'position': 'relative', 'z-index': '5'}
                 ),
                 dcc.Graph(
                     id="births_deaths_graph",

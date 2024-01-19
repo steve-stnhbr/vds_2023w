@@ -54,6 +54,9 @@ def create_sex_violin_plot(fig, geos=[], year='2022', selected=[]):
     fig = create_figure()
     if geos is None or len(geos) == 0:
         geos = df_sex_use['geo'].unique()
+    else:
+        df_sex_use = df_sex_use[df_sex_use['geo'].isin(geos)]
+
     if len(geos) > MAX_GEOS_AT_ONCE:
         if selected is not None and len(selected) > 0:
             if len(intersection(URBAN_TYPES.values(), selected)) == 0:
