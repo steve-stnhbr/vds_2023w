@@ -125,6 +125,14 @@ app.layout = html.Div([
         html.Div([
             html.H2("Births and Deaths", id="births_deaths_heading"),
             html.Div([
+                dmc.RadioGroup(
+                    [dmc.Radio(l, value=k) for l, k in {"total": 'total', "per capita": 'pc'}.items()],
+                    id="births_deaths_radio",
+                    value="total",
+                    size="sm",
+                    mb=-10,
+                    style={'position': 'fixed', 'z-index': '1000'}
+                ),
                 dcc.Graph(
                     id="births_deaths_graph",
                     figure=create_births_deaths_line_plot(None), 
@@ -255,11 +263,12 @@ def update_pop_graph(selected_data, year, map_hover, pop_distr_hover, sex_distr_
         Input('year_slider', 'value'),
         Input("center_map", "hoverData"),
         Input("pop_distr_graph", "hoverData"),
-        Input("sex_distr_graph", "hoverData")
+        Input("sex_distr_graph", "hoverData"),
+        Input("births_deaths_radio", "value"),
     ],
     [State("births_deaths_graph", "figure")]
 )
-def update_births_deaths_graph(selected_data, year, map_hover, pop_distr_hover, sex_distr_hover, figure):
+def update_births_deaths_graph(selected_data, year, map_hover, pop_distr_hover, sex_distr_hover, unit, figure):
     try:
         selected = [datum['location'] for datum in (map_hover['points'])] if map_hover is not None else []
         selected = selected + ([datum['id'] for datum in (pop_distr_hover['points'])] if pop_distr_hover is not None else [])
@@ -269,12 +278,14 @@ def update_births_deaths_graph(selected_data, year, map_hover, pop_distr_hover, 
         if selected_data is None:
             fig = create_births_deaths_line_plot(figure, 
                                             year=str(year), 
-                                            selected=selected)
+                                            selected=selected,
+                                            unit=unit)
         else:
             fig = create_births_deaths_line_plot(figure, 
                                             geos=[datum['location'] for datum in selected_data['points']], 
                                             year=year,
-                                            selected=selected)
+                                            selected=selected,
+                                            unit=unit)
         return (fig, {"display": "none"})
     except NoDataAvailableError:
         return (figure, {"display": "block"})

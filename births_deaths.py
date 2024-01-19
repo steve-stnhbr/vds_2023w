@@ -2,6 +2,7 @@ import plotly.graph_objects as go
 import pandas as pd
 import plotly.colors as pc
 
+from pop import df_population
 from lib.transformations import *
 from lib.geo import *
 from lib.style import *
@@ -33,13 +34,18 @@ df_deaths = df_deaths[df_deaths.apply(lambda row: geo_is_level(row['geo'], 3), a
 df_deaths = assign_urbanization_type(df_deaths)
 df_deaths = sort_to_numeric_ffill(df_deaths)
 
+years_pop = get_years(df_population)
+df_pop_per_urban_type = assign_urbanization_type(df_population)
+df_pop_per_urban_type = df_pop_per_urban_type[['urban_type'] + years_pop]
+df_pop_per_urban_type = df_pop_per_urban_type.groupby(['urban_type']).sum().reset_index()
+
 years_births = get_years(df_births)
 years_deaths = get_years(df_deaths)
 years = intersection(years_births, years_deaths)
 years = sorted(years)
 
 
-def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
+def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[], unit='total'):
     global df_births, df_deaths
     if year is not None and year not in years:
         raise NoDataAvailableError(year=year)
@@ -62,6 +68,10 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
         df_deaths_use = df_deaths.groupby(['urban_type'])[years].sum().reset_index()
         total_births = df_births[years].sum().reset_index(drop=True)
         total_deaths = df_deaths[years].sum().reset_index(drop=True)
+
+        if unit == 'pc':
+            total_births = total_births / df_pop_per_urban_type[years].sum().reset_index(drop=True)
+            total_deaths = total_deaths / df_pop_per_urban_type[years].sum().reset_index(drop=True)
 
         fig.add_trace(
             go.Scatter(
@@ -94,6 +104,11 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
         for urban_type in set(df_births_use['urban_type'].unique().tolist()) - {'unavailable'}:
             row_births = df_births_use[df_births_use['urban_type'] == urban_type]
             row_deaths = df_deaths_use[df_deaths_use['urban_type'] == urban_type]
+
+            if unit == 'pc':
+                row_births[years] = row_births[years] / df_pop_per_urban_type[df_pop_per_urban_type['urban_type'] == urban_type][years]
+                row_deaths[years] = row_deaths[years] / df_pop_per_urban_type[df_pop_per_urban_type['urban_type'] == urban_type][years]
+
             fig.add_trace(
                 go.Scatter(
                     x=years,
@@ -127,6 +142,10 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
         heading = HEADING_REGION
         total_births = df_births[df_births['geo'].isin(geos)][years].sum().reset_index(drop=True)
         total_deaths = df_deaths[df_deaths['geo'].isin(geos)][years].sum().reset_index(drop=True)
+
+        if unit == 'pc':
+            total_births = total_births / df_population[df_population['geo'].isin(geos)][years].sum().reset_index(drop=True)
+            total_deaths = total_deaths / df_population[df_population['geo'].isin(geos)][years].sum().reset_index(drop=True)
         
         fig.add_trace(
             go.Scatter(
@@ -158,6 +177,10 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[]):
         for geo in geos:
             row = df_births[df_births['geo'] == geo]
             urban_type = row['urban_type'].values[0]
+
+            if unit == 'pc':
+                row[years] = row[years] / df_population[df_population['geo'] == geo][years]
+
             fig.add_trace(
                 go.Scatter(
                     x=years,
