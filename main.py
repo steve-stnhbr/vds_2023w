@@ -130,8 +130,8 @@ app.layout = html.Div([
                     id="births_deaths_radio",
                     value="total",
                     size="sm",
-                    mb=-10,
-                    style={'position': 'fixed', 'z-index': '1000'}
+                    mb=-35,
+                    style={'position': 'relative', 'z-index': '1000'}
                 ),
                 dcc.Graph(
                     id="births_deaths_graph",
@@ -155,7 +155,7 @@ app.layout = html.Div([
                     html.H3("No data available")
                 ], id="sex_distr_alert", style={"display": "none"}, className="alert")
             ], className="alert-container")
-        ], className="col-3", id="sex_distr_div"),
+        ], className="col", id="sex_distr_div"),
     ], className="row flex-nowrap", id="graphs2_div"),
 ], id="main_div", className="")
 
