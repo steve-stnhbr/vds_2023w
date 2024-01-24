@@ -34,7 +34,7 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
     fig.update_layout(hovermode="x unified")
     if geos is None or len(geos) == 0:
         geos = df_pop['geo'].unique()
-
+    df_pop = df_pop[df_pop['geo'].isin(geos)]
 
     if len(geos) > MAX_GEOS_AT_ONCE:
         heading = HEADING_URBAN_TYPE
@@ -45,7 +45,7 @@ def create_population_line_plot(fig, geos=[], year=None, selected=[]):
         df_pop = df_pop.groupby(['urban_type'])[years_population].sum().reset_index()
         length = len(set(df_pop['urban_type'].unique().tolist()) - {'unavailable'})
         # calculate the sum of all urban types for each year
-        total_values = df_population[years_population].sum().reset_index(drop=True)
+        total_values = df_pop[years_population].sum().reset_index(drop=True)
 
         for urban_type in set(df_pop['urban_type'].unique().tolist()) - {'unavailable'}:
             row = df_pop[df_pop['urban_type'] == urban_type]
