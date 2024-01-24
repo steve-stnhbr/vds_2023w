@@ -53,6 +53,9 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[], unit='t
     if geos is None or len(geos) == 0:
         geos = df_births['geo'].unique()
 
+    df_births_use = df_births[df_births['geo'].isin(geos)]
+    df_deaths_use = df_deaths[df_deaths['geo'].isin(geos)]
+
     fig = create_figure()
     fig.update_yaxes(rangemode="tozero")
     fig.update_layout(hovermode="x unified")
@@ -64,10 +67,10 @@ def create_births_deaths_line_plot(fig, geos=[], year=None, selected=[], unit='t
             if len(intersection(selected, URBAN_TYPES.values())) == 0:
                 selected = get_urban_types_of_geos(selected)
 
-        df_births_use = df_births.groupby(['urban_type'])[years].sum().reset_index()
-        df_deaths_use = df_deaths.groupby(['urban_type'])[years].sum().reset_index()
-        total_births = df_births[years].sum().reset_index(drop=True)
-        total_deaths = df_deaths[years].sum().reset_index(drop=True)
+        df_births_use = df_births_use.groupby(['urban_type'])[years].sum().reset_index()
+        df_deaths_use = df_deaths_use.groupby(['urban_type'])[years].sum().reset_index()
+        total_births = df_births_use[years].sum().reset_index(drop=True)
+        total_deaths = df_deaths_use[years].sum().reset_index(drop=True)
 
         if unit == 'pc':
             total_births = total_births / df_pop_per_urban_type[years].sum().reset_index(drop=True)
